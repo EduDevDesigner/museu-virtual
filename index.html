@@ -107,7 +107,7 @@
   </div>
 
   <!-- ÁUDIO DE FUNDO -->
-  <audio autoplay loop>
+  <audio id="bg-audio" autoplay loop>
     <source src="Audios/baroque.mp3" type="audio/mpeg">
   </audio>
 
@@ -118,6 +118,12 @@
       </button>
     </div>
   </div>
+
+  <!-- CONTROLE DE VOLUME -->
+  <script>
+    const audio = document.getElementById('bg-audio');
+    audio.volume = 0.25; // volume reduzido (0.0 a 1.0)
+  </script>
 
 </body>
 </html>
