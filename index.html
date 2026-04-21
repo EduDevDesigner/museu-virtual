@@ -72,31 +72,49 @@ html, body {
 
 .buttons-container {
   position: absolute;
-  top: 78%;
+  top: 73%;
   z-index: 4;
 }
 
 .card {
   cursor: pointer;
   padding: 16px 54px;
-  background: #ffffff;
+  width: 280px;
+  height: 80px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  
+  background-color: transparent;
+  background-image: url('Imagens/botao.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  border: none;        /* remove borda */
+  outline: none;       /* remove contorno ao clicar */
+  box-shadow: none;    /* remove brilho que parece borda */
+
   border-radius: 999px;
-  border: none;
-  color: #1e90ff;
-  font-size: 20px;
-  font-weight: bold;
+
+  color: #ffffff;  
   letter-spacing: 2px;
-  text-transform: uppercase;
-  box-shadow:
-    0 0 18px rgba(30,144,255,0.6),
-    0 0 30px rgba(30,144,255,0.4) inset;
-  animation: glowBtn 2.8s ease-in-out infinite alternate;
-  transition: transform 0.25s ease, background 0.25s ease;
+  
+
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+  
+.card img {
+  width: 260px;
+  margin-right: 10px;
+  vertical-align: middle;
 }
 
 .card:hover {
   transform: scale(1.08);
-  background: #f2f8ff;
+  
 }
 
 @keyframes glowBtn {
@@ -121,7 +139,7 @@ html, body {
 <div class="app-wrapper">
 
   <div class="background-container" aria-hidden="true">
-     <img src="Imagens/fundo_index.jpg" alt="Fundo" />
+  <img src="Imagens/fundo_index.jpg" alt="Fundo" />
   </div>
 
   <audio id="bg-audio" autoplay loop muted>
@@ -131,7 +149,7 @@ html, body {
   <div class="container">   
     <div class="buttons-container">
       <button class="card" onclick="location.href='login.html'">
-        Iniciar
+        <img src="Imagens/btn_Iniciar.png" alt="">  
       </button>
     </div>
   </div>
