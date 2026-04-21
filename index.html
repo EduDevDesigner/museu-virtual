@@ -52,13 +52,13 @@ html, body {
   background: #001c40ff;
   z-index: 0;
 }
-
-.background-container video {
+  
+.background-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.03);
-}
+  transform: scale(1.0);
+}  
 
 .container {
   position: relative;
@@ -72,7 +72,7 @@ html, body {
 
 .buttons-container {
   position: absolute;
-  top: 58%;
+  top: 78%;
   z-index: 4;
 }
 
@@ -121,10 +121,8 @@ html, body {
 <div class="app-wrapper">
 
   <div class="background-container" aria-hidden="true">
-    <video autoplay muted playsinline>
-      <source src="Videos/fundo.mp4" type="video/mp4">
-    </video>
-  </div>
+  <img src="Imagens/fundo_index.jpg" alt="Fundo" />
+</div>
 
   <audio id="bg-audio" autoplay loop muted>
     <source src="Audios/baroque.mp3" type="audio/mpeg">
