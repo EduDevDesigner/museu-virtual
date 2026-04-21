@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Escolha</title>
+
+<style>
+
+/* ===== MOBILE PADRÃO ===== */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Orbitron', sans-serif;
+  background: #001c40ff;
+  color: #fff;
+}
+
+/* WRAPPER DO APP */
+.app-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== DESKTOP CENTRALIZADO ===== */
+@media (min-width: 768px) {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #001c40ff;
+  }
+
+  .app-wrapper {
+    width: 390px;
+    height: 844px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.6);
+  }
+}
+
+/* ===== FUNDO ===== */
+.background-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #001c40ff;
+  z-index: 0;
+}
+
+.background-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.03);
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* BOTÕES */
+.buttons-container {
+  position: absolute;
+  top: 30%;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+/* IMAGEM */
+.header-image {
+  margin-top: -150px;
+  width: 85vw;
+  max-width: 480px;
+  min-width: 220px;
+  margin-bottom: 0px;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-18px) rotate(1deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* BOTÕES */
+.card {
+  cursor: pointer;
+  padding: 10px 0;
+  width: 300px;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 999px;
+  border: none;
+  color: #055eb5;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  box-sizing: border-box;
+
+  box-shadow:
+    0 0 14px rgba(30,144,255,0.6),
+    0 0 22px rgba(30,144,255,0.4) inset;
+
+  animation: glowBtn 2.8s ease-in-out infinite alternate;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.card:hover {
+  transform: scale(1.08);
+  background: #f2f8ff;
+}
+
+@keyframes glowBtn {
+  0%   { box-shadow: 0 0 16px rgba(30,144,255,0.5); }
+  50%  { box-shadow: 0 0 32px rgba(30,144,255,0.9); }
+  100% { box-shadow: 0 0 16px rgba(30,144,255,0.5); }
+}
+
+/* RESPONSIVO */
+@media (max-width:768px) {
+  .card {
+    width: 360px;
+    font-size: 18px;
+  }
+
+  .header-image {
+    max-width: 400px;
+  }
+}
+
+@media (max-width:480px) {
+  .card {
+    width: 220px;
+    font-size: 16px;
+  }
+
+  .header-image {
+    max-width: 340px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app-wrapper">
+
+  <div class="background-container" aria-hidden="true">
+    <video autoplay muted playsinline>
+      <source src="Videos/fundo_animado3.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <audio id="bg-audio" autoplay loop muted>
+    <source src="Audios/baroque.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="container">   
+    <div class="buttons-container">
+
+      <img src="Imagens/Byte_02.png" alt="Museu Virtual" class="header-image">
+
+      <button class="card" onclick="location.href='tutorial_6ano.html'">6º ano - Explorador</button>
+      <button class="card" onclick="location.href='tutorial.html'">7º ano - Investigador</button>
+      <button class="card" onclick="location.href='tutorial.html'">8º ano - Analista</button>
+      <button class="card" onclick="location.href='tutorial.html'">9º ano - Guardião</button>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+const audio = document.getElementById('bg-audio');
+
+window.addEventListener('load', () => {
+  audio.volume = 0.05;
+  audio.muted = false;
+});
+</script>
+
+</body>
+</html>

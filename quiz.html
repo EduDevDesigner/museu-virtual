@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Quiz – Entre Gigantes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+/* ===== MOBILE PADRÃO ===== */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #001c40ff;
+  color: #ffffff;
+}
+
+/* ===== APP WRAPPER ===== */
+.app-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #001c40ff;
+}
+
+/* ===== DESKTOP CENTRALIZADO ===== */
+@media (min-width: 768px) {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #001c40ff;
+  }
+
+  .app-wrapper {
+    width: 390px;
+    height: 844px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.6);
+  }
+}
+
+/* ===== VÍDEO DE FUNDO ===== */
+#bgVideo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+#overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 59, 92, 0);
+  z-index: 1;
+}
+
+.main-content {
+  position: relative;
+  z-index: 2;
+  min-height: 100%;
+}
+
+header {
+  background: rgba(1, 15, 33, 0.9);
+  padding: 1px;
+  text-align: center;
+  margin-top: 10vh;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 35px;
+}
+
+header p {
+  margin-top: 1px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #00e8ff;
+  text-shadow: 1px 1px 10px rgb(0, 233, 255);
+}
+
+#quizBox {
+  padding: 30px;
+  max-width: 800px;
+  margin: 0.1px auto 0 auto;
+  box-sizing: border-box;
+}
+
+#moduleTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #edf10f;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+}
+
+#question {
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+}
+
+.option {
+  background: rgba(0, 9, 20, 0.92);
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.option:hover {
+  background: rgba(2, 184, 189, 0.5);
+}
+
+.option.correct { background: #00ff6b; }
+.option.wrong { background: #ff1800; }
+.option.disabled { pointer-events: none; opacity: 0.8; }
+
+#nextBtn {
+  margin-top: 15px;
+  width: 100%;
+  padding: 12px;
+  background: #e8f10f;
+  border: none;
+  border-radius: 6px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: none;
+}
+
+#scoreBox {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  background: rgba(1, 4, 23, 0.85);
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
+  width: 280px;
+  max-width: 90%;
+  z-index: 3;
+  box-sizing: border-box;
+}
+
+#scoreBox h2 {
+  font-size: 20px;
+  color: #e7ff0a;
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+}
+
+.report-line {
+  margin: 2px 0;
+}
+
+#generatePdf {
+  margin-top: 3px;
+  padding: 10px 20px;
+  color: #0a6fff;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  border-radius: 18px;
+}
+
+.nave-img {
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  width: 90px;
+  animation: flutuar 4s ease-in-out infinite;
+  z-index: 2;
+}
+
+.dados-aluno {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+@keyframes flutuar {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app-wrapper">
+
+  <video id="bgVideo" autoplay muted playsinline>
+    <source src="Videos/fundo_animado2.mp4" type="video/mp4">
+  </video>
+
+  <div id="overlay"></div>
+
+  <div class="main-content">
+    <audio id="audioAcerto" src="Audios/acerto.mp3"></audio>
+    <audio id="audioErro" src="Audios/erro.mp3"></audio>
+
+    <img src="Imagens/voando.png" alt="nave" class="nave-img">  
+
+    <header>
+      <h1>Quiz</h1>
+      <p>Entre Gigantes<br> A Jornada do Homo sapiens</p>
+    </header>
+
+    <div id="quizBox">
+      <div id="moduleTitle"></div>
+      <div id="question"></div>
+      <div id="options"></div>
+      <button id="nextBtn">Próxima Pergunta</button>
+    </div>
+
+    <div id="scoreBox" style="display:none;">
+      <h2>Relatório do Aluno</h2>
+      <div id="studentInfo" class="dados-aluno"></div>
+      <p id="scoreText"></p>
+      <div id="moduleReport"></div>
+      <button id="generatePdf">Gerar PDF</button>
+    </div>
+  </div>
+
+</div>
+
+<script src="alunoData.js"></script>
+<script>
+
+// ===== FUNÇÃO DE EMBARALHAMENTO =====
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+// ===== QUIZ =====
+const quizData = [
+
+{
+  modulo: "Módulo 1 – O Pleistoceno",
+  perguntas: [
+    { q: "O que caracteriza o período do Pleistoceno?", o: ["Clima quente e tropical","Eras glaciais e clima frio","Surgimento das primeiras cidades"], c: 1 },
+    { q: "Como o clima influenciava os ecossistemas?", o: ["Não influenciava","Exigia adaptações dos seres vivos","Facilitava a sobrevivência"], c: 1 },
+    { q: "Por que o ambiente é importante para entender a história humana?", o: ["Porque molda a sobrevivência e cultura","Porque é sempre igual","Porque não interfere na vida humana"], c: 0 }
+  ]
+},
+
+{
+  modulo: "Módulo 2 – O Paleolítico",
+  perguntas: [
+    { q: "Qual é a diferença entre Pleistoceno e Paleolítico?", o: ["Um é período geológico e outro histórico-cultural","São o mesmo período","Ambos são períodos agrícolas"], c: 0 },
+    { q: "Quais são as três fases do Paleolítico?", o: ["Inferior, Médio e Superior","Antigo, Clássico e Moderno","Pedra, Bronze e Ferro"], c: 0 },
+    { q: "Por que o Paleolítico foi tão longo?", o: ["Durou milhões de anos","Durou apenas alguns séculos","Durou menos que o Neolítico"], c: 0 }
+  ]
+},
+
+{
+  modulo: "Módulo 3 – Megafauna",
+  perguntas: [
+    { q: "O que significa megafauna?", o: ["Animais pequenos","Animais de grande porte","Animais domésticos"], c: 1 },
+    { q: "Qual animal possuía presas longas?", o: ["Mamute","Smilodon","Cervo"], c: 1 },
+    { q: "Como a megafauna influenciava os humanos?", o: ["Era irrelevante","Oferecia recursos e perigos","Servia apenas de paisagem"], c: 1 }
+  ]
+},
+
+{
+  modulo: "Módulo 4 – Homo sapiens",
+  perguntas: [
+    { q: "Uma característica do Homo sapiens é:", o: ["Crânio alongado e baixo","Testa alta e queixo definido","Ausência de linguagem"], c: 1 },
+    { q: "Qual foi um diferencial dessa espécie?", o: ["Força física extrema","Pensamento simbólico","Vida solitária"], c: 1 },
+    { q: "Onde surgiu o Homo sapiens?", o: ["Europa","Ásia","África"], c: 2 }
+  ]
+},
+
+{
+  modulo: "Módulo 5 – Nomadismo",
+  perguntas: [
+    { q: "O que é nomadismo?", o: ["Vida fixa em aldeias","Deslocamento constante","Vida urbana"], c: 1 },
+    { q: "Por que os grupos eram pequenos?", o: ["Falta de comunicação","Facilidade de sobrevivência","Proibição cultural"], c: 1 },
+    { q: "Qual atividade era comum?", o: ["Agricultura","Caça e coleta","Comércio"], c: 1 }
+  ]
+},
+
+{
+  modulo: "Módulo 6 – Tecnologia e Fogo",
+  perguntas: [
+    { q: "Qual material era usado nas ferramentas?", o: ["Plástico","Pedra e osso","Metal"], c: 1 },
+    { q: "O fogo permitiu:", o: ["Apenas iluminação","Cozinhar, aquecer e proteção","Somente rituais"], c: 1 },
+    { q: "As ferramentas ajudavam a:", o: ["Reduzir a cooperação","Aumentar as chances de sobrevivência","Eliminar o nomadismo"], c: 1 }
+  ]
+},
+
+{
+  modulo: "Módulo 7 – Arte Rupestre",
+  perguntas: [
+    { q: "O que é arte rupestre?", o: ["Arte moderna","Pinturas em cavernas","Esculturas em metal"], c: 1 },
+    { q: "Temas comuns eram:", o: ["Cidades","Animais e caça","Escrita"], c: 1 },
+    { q: "A arte indica:", o: ["Apenas decoração","Pensamento simbólico","Desconhecimento do ambiente"], c: 1 }
+  ]
+},
+
+{
+  modulo: "Módulo 8 – O Mesolítico",
+  perguntas: [
+    { q: "O que significa Mesolítico?", o: ["Pedra Nova","Pedra Média","Idade do Bronze"], c: 1 },
+    { q: "O que marcou esse período?", o: ["Fim da Era do Gelo","Construção de cidades","Uso do ferro"], c: 0 },
+    { q: "Por que é considerado uma transição?", o: ["Preparou o caminho para a agricultura","Foi idêntico ao Paleolítico","Não trouxe mudanças"], c: 0 }
+  ]
+},
+
+{
+  modulo: "Módulo 9 – O Neolítico",
+  perguntas: [
+    { q: "O que é sedentarismo?", o: ["Vida em movimento constante","Fixação em um local","Vida solitária"], c: 1 },
+    { q: "Como a agricultura transformou a vida humana?", o: ["Permitiu aldeias permanentes","Eliminou o trabalho","Impediu o crescimento populacional"], c: 0 },
+    { q: "Por que o Neolítico é considerado uma revolução?", o: ["Mudou a organização social","Não trouxe mudanças","Extinguiu a humanidade"], c: 0 }
+  ]
+}
+
+];
+
+// ===== RANDOMIZAÇÃO DAS RESPOSTAS =====
+quizData.forEach(mod => {
+  mod.perguntas.forEach(pergunta => {
+    const respostas = pergunta.o.map((texto, index) => ({
+      texto,
+      correta: index === pergunta.c
+    }));
+    shuffleArray(respostas);
+    pergunta.o = respostas.map(r => r.texto);
+    pergunta.c = respostas.findIndex(r => r.correta);
+  });
+});
+
+let moduleIndex = 0;
+let questionIndex = 0;
+let score = 0;
+let questionNumber = 1;
+let moduleScores = new Array(quizData.length).fill(0);
+
+const moduleTitle = document.getElementById("moduleTitle");
+const questionEl = document.getElementById("question");
+const optionsEl = document.getElementById("options");
+const nextBtn = document.getElementById("nextBtn");
+const dadosAluno = obterDadosAluno();
+
+function loadQuestion() {
+  const current = quizData[moduleIndex].perguntas[questionIndex];
+  moduleTitle.innerText = quizData[moduleIndex].modulo;
+  questionEl.innerText = questionNumber + ") " + current.q;
+  optionsEl.innerHTML = "";
+  nextBtn.style.display = "none";
+  const letters = ["A", "B", "C"];
+  current.o.forEach((opt, i) => {
+    const div = document.createElement("div");
+    div.className = "option";
+    div.innerText = letters[i] + ") " + opt;
+    div.onclick = () => selectOption(div, i);
+    optionsEl.appendChild(div);
+  });
+}
+
+function selectOption(el, index) {
+  const correct = quizData[moduleIndex].perguntas[questionIndex].c;
+  const options = document.querySelectorAll(".option");
+  options.forEach((opt, i) => {
+    opt.classList.add("disabled");
+    if (i === correct) opt.classList.add("correct");
+    if (i === index && i !== correct) opt.classList.add("wrong");
+  });
+  if (index === correct) {
+    score++;
+    moduleScores[moduleIndex]++;
+    audioAcerto.play();
+  } else {
+    audioErro.play();
+  }
+  nextBtn.style.display = "block";
+}
+
+nextBtn.onclick = () => {
+  questionIndex++;
+  questionNumber++;
+  if (questionIndex >= quizData[moduleIndex].perguntas.length) {
+    moduleIndex++;
+    questionIndex = 0;
+  }
+  if (moduleIndex >= quizData.length) {
+    document.getElementById("quizBox").style.display = "none";
+    document.getElementById("scoreBox").style.display = "block";
+
+    document.getElementById("studentInfo").innerHTML = `
+      Nome: ${dadosAluno.nome || "-"}<br>
+      Ano/Série: ${dadosAluno.ano || "-"}
+    `;
+
+    document.getElementById("scoreText").innerText =
+      `Você acertou ${score} de ${quizData.length * 3} perguntas.`;
+
+    const reportDiv = document.getElementById("moduleReport");
+    reportDiv.innerHTML = "";
+    quizData.forEach((mod, i) => {
+      reportDiv.innerHTML += `<div class="report-line">${mod.modulo}: ${moduleScores[i]} de 3 acertos</div>`;
+    });
+  } else {
+    loadQuestion();
+  }
+};
+
+document.getElementById("generatePdf").onclick = function() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  doc.text("Relatório - Entre Gigantes", 20, 20);
+  doc.text("Aluno: " + (dadosAluno.nome || "-"), 20, 30);
+  doc.text("Ano/Série: " + (dadosAluno.ano || "-"), 20, 40);
+  doc.text(`Resultado: ${score} de ${quizData.length * 3}`, 20, 50);
+
+  let y = 60;
+  quizData.forEach((mod, i) => {
+    doc.text(`${mod.modulo}: ${moduleScores[i]} de 3`, 20, y);
+    y += 10;
+  });
+
+  doc.save("relatorio_quiz.pdf");
+};
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>

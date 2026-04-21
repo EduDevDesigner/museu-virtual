@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Espaço Interativo XR</title>
+
+<style>
+
+/* ===== MOBILE PADRÃO ===== */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Orbitron', sans-serif;
+  background: #001c40ff;
+  color: #fff;
+}
+
+/* APP WRAPPER (controla mobile vs desktop) */
+.app-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== DESKTOP CENTRALIZADO ===== */
+@media (min-width: 768px) {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #001c40ff;
+  }
+
+  .app-wrapper {
+    width: 390px;
+    height: 844px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.6);
+  }
+}
+
+/* ===== FUNDO ===== */
+.background-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #001c40ff;
+  z-index: 0;
+}
+
+.background-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.03);
+}
+
+/* ===== CONTAINER LOGIN ===== */
+.container {
+  position: absolute;
+  top: 68%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.login-box {
+  background: rgba(2, 6, 40, 0.69);
+  padding: 25px;
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
+  text-align: center; 
+  width: 260px;
+}
+
+.login-box h2 {
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+  font-size: 18px;
+  color: #07dcff;
+  text-shadow: 1px 1px 10px rgb(0, 233, 255), 1px 1px 10px rgba(0, 233, 255, 0.9);
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+.login-box button {
+  cursor: pointer;
+  padding: 10px 30px;
+  background: #ffffff;
+  border-radius: 999px;
+  border: none;    
+  font-size: 14px;
+  font-weight: bold;
+  color: #0363c1;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 12px;
+}
+
+.error {
+  color: #ff4d4d;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* ===== NAVE ===== */
+.nave-img {
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  width: 120px;
+  z-index: 1;
+  animation: flutuar 4s ease-in-out infinite;
+}
+
+@keyframes flutuar {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+/* RESPONSIVIDADE */
+@media (max-width:480px) {
+  .login-box {
+    width: 80%;
+  }
+
+  .nave-img {
+    width: 90px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app-wrapper">
+
+  <div class="background-container">
+    <video autoplay muted playsinline>
+      <source src="Videos/Fundo_login.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <audio id="bg-audio" autoplay loop muted>
+    <source src="Audios/baroque.mp3" type="audio/mpeg">
+  </audio>
+
+  <img src="Imagens/nave.png" alt="nave" class="nave-img">
+
+  <div class="container">
+    <div class="login-box">
+      <h2>IDENTIFIQUE-SE</h2>
+      
+      <input type="text" id="username" placeholder="Nome">
+      <input type="text" id="password" placeholder="Ano/Turma">
+      
+      <button onclick="login()">Entrar</button>
+      
+      <div class="error" id="error-msg"></div>
+    </div>
+  </div>
+
+</div>
+
+<script src="alunoData.js"></script>
+<script>
+const audio = document.getElementById('bg-audio');
+
+window.addEventListener('load', () => {
+  audio.volume = 0.05;
+  audio.muted = false;
+});
+
+function login() {
+  const user = document.getElementById("username").value.trim();
+  const pass = document.getElementById("password").value.trim();
+  const errorMsg = document.getElementById("error-msg");
+
+  if (user !== "" && pass !== "") {
+    salvarDadosAluno(user, pass);
+    window.location.href = "escolha.html";
+  } else {
+    errorMsg.textContent = "Preencha nome e ano/série.";
+  }
+}
+</script>
+
+</body>
+</html>

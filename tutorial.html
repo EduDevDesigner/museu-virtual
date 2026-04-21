@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial</title>
+
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Orbitron', sans-serif;
+  background: #004aadff;
+}
+
+/* FUNDO EM VÍDEO */
+.background-container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.background-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* CONTAINER PRINCIPAL */
+.container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
+
+/* IMAGEM CENTRAL */
+.header-image {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(85vw, 720px);
+  max-height: 150vh;
+  object-fit: contain;
+}
+
+/* CONTAINER DOS BOTÕES */
+.buttons-container {
+  position: absolute;
+  right: 5%;
+  top: 70%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+
+/* BOTÕES */
+.card {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.card:hover {
+  transform: scale(1.15);
+}
+
+.card img {
+  height: 70px;
+  display: block;
+  pointer-events: none;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .header-image {
+    width: min(90vw, 420px);
+  }
+
+  .buttons-container {
+    right: 8%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- FUNDO EM VÍDEO -->
+<div class="background-container" aria-hidden="true">
+  <video autoplay muted playsinline>
+    <source src="Videos/tutorial.mp4" type="video/mp4">
+  </video>
+</div>
+
+<!-- ÁUDIO DE FUNDO -->
+<audio id="bg-audio" autoplay loop muted>
+  <source src="Audios/baroque.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 🎧 ÁUDIO DO BOTÃO OUVIR -->
+<audio id="audio-ouvir">
+  <source src="Audios/Narrativa01_Byite.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+
+  <!-- BOTÕES -->
+  <div class="buttons-container">
+
+    <!-- BOTÃO PULAR -->
+    <button class="card" onclick="location.href='escolha.html'">
+      <img src="Imagens/btn_pular.png" alt="Pular">
+    </button>
+
+    <!-- BOTÃO OUVIR -->
+    <button class="card" id="btnOuvir">
+      <img src="Imagens/btn_ouvir.png" alt="Ouvir">
+    </button>
+
+  </div>
+</div>
+
+<script>
+const bgAudio = document.getElementById('bg-audio');
+const audioOuvir = document.getElementById('audio-ouvir');
+const btnOuvir = document.getElementById('btnOuvir');
+
+// Configuração inicial
+window.addEventListener('load', () => {
+  bgAudio.volume = 0.05;
+  bgAudio.muted = false;
+  audioOuvir.volume = 1.0;
+});
+
+// Clique no botão "Ouvir"
+btnOuvir.addEventListener('click', () => {
+  if (audioOuvir.paused) {
+    audioOuvir.play();
+  } else {
+    audioOuvir.pause();
+    audioOuvir.currentTime = 0;
+  }
+});
+</script>
+
+</body>
+</html>

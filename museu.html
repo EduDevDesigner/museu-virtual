@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <title>Museu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+  </head>
+
+  <body>
+    
+    <!-- 🔹 Mensagem de foco no track -->
+    <div id="track-message">
+      Aponte a câmera para o marcador!
+    </div>
+
+    <!-- Cena AR -->
+    <a-scene mindar-image="imageTargetSrc: Imagens/targets.mind; filterMinCF: 0.0001; 
+              filterBeta: 0.05;
+              missTolerance: 5;
+              warmupTolerance: 4;" 
+             color-space="sRGB" 
+             renderer="colorManagement: true, physicallyCorrectLights" 
+             xr-mode-ui="enabled: false" 
+             device-orientation-permission-ui="enabled: false">
+
+      <a-assets>
+        <a-asset-item id="objeto1" src="Modelos/objeto1.glb"></a-asset-item>
+        <a-asset-item id="objeto2" src="Modelos/objeto2.glb"></a-asset-item>
+        <a-asset-item id="objeto3" src="Modelos/objeto3.glb"></a-asset-item>
+        <a-asset-item id="objeto4" src="Modelos/objeto4.glb"></a-asset-item>
+      </a-assets>
+
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+      <a-entity mindar-image-target="targetIndex: 0">
+        <a-gltf-model 
+          rotation="90 0 0" 
+          position="0 0 0" 
+          scale="0.8 0.8 0.8" 
+          src="#objeto1">
+        </a-gltf-model>
+      </a-entity>
+
+      <a-entity mindar-image-target="targetIndex: 1">
+        <a-gltf-model 
+          rotation="90 0 0" 
+          position="0 0 0" 
+          scale="0.5 0.5 0.5" 
+          src="#objeto2">
+        </a-gltf-model>
+      </a-entity>
+
+      <a-entity mindar-image-target="targetIndex: 2">
+        <a-gltf-model 
+          rotation="90 0 0" 
+          position="0 0 0" 
+          scale="0.6 0.6 0.6" 
+          src="#objeto3">
+        </a-gltf-model>
+      </a-entity>
+
+      <a-entity mindar-image-target="targetIndex: 3">
+        <a-gltf-model 
+          rotation="90 0 0" 
+          position="0 0 0" 
+          scale="0.7 0.7 0.7" 
+          src="#objeto4">
+        </a-gltf-model>
+      </a-entity>
+
+    </a-scene>    
+
+  </body>
+</html>
+
