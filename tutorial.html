@@ -3,152 +3,169 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tutorial</title>
+<title>Preparação - WebAR</title>
 
 <style>
-html, body {
+
+/* ===== RESET ===== */
+* {
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+  box-sizing: border-box;
   font-family: 'Orbitron', sans-serif;
-  background: #004aadff;
 }
 
-/* FUNDO EM VÍDEO */
-.background-container {
+/* ===== FUNDO ===== */
+body {
+  background: radial-gradient(circle at center, #001c40, #000814);
+  color: #fff;
+  overflow: hidden;
+}
+
+/* ===== OVERLAY ===== */
+#intro-overlay {
   position: fixed;
   inset: 0;
-  z-index: 0;
+  background: rgba(0, 10, 30, 0.95);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  animation: fadeIn 0.8s ease;
 }
 
-.background-container video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+/* ===== CAIXA ===== */
+.intro-box {
+  text-align: center;
+  max-width: 340px;
+  padding: 20px;
 }
 
-/* CONTAINER PRINCIPAL */
-.container {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
+/* ===== TÍTULO ===== */
+.intro-box h1 {
+  font-size: 28px;
+  margin-bottom: 25px;
+  letter-spacing: 2px;
+  animation: glowTitle 2s infinite alternate;
 }
 
-/* IMAGEM CENTRAL */
-.header-image {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: min(85vw, 720px);
-  max-height: 150vh;
-  object-fit: contain;
-}
-
-/* CONTAINER DOS BOTÕES */
-.buttons-container {
-  position: absolute;
-  right: 5%;
-  top: 70%;
-  transform: translateY(-50%);
+/* ===== PASSOS ===== */
+.steps {
   display: flex;
   flex-direction: column;
-  gap: 34px;
+  gap: 18px;
+  margin-bottom: 30px;
 }
 
-/* BOTÕES */
-.card {
-  background: none;
+.step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 0.6s forwards;
+}
+
+.step:nth-child(1) { animation-delay: 0.3s; }
+.step:nth-child(2) { animation-delay: 0.6s; }
+.step:nth-child(3) { animation-delay: 0.9s; }
+
+.step span {
+  font-size: 26px;
+}
+
+.step p {
+  font-size: 16px;
+}
+
+/* ===== BOTÃO ===== */
+.intro-box button {
+  padding: 14px 40px;
   border: none;
-  padding: 0;
+  border-radius: 999px;
+
+  background: linear-gradient(45deg, #00c6ff, #0072ff);
+  color: white;
+
+  font-size: 18px;
+  letter-spacing: 1px;
   cursor: pointer;
-  transition: transform 0.25s ease;
+
+  box-shadow: 0 0 20px rgba(0,114,255,0.6);
+  transition: 0.3s;
 }
 
-.card:hover {
-  transform: scale(1.15);
+.intro-box button:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
 }
 
-.card img {
-  height: 70px;
-  display: block;
-  pointer-events: none;
+/* ===== ANIMAÇÕES ===== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
-  .header-image {
-    width: min(90vw, 420px);
+@keyframes fadeOut {
+  to { opacity: 0; }
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-
-  .buttons-container {
-    right: 8%;
-  }
 }
+
+@keyframes glowTitle {
+  from { text-shadow: 0 0 10px #00c6ff; }
+  to { text-shadow: 0 0 25px #0072ff; }
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- FUNDO EM VÍDEO -->
-<div class="background-container" aria-hidden="true">
-  <video autoplay muted playsinline>
-    <source src="Videos/tutorial.mp4" type="video/mp4">
-  </video>
-</div>
+<div id="intro-overlay">
+  <div class="intro-box">
 
-<!-- ÁUDIO DE FUNDO -->
-<audio id="bg-audio" autoplay loop muted>
-  <source src="Audios/baroque.mp3" type="audio/mpeg">
-</audio>
+    <h1>Prepare-se</h1>
 
-<!-- 🎧 ÁUDIO DO BOTÃO OUVIR -->
-<audio id="audio-ouvir">
-  <source src="Audios/Narrativa01_Byite.mp3" type="audio/mpeg">
-</audio>
+    <div class="steps">
+      <div class="step">
+        <span>📷</span>
+        <p>Permita o uso da câmera</p>
+      </div>
 
-<div class="container">
+      <div class="step">
+        <span>💡</span>
+        <p>Ambiente bem iluminado</p>
+      </div>
 
-  <!-- BOTÕES -->
-  <div class="buttons-container">
+      <div class="step">
+        <span>📱</span>
+        <p>Aponte para uma superfície</p>
+      </div>
+    </div>
 
-    <!-- BOTÃO PULAR -->
-    <button class="card" onclick="location.href='escolha.html'">
-      <img src="Imagens/btn_pular.png" alt="Pular">
-    </button>
-
-    <!-- BOTÃO OUVIR -->
-    <button class="card" id="btnOuvir">
-      <img src="Imagens/btn_ouvir.png" alt="Ouvir">
-    </button>
+    <button onclick="startAR()">Entrar</button>
 
   </div>
 </div>
 
 <script>
-const bgAudio = document.getElementById('bg-audio');
-const audioOuvir = document.getElementById('audio-ouvir');
-const btnOuvir = document.getElementById('btnOuvir');
+function startAR() {
+  const overlay = document.getElementById("intro-overlay");
 
-// Configuração inicial
-window.addEventListener('load', () => {
-  bgAudio.volume = 0.05;
-  bgAudio.muted = false;
-  audioOuvir.volume = 1.0;
-});
+  overlay.style.animation = "fadeOut 0.6s ease forwards";
 
-// Clique no botão "Ouvir"
-btnOuvir.addEventListener('click', () => {
-  if (audioOuvir.paused) {
-    audioOuvir.play();
-  } else {
-    audioOuvir.pause();
-    audioOuvir.currentTime = 0;
-  }
-});
+  setTimeout(() => {
+    // 👉 ALTERE AQUI PARA SUA PÁGINA AR
+    window.location.href = "museuAR.html";
+  }, 600);
+}
 </script>
 
 </body>
