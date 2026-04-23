@@ -3,48 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Preparação - WebAR</title>
+<title>Início</title>
 
 <style>
 
-/* ===== RESET + ALTURA TOTAL ===== */
-* {
+/* ===== CONFIGURAÇÃO PADRÃO (MOBILE) ===== */
+html, body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: 'Orbitron', sans-serif;
-}
-
-html, body {
   width: 100%;
   height: 100%;
-}
-
-/* ===== BODY SEM IMAGEM ===== */
-body {
-  background: #001c40;
-  color: #fff;
   overflow: hidden;
+  font-family: 'Orbitron', sans-serif;
+  background: #001c40ff;
+  color: #fff;
 }
 
-/* ===== WRAPPER (CONTROLA O FUNDO) ===== */
+/* MOBILE ocupa 100% */
 .app-wrapper {
   width: 100%;
   height: 100%;
   position: relative;
   overflow: hidden;
-
-  /* FUNDO PRINCIPAL */
-  background: url('Imagens/tutorial.jpg') center no-repeat;
-  background-size: cover;
 }
 
-/* ===== DESKTOP (FRAME CELULAR) ===== */
+/* ===== DESKTOP CENTRALIZADO ===== */
 @media (min-width: 768px) {
   body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #001c40ff; /* cor das bordas */
   }
 
   .app-wrapper {
@@ -54,100 +43,92 @@ body {
   }
 }
 
-/* ===== OVERLAY ===== */
-#intro-overlay {
+/* ===== SEU CÓDIGO ORIGINAL ===== */
+
+.background-container {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0); /* leve escurecimento */
+  overflow: hidden;
+  background: #001c40ff;
+  z-index: 0;
+}
+  
+.background-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: fadeIn 0.8s ease;
+  width: 100%;
+  height: 100%;
 }
 
-/* ===== CAIXA ===== */
-.intro-box {
-  text-align: center;
-  max-width: 320px;
-  padding: 20px;
+.buttons-container {
+  position: absolute;
+  top: 73%;
+  z-index: 4;
 }
 
-/* ===== TÍTULO ===== */
-.intro-box h1 {
-  font-size: 28px;
-  margin-bottom: 25px;
-  letter-spacing: 2px;
-  animation: glowTitle 2s infinite alternate;
-}
-
-/* ===== PASSOS ===== */
-.steps {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  margin-bottom: 30px;
-}
-
-.step {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: slideUp 0.6s forwards;
-}
-
-.step:nth-child(1) { animation-delay: 0.3s; }
-.step:nth-child(2) { animation-delay: 0.6s; }
-.step:nth-child(3) { animation-delay: 0.9s; }
-
-.step span {
-  font-size: 26px;
-}
-
-.step p {
-  font-size: 16px;
-}
-
-/* ===== BOTÃO ===== */
-.intro-box button {
-  padding: 14px 40px;
-  border: none;
-  border-radius: 999px;
-  background: linear-gradient(45deg, #00c6ff, #0072ff);
-  color: white;
-  font-size: 18px;
-  letter-spacing: 1px;
+.card {
   cursor: pointer;
-  box-shadow: 0 0 20px rgba(0,114,255,0.6);
-  transition: 0.3s;
+  padding: 16px 54px;
+  width: 280px;
+  height: 80px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  
+  background-color: transparent;
+  background-image: url('Imagens/botao.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  border: none;        /* remove borda */
+  outline: none;       /* remove contorno ao clicar */
+  box-shadow: none;    /* remove brilho que parece borda */
+
+  border-radius: 999px;
+
+  color: #ffffff;  
+  letter-spacing: 2px;
+  
+
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+  
+.card img {
+  width: 220px;
+  margin-right: 10px;
+  vertical-align: middle;
 }
 
-.intro-box button:hover {
-  transform: scale(1.1);
-  filter: brightness(1.2);
+.card:hover {
+  transform: scale(1.08);
+  
 }
 
-/* ===== ANIMAÇÕES ===== */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+@keyframes glowBtn {
+  0%   { box-shadow: 0 0 16px rgba(30,144,255,0.5); }
+  50%  { box-shadow: 0 0 32px rgba(30,144,255,0.9); }
+  100% { box-shadow: 0 0 16px rgba(30,144,255,0.5); }
 }
 
-@keyframes fadeOut {
-  to { opacity: 0; }
+@media (max-width:768px) {
+  .card { font-size: 18px; padding: 14px 46px; }
 }
 
-@keyframes slideUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes glowTitle {
-  from { text-shadow: 0 0 10px #00c6ff; }
-  to { text-shadow: 0 0 25px #0072ff; }
+@media (max-width:480px) {
+  .card { font-size: 16px; padding: 12px 38px; }
 }
 
 </style>
@@ -157,40 +138,30 @@ body {
 
 <div class="app-wrapper">
 
-  <div id="intro-overlay">
-    <div class="intro-box">
+  <div class="background-container" aria-hidden="true">
+  <img src="Imagens/tutorial.jpg" alt="Fundo" />
+  </div>
 
-      <h1>Prepare-se</h1>
+  <audio id="bg-audio" autoplay loop muted>
+    <source src="Audios/baroque.mp3" type="audio/mpeg">
+  </audio>
 
-      <div class="steps">
-        <div class="step">
-          <span>📷</span>
-          <p>Permita o uso da câmera</p>
-        </div>
-        
-        <div class="step">
-          <span>📱</span>
-          <p>Aponte para uma imagem</p>
-        </div>
-      </div>
-
-      <button onclick="startAR()">Entrar</button>
-
+  <div class="container">   
+    <div class="buttons-container">
+      <button class="card" onclick="location.href='museuAR.html'">
+        <img src="Imagens/btn_Iniciar.png" alt="">  
+      </button>
     </div>
   </div>
 
 </div>
 
 <script>
-function startAR() {
-  const overlay = document.getElementById("intro-overlay");
-
-  overlay.style.animation = "fadeOut 0.6s ease forwards";
-
-  setTimeout(() => {
-    window.location.href = "museuAR.html";
-  }, 600);
-}
+const audio = document.getElementById('bg-audio');
+window.addEventListener('load', () => {
+  audio.volume = 0.05;
+  audio.muted = false;
+});
 </script>
 
 </body>
