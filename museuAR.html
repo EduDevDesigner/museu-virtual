@@ -140,10 +140,10 @@ device-orientation-permission-ui="enabled:false">
 <a-asset-item id="objeto7" src="Modelos/Venus_Willendorf.glb"></a-asset-item>
 <a-asset-item id="objeto8" src="Modelos/objeto8.glb"></a-asset-item>
 <a-asset-item id="objeto9" src="Modelos/objeto9.glb"></a-asset-item>
-<video id="groundVideo" src="Video/Terreno.mp4" autoplay loop muted playsinline webkit-playsinline crossorigin="anonymous"></video>
+
 
   </a-assets>
-
+<a-video id="terreno" src="Video/Terreno.mp4" autoplay loop muted playsinline></a-video>
 <a-camera position="0 0 0" look-controls="enabled:false"></a-camera>
     
 <!-- Luz ambiente: clareia toda a cena -->
@@ -171,14 +171,8 @@ device-orientation-permission-ui="enabled:false">
 <!-- TRACK 2 -->
 <a-entity mindar-image-target="targetIndex: 2">
 
-    <a-gltf-model id="aviao14bis" rotation="90 0 0" position="0 0.2 0"  scale="0.8 0.8 0.8" src="#14bis"></a-gltf-model>
-<a-plane id="soloVideo"
-             position="0 -1.5 -40"
-             rotation="-90 0 0"
-             width="80"
-             height="200"
-             material="src:#groundVideo; shader:flat; side:double;">
-    </a-plane>
+ <a-gltf-model id="aviao14bis" rotation="90 0 0" position="0 0.2 0"  scale="0.8 0.8 0.8" src="#14bis"></a-gltf-model>
+  <a-plane src="#terreno" position="0 0 0" height="1" width="1" rotation="0 0 90"></a-plane>  
 
     
 </a-entity>
