@@ -171,10 +171,22 @@ device-orientation-permission-ui="enabled:false">
 <!-- TRACK 2 -->
 <a-entity mindar-image-target="targetIndex: 2">
 
-<a-gltf-model rotation="90 0 0 " position="0 0 0" scale="0.8 0.8 0.8" src="#14bis"></a-gltf-model>
-<a-plane id="solo" position="0 0 0" rotation="0 0 0" width="80" height="200"
-             material="src:#groundTex; repeat:20 40; side:double;">
-</a-plane>
+    <a-gltf-model id="aviao14bis"
+                  rotation="90 0 0"
+                  position="0 0.2 0"
+                  scale="0.8 0.8 0.8"
+                  src="#14bis">
+    </a-gltf-model>
+
+    <a-plane id="solo"
+             terreno-movel
+             position="0 -1.5 0"
+             rotation="-90 0 0"
+             width="80"
+             height="200"
+             material="src:#groundTex; repeat:20 40; side:double; transparent:false;">
+    </a-plane>
+
 </a-entity>
   
 <!-- TRACK 3 -->
@@ -300,6 +312,33 @@ modoAtual="relevo"
 terraGroup.setAttribute("visible",false)
 relevoModel.setAttribute("visible",true)
 })
+  
+  
+AFRAME.registerComponent('terreno-movel', {
+    init: function () {
+        this.tex = null;
+
+        this.el.addEventListener('loaded', () => {
+            const mesh = this.el.getObject3D('mesh');
+
+            if(mesh && mesh.material && mesh.material.map){
+                this.tex = mesh.material.map;
+
+                this.tex.wrapS = THREE.RepeatWrapping;
+                this.tex.wrapT = THREE.RepeatWrapping;
+                this.tex.repeat.set(20,40);
+
+                this.tex.needsUpdate = true;
+            }
+        });
+    },
+
+    tick: function (time, deltaTime) {
+        if (this.tex) {
+            this.tex.offset.y += deltaTime * 0.0007;
+        }
+    }
+});
 
 </script>
 
