@@ -135,11 +135,12 @@ device-orientation-permission-ui="enabled:false">
 <a-asset-item id="base" src="Modelos/base1.glb"></a-asset-item>
 <a-asset-item id="mamute" src="Modelos/Mamute.glb"></a-asset-item>
 <a-asset-item id="smilodon" src="Modelos/Smilodon.glb"></a-asset-item>
-<a-asset-item id="objeto5" src="Modelos/14_Bis.glb"></a-asset-item>
+<a-asset-item id="14bis" src="Modelos/14_Bis.glb"></a-asset-item>
 <a-asset-item id="objeto6" src="Modelos/Torre_Malakoff.glb"></a-asset-item>
 <a-asset-item id="objeto7" src="Modelos/Venus_Willendorf.glb"></a-asset-item>
 <a-asset-item id="objeto8" src="Modelos/objeto8.glb"></a-asset-item>
 <a-asset-item id="objeto9" src="Modelos/objeto9.glb"></a-asset-item>
+<img id="groundTex" src="Imagens/terreno.jpg">
 
 </a-assets>
 
@@ -169,9 +170,11 @@ device-orientation-permission-ui="enabled:false">
   
 <!-- TRACK 2 -->
 <a-entity mindar-image-target="targetIndex: 2">
-<a-gltf-model rotation="90 0 0 " position="0 0 0" scale="0.8 0.8 0.8" src="#base"></a-gltf-model>
-<a-gltf-model rotation="90 0 0 " position="0 0 0" scale="0.8 0.8 0.8" src="#mamute"></a-gltf-model>
-<a-gltf-model rotation="90 0 0 " position="0 0 0" scale="0.8 0.8 0.8" src="#smilodon"></a-gltf-model>
+
+<a-gltf-model rotation="90 0 0 " position="0 0 0" scale="0.8 0.8 0.8" src="#14bis"></a-gltf-model>
+<a-plane id="solo" position="0 0 -20" rotation="-90 0 0" width="80" height="200"
+             material="src:#groundTex; repeat:20 40; side:double;">
+</a-plane>
 </a-entity>
   
 <!-- TRACK 3 -->
