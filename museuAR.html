@@ -133,16 +133,11 @@ device-orientation-permission-ui="enabled:false">
 <a-assets>
 
 <a-asset-item id="base" src="Modelos/BaseModelos.glb"></a-asset-item>
-<a-asset-item id="terra" src="Modelos/Terra.glb"></a-asset-item>
-<a-asset-item id="moon" src="Modelos/moon.glb"></a-asset-item>
-<a-asset-item id="relevo" src="Modelos/relevo.glb"></a-asset-item>
-<a-asset-item id="caverna" src="Modelos/Caverna.glb"></a-asset-item>
-<a-asset-item id="cacador" src="Modelos/Cacador.glb"></a-asset-item>
 <a-asset-item id="mamute" src="Modelos/Mamute.glb"></a-asset-item>
 <a-asset-item id="smilodon" src="Modelos/Smilodon.glb"></a-asset-item>
-<a-asset-item id="objeto5" src="Modelos/objeto5.glb"></a-asset-item>
-<a-asset-item id="objeto6" src="Modelos/objeto6.glb"></a-asset-item>
-<a-asset-item id="objeto7" src="Modelos/objeto7.glb"></a-asset-item>
+<a-asset-item id="objeto5" src="Modelos/14_Bis.glb"></a-asset-item>
+<a-asset-item id="objeto6" src="Modelos/Torre_Malakoff.glb"></a-asset-item>
+<a-asset-item id="objeto7" src="Modelos/Venus_Willendorf.glb"></a-asset-item>
 <a-asset-item id="objeto8" src="Modelos/objeto8.glb"></a-asset-item>
 <a-asset-item id="objeto9" src="Modelos/objeto9.glb"></a-asset-item>
 
@@ -150,71 +145,33 @@ device-orientation-permission-ui="enabled:false">
 
 <a-camera position="0 0 0" look-controls="enabled:false"></a-camera>
     
-<!-- TRACK 0 -->
-<a-entity mindar-image-target="targetIndex:0">
-
-<a-entity id="terraGroup" visible="false">
-<a-entity position="0 0.5 0" animation="property:rotation;from:0 0 0;to:0 0 360;loop:true;dur:50000;easing:linear">
-<a-gltf-model src="#terra" scale="4 4 4" rotation="90 0 0"></a-gltf-model>
-</a-entity>
-    
-<a-entity position="0 0.5 0" animation="property: rotation; from: 0 0 0; to: 0 0 360; loop: true; dur: 20000; easing: linear">
-  <!-- LUA -->
-  <a-entity position="1 0 0">
-    <a-gltf-model src="#moon" scale="2 2 2" rotation="90 0 0"></a-gltf-model>
-  </a-entity>
-
-</a-entity>
-
-<a-sphere position="0 0.5 0" radius="0.65" segments-width="64" segments-height="64" material="color:#00ecff; transparent:true; opacity:0.25; side:double; blending:additive">
-</a-sphere>
-
-</a-entity>
-
-<a-entity id="relevoModel" visible="false">
-<a-gltf-model src="#relevo" scale="0.5 0.5 0.5" rotation="90 0 360"></a-gltf-model>
-</a-entity>
-
-<a-entity position="0 1.8 0" rotation="60 0 0 ">
-<a-text value="PLEISTOCENO" align="center" color="#00e5ff" width="3" position="0 0.30 0"></a-text>
-<a-text value="2,58 milhoes – 11.700 anos" align="center" color="#ffffff" width="3" position="0 0.5 0"></a-text>
-</a-entity>
-  
-  <!-- Luz ambiente: clareia toda a cena -->
-    <a-light type="ambient" color="#ffffff" intensity="6.0"></a-light>
+<!-- Luz ambiente: clareia toda a cena -->
+  <a-light type="ambient" color="#ffffff" intensity="6.0"></a-light>
     <!-- Luz principal: simula o sol e gera sombra -->
     <a-light type="directional" color="#ffffff" intensity="3.2" position="3 -6 4" castShadow="true" shadow-mapWidth="2048" shadow-mapHeight="2048"
       shadow-camera-top="10" shadow-camera-bottom="-10" shadow-camera-left="-10" shadow-camera-right="10" shadow-camera-near="1"
-      shadow-camera-far="30" shadow-bias="-0.0005"></a-light>    
-
+      shadow-camera-far="30" shadow-bias="-0.0005">
+  </a-light>      
+  
+<!-- TRACK 0 -->
+<a-entity mindar-image-target="targetIndex:0">
+<a-gltf-model rotation="90 0 0 " position="0 0 0" scale="0.8 0.8 0.8" src="#base"></a-gltf-model>
+<a-gltf-model rotation="90 0 0 " position="0 0 0" scale="0.8 0.8 0.8" src="#mamute"></a-gltf-model>
+<a-gltf-model rotation="90 0 0 " position="0 0 0" scale="0.8 0.8 0.8" src="#smilodon"></a-gltf-model>
 </a-entity>
   
 <!-- TRACK 1 -->
 <a-entity mindar-image-target="targetIndex: 1">
 <a-gltf-model rotation="90 0 0 " position="0 0 0" scale="0.8 0.8 0.8" src="#base"></a-gltf-model>
 <a-gltf-model rotation="90 0 0 " position="0 0 0" scale="0.8 0.8 0.8" src="#caverna"></a-gltf-model>
-<a-gltf-model rotation="90 0 0 " position="0 0 0" scale="0.8 0.8 0.8" src="#cacador"></a-gltf-model>
-<!-- Luz ambiente: clareia toda a cena -->
-    <a-light type="ambient" color="#ffffff" intensity="6.0"></a-light>
-    <!-- Luz principal: simula o sol e gera sombra -->
-    <a-light type="directional" color="#ffffff" intensity="3.2" position="3 -6 4" castShadow="true" shadow-mapWidth="2048" shadow-mapHeight="2048"
-      shadow-camera-top="10" shadow-camera-bottom="-10" shadow-camera-left="-10" shadow-camera-right="10" shadow-camera-near="1"
-      shadow-camera-far="30" shadow-bias="-0.0005"></a-light>    
+
 </a-entity>
-  
-  
   
 <!-- TRACK 2 -->
 <a-entity mindar-image-target="targetIndex: 2">
 <a-gltf-model rotation="90 0 0 " position="0 0 0" scale="0.8 0.8 0.8" src="#base"></a-gltf-model>
 <a-gltf-model rotation="90 0 0 " position="0 0 0" scale="0.8 0.8 0.8" src="#mamute"></a-gltf-model>
 <a-gltf-model rotation="90 0 0 " position="0 0 0" scale="0.8 0.8 0.8" src="#smilodon"></a-gltf-model>
-  <!-- Luz ambiente: clareia toda a cena -->
-    <a-light type="ambient" color="#ffffff" intensity="6.0"></a-light>
-    <!-- Luz principal: simula o sol e gera sombra -->
-    <a-light type="directional" color="#ffffff" intensity="3.2" position="3 -6 4" castShadow="true" shadow-mapWidth="2048" shadow-mapHeight="2048"
-      shadow-camera-top="10" shadow-camera-bottom="-10" shadow-camera-left="-10" shadow-camera-right="10" shadow-camera-near="1"
-      shadow-camera-far="30" shadow-bias="-0.0005"></a-light>    
 </a-entity>
   
 <!-- TRACK 3 -->
