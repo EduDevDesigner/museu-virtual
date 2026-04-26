@@ -59,6 +59,13 @@ html, body {
   object-fit: cover;
   object-position: center;
 }
+  
+.background-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
 
 .container {
   position: relative;
@@ -79,7 +86,7 @@ html, body {
 .card {
   cursor: pointer;
   padding: 16px 54px;
-  width: 200px;
+  width: 520px;
   height: 60px;
 
   display: flex;
@@ -139,29 +146,56 @@ html, body {
 <div class="app-wrapper">
 
   <div class="background-container" aria-hidden="true">
-  <img src="Imagens/fundo_index.jpg" alt="Fundo" />
-  </div>
+  <video id="bg-video" playsinline preload="auto">
+    <source src="Video/Transicao.mp4" type="video/mp4">
+  </video>
+</div>
 
   <audio id="bg-audio" autoplay loop muted>
     <source src="Audios/baroque.mp3" type="audio/mpeg">
   </audio>
 
-  <div class="container">   
-    <div class="buttons-container">
-      <button class="card" onclick="location.href='tutorial.html'">
-        <img src="Imagens/btn_Iniciar.png" alt="">  
-      </button>
-    </div>
-  </div>
+  <div class="buttons-container">
+
+  <!-- BOTÃO 1 -->
+  <button id="btnPlay" class="card" onclick="startIntroVideo()">
+    <img src="Imagens/btn_Iniciar.png" alt="">
+  </button>
+
+  <!-- BOTÃO 2 -->
+  <button id="btnStart" class="card" onclick="location.href='museuAR.html'" style="display:none;">
+    <img src="Imagens/btn_Iniciar.png" alt="">
+  </button>
+
+</div>
 
 </div>
 
 <script>
+  
 const audio = document.getElementById('bg-audio');
+const video = document.getElementById('bg-video');
+
+const btnPlay = document.getElementById('btnPlay');
+const btnStart = document.getElementById('btnStart');
+
 window.addEventListener('load', () => {
   audio.volume = 0.05;
   audio.muted = false;
+
+  video.pause();
+  video.currentTime = 0;
 });
+
+function startIntroVideo() {
+  btnPlay.style.display = "none";
+  video.play();
+}
+
+video.addEventListener("ended", () => {
+  btnStart.style.display = "flex";
+});
+  
 </script>
 
 </body>
