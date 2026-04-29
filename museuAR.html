@@ -70,6 +70,26 @@ cursor:pointer;
 
 .relevo-btn img{width:70px;}
 
+/* NOVO BOTÃO TRACK 2 */
+.fly-btn{
+position: fixed;
+bottom:30px;
+left:50%;
+transform:translateX(-50%);
+padding:14px 34px;
+background:#004aad;
+color:#fff;
+font-family:Impact,sans-serif;
+font-size:1.2em;
+letter-spacing:1px;
+border:none;
+border-radius:10px;
+z-index:9999;
+display:none;
+cursor:pointer;
+box-shadow:0 0 20px rgba(0,74,173,0.7);
+}
+
 </style>
 </head>
 
@@ -82,6 +102,8 @@ PARA UMA DAS
 IMAGENS NO 
 AMBIENTE.
 </div>
+
+<button id="flyButton" class="fly-btn">DECOLAR</button>
   
 <!-- BOTÕES -->
 <!--
@@ -96,23 +118,8 @@ AMBIENTE.
 <button id="relevoButton" class="relevo-btn">
 <img src="Imagens/btn_relevo.png">
 </button>
-  
-<button id="cavernaButton" class="caverna-btn">
-<img src="Imagens/btn_caverna.png">
-</button>
-
-<button id="cacadorButton" class="cacador-btn">
-<img src="Imagens/btn_cacador.png">
-</button>
-  
-<button id="mamuteButton" class="mamute-btn">
-<img src="Imagens/btn_mamute.png">
-</button>
-
-<button id="smilodonButton" class="smilodon-btn">
-<img src="Imagens/btn_smilodon.png">
-</button>
 -->
+  
 <!-- AUDIOS -->
 <audio id="audio0" src="Audios/audio0.mp3"></audio>
 <audio id="audio1" src="Audios/audio1.mp3"></audio>
@@ -142,20 +149,11 @@ device-orientation-permission-ui="enabled:false">
 <a-asset-item id="objeto8" src="Modelos/objeto8.glb"></a-asset-item>
 <a-asset-item id="objeto9" src="Modelos/objeto9.glb"></a-asset-item>
 
+</a-assets>
 
-  </a-assets>
 <a-video id="terreno" src="Video/Terreno.mp4" autoplay loop muted playsinline></a-video>
 <a-camera position="0 0 0" look-controls="enabled:false"></a-camera>
    
-<!-- Luz ambiente: clareia toda a cena -->
-  <!-- 
-  <a-light type="ambient" color="#ffffff" intensity="6.0"></a-light>
-   
-    <a-light type="directional" color="#ffffff" intensity="3.2" position="3 -6 4" castShadow="true" shadow-mapWidth="2048" shadow-mapHeight="2048"
-      shadow-camera-top="10" shadow-camera-bottom="-10" shadow-camera-left="-10" shadow-camera-right="10" shadow-camera-near="1"
-      shadow-camera-far="30" shadow-bias="-0.0005">
-  </a-light>      
-  -->
 <!-- TRACK 0 -->
 <a-entity mindar-image-target="targetIndex:0">
 <a-gltf-model rotation="90 0 0 " position="0 0 0" scale="0.8 0.8 0.8" src="#base"></a-gltf-model>
@@ -166,55 +164,25 @@ device-orientation-permission-ui="enabled:false">
 <!-- TRACK 1 -->
 <a-entity mindar-image-target="targetIndex: 1">
 <a-gltf-model rotation="90 0 0 " position="0 0 0" scale="0.8 0.8 0.8" src="#base"></a-gltf-model>
-<a-gltf-model rotation="90 0 0 " position="0 0 0" scale="0.8 0.8 0.8" src="#caverna"></a-gltf-model>
-
 </a-entity>
   
 <!-- TRACK 2 -->
 <a-entity mindar-image-target="targetIndex: 2">
 
-  <!-- TERRENO RECEBENDO SOMBRA -->
-  <a-plane src="#terreno" position="0 0 0" height="2" width="3" rotation="0 0 -90" shadow="receive: true"></a-plane>
-  <!-- AVIÃO -->
-  <a-gltf-model id="aviao14bis" rotation="90 0 0" position="0 0.2 0" scale="0.8 0.8 0.8" src="#14bis" shadow="cast: true; receive: true"></a-gltf-model>
-  <!-- LUZ AMBIENTE -->
-  <a-light type="ambient" color="#ffffff" intensity="1.4"></a-light>
-  <!-- LUZ DE CÉU / SOLO -->
-  <a-light type="hemisphere" color="#ffffff" groundColor="#b5b5b5" intensity="1.2"></a-light>
-  <!-- LUZ SOL PRINCIPAL -->
-  <a-light type="directional" color="#fff8e5" intensity="2.8" position="2 4 3" castShadow="true" shadow-mapWidth="2048"  shadow-mapHeight="2048"
-           shadow-camera-top="5" shadow-camera-bottom="-5" shadow-camera-left="-5" shadow-camera-right="5" shadow-camera-near="0.5"
-           shadow-camera-far="15" shadow-bias="-0.0003">
-  </a-light>
+  <a-plane id="terrenoPlane" src="#terreno" position="0 0 0" height="2" width="3" rotation="0 0 -90" shadow="receive: true" terreno-movel></a-plane>
 
-  <!-- CONTRA LUZ SUAVE -->
+  <a-gltf-model id="aviao14bis" rotation="90 0 0" position="0 0.2 0" scale="0.8 0.8 0.8" src="#14bis" shadow="cast: true; receive: true"></a-gltf-model>
+
+  <a-light type="ambient" color="#ffffff" intensity="1.4"></a-light>
+  <a-light type="hemisphere" color="#ffffff" groundColor="#b5b5b5" intensity="1.2"></a-light>
+  <a-light type="directional" color="#fff8e5" intensity="2.8" position="2 4 3" castShadow="true"></a-light>
   <a-light type="directional" color="#d6ecff" intensity="0.8" position="-3 2 -2"></a-light>
 
 </a-entity>
   
-<!-- TRACK 3 -->
-<a-entity mindar-image-target="targetIndex: 3">
-<a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#objeto4"></a-gltf-model>
-</a-entity>
-<!-- TRACK 4 -->
-<a-entity mindar-image-target="targetIndex: 4">
-<a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#objeto5"></a-gltf-model>
-</a-entity>
 <!-- TRACK 5 -->
 <a-entity mindar-image-target="targetIndex: 5">
 <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#objeto6"></a-gltf-model>
-</a-entity>
-<!-- TRACK 6 -->
-<a-entity mindar-image-target="targetIndex: 6">
-<a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#objeto7"></a-gltf-model>
-</a-entity>
-<!-- TRACK 7 -->
-<a-entity mindar-image-target="targetIndex: 7">
-<a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#objeto8"></a-gltf-model>
-</a-entity>
-<!-- TRACK 8 -->
-<a-entity mindar-image-target="targetIndex: 8">
-<a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#objeto9"></a-gltf-model>
 </a-entity>
 
 </a-scene>
@@ -222,19 +190,14 @@ device-orientation-permission-ui="enabled:false">
 <script>
 
 const message=document.getElementById("track-message")
-const audioButton=document.getElementById("audioButton")
-const terraButton=document.getElementById("terraButton")
-const relevoButton=document.getElementById("relevoButton")
+const flyButton=document.getElementById("flyButton")
+const aviao14bis=document.getElementById("aviao14bis")
 
-const terraGroup=document.getElementById("terraGroup")
-const relevoModel=document.getElementById("relevoModel")
-
-let currentAudio=null
-let activeTargetIndex=null
-let lastTargetIndex=null
-let pausedByTracking=false
-
-let modoAtual=null
+let velocidadeTerreno=0
+let alturaAtual=0.2
+let flyActive=false
+let subirTimeout=null
+let target2Ativo=false
 
 const targets=document.querySelectorAll('[mindar-image-target]')
 
@@ -244,103 +207,138 @@ target.addEventListener("targetFound",()=>{
 
 message.classList.add("hidden")
 
-audioButton.style.display="block"
-
-if(index === 0){
-  terraButton.style.display="block"
-  relevoButton.style.display="block"
+if(index===2){
+  flyButton.style.display="block"
+  target2Ativo=true
 }else{
-  terraButton.style.display="none"
-  relevoButton.style.display="none"
-}
-
-activeTargetIndex=index
-currentAudio=document.getElementById("audio"+index)
-
-if(lastTargetIndex!==null && lastTargetIndex!==index){
-document.querySelectorAll("audio").forEach(a=>{
-a.pause()
-a.currentTime=0
-})
-}
-
-/* 🔥 AQUI FOI REMOVIDO O AUTOPLAY */
-pausedByTracking=false
-
-if(modoAtual==="terra"){
-terraGroup.setAttribute("visible",true)
-relevoModel.setAttribute("visible",false)
-}
-
-if(modoAtual==="relevo"){
-terraGroup.setAttribute("visible",false)
-relevoModel.setAttribute("visible",true)
+  flyButton.style.display="none"
+  target2Ativo=false
 }
 
 })
 
 target.addEventListener("targetLost",()=>{
 
-audioButton.style.display="none"
-terraButton.style.display="none"
-relevoButton.style.display="none"
+flyButton.style.display="none"
+target2Ativo=false
+flyActive=false
+clearTimeout(subirTimeout)
+alturaAtual=0.2
+aviao14bis.setAttribute("position","0 0 0.2")
+velocidadeTerreno=0
 
 message.classList.remove("hidden")
 
-if(currentAudio && !currentAudio.paused){
-currentAudio.pause()
-pausedByTracking=true
+})
+
+})
+
+flyButton.addEventListener("mousedown", iniciarVoo)
+flyButton.addEventListener("touchstart", iniciarVoo)
+
+flyButton.addEventListener("mouseup", pararVoo)
+flyButton.addEventListener("mouseleave", pararVoo)
+flyButton.addEventListener("touchend", pararVoo)
+
+function iniciarVoo(){
+if(!target2Ativo) return
+
+flyActive=true
+velocidadeTerreno=0.0007
+
+subirTimeout=setTimeout(()=>{
+if(flyActive){
+subirAviao()
+}
+},2000)
 }
 
-lastTargetIndex=activeTargetIndex
-
-})
-
-})
-
-audioButton.addEventListener("click",()=>{
-if(currentAudio){
-currentAudio.play().catch(()=>{})
+function pararVoo(){
+flyActive=false
+clearTimeout(subirTimeout)
+descerAviao()
+desacelerarTerreno()
 }
-})
 
-terraButton.addEventListener("click",()=>{
-modoAtual="terra"
-terraGroup.setAttribute("visible",true)
-relevoModel.setAttribute("visible",false)
-})
+function subirAviao(){
+let subida=setInterval(()=>{
+if(!flyActive){
+clearInterval(subida)
+return
+}
 
-relevoButton.addEventListener("click",()=>{
-modoAtual="relevo"
-terraGroup.setAttribute("visible",false)
-relevoModel.setAttribute("visible",true)
-})
-  
-  
+if(alturaAtual<0.8){
+alturaAtual+=0.01
+aviao14bis.setAttribute("position",`0  0 ${alturaAtual}`)
+}else{
+clearInterval(subida)
+planarAviao()
+}
+},30)
+}
+
+function planarAviao(){
+let direcao=1
+
+let planar=setInterval(()=>{
+if(!flyActive){
+clearInterval(planar)
+return
+}
+
+alturaAtual+=0.003*direcao
+
+if(alturaAtual>0.85) direcao=-1
+if(alturaAtual<0.75) direcao=1
+
+aviao14bis.setAttribute("position",`0  0 ${alturaAtual}`)
+},40)
+}
+
+function descerAviao(){
+let descida=setInterval(()=>{
+if(alturaAtual>0.2){
+alturaAtual-=0.01
+aviao14bis.setAttribute("position",`0  0 ${alturaAtual}`)
+}else{
+clearInterval(descida)
+}
+},30)
+}
+
+function desacelerarTerreno(){
+let reduzir=setInterval(()=>{
+if(velocidadeTerreno>0){
+velocidadeTerreno-=0.00003
+}else{
+velocidadeTerreno=0
+clearInterval(reduzir)
+}
+},40)
+}
+
 AFRAME.registerComponent('terreno-movel', {
-    init: function () {
-        this.tex = null;
+init: function () {
+this.tex = null;
 
-        this.el.addEventListener('loaded', () => {
-            const mesh = this.el.getObject3D('mesh');
+this.el.addEventListener('loaded', () => {
+const mesh = this.el.getObject3D('mesh');
 
-            if(mesh && mesh.material && mesh.material.map){
-                this.tex = mesh.material.map;
+if(mesh && mesh.material && mesh.material.map){
+this.tex = mesh.material.map;
+this.tex.wrapS = THREE.RepeatWrapping;
+this.tex.wrapT = THREE.RepeatWrapping;
+this.tex.repeat.set(20,40);
+this.tex.needsUpdate = true;
+}
+});
+},
 
-                this.tex.wrapS = THREE.RepeatWrapping;
-                this.tex.wrapT = THREE.RepeatWrapping;
-                this.tex.repeat.set(20,40);
-
-                this.tex.needsUpdate = true;
-            }
-        });
-    },
-
-    tick: function (time, deltaTime) {
-        if (this.tex) {
-            this.tex.offset.y += deltaTime * 0.0007;
-        }
-    }
+tick: function (time, deltaTime) {
+if (this.tex && velocidadeTerreno > 0) {
+this.tex.offset.y += deltaTime * velocidadeTerreno;
+}
+}
 });
 
 </script>
