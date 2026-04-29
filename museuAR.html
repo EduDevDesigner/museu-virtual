@@ -151,7 +151,7 @@ device-orientation-permission-ui="enabled:false">
 
 </a-assets>
 
-<a-video id="terreno" src="Video/Terreno.mp4" autoplay loop muted playsinline></a-video>
+<a-video id="terreno" src="Video/Terreno.mp4"  loop muted playsinline></a-video>
 <a-camera position="0 0 0" look-controls="enabled:false"></a-camera>
    
 <!-- TRACK 0 -->
@@ -175,7 +175,7 @@ device-orientation-permission-ui="enabled:false">
 
   <a-light type="ambient" color="#ffffff" intensity="1.4"></a-light>
   <a-light type="hemisphere" color="#ffffff" groundColor="#b5b5b5" intensity="1.2"></a-light>
-  <a-light type="directional" color="#fff8e5" intensity="2.8" position="2 4 3" castShadow="true"></a-light>
+  <a-light type="directional" color="#fff8e5" intensity="2.8" position="-2 -4 3" castShadow="true"></a-light>
   <a-light type="directional" color="#d6ecff" intensity="0.8" position="-3 2 -2"></a-light>
 
 </a-entity>
@@ -317,29 +317,7 @@ clearInterval(reduzir)
 },40)
 }
 
-AFRAME.registerComponent('terreno-movel', {
-init: function () {
-this.tex = null;
 
-this.el.addEventListener('loaded', () => {
-const mesh = this.el.getObject3D('mesh');
-
-if(mesh && mesh.material && mesh.material.map){
-this.tex = mesh.material.map;
-this.tex.wrapS = THREE.RepeatWrapping;
-this.tex.wrapT = THREE.RepeatWrapping;
-this.tex.repeat.set(20,40);
-this.tex.needsUpdate = true;
-}
-});
-},
-
-tick: function (time, deltaTime) {
-if (this.tex && velocidadeTerreno > 0) {
-this.tex.offset.y += deltaTime * velocidadeTerreno;
-}
-}
-});
 
 </script>
 
