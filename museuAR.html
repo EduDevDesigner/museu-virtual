@@ -177,8 +177,8 @@ AMBIENTE.
 <audio id="audio8" src="Audios/audio8.mp3"></audio>
 
 <!-- NOVOS AUDIOS TRACK 2 -->
-<audio id="audioFly1" src="Audios/audioFly1.mp3"></audio>
-<audio id="audioFly2" src="Audios/audioFly2.mp3"></audio>
+<audio id="audioFly1" src="Audios/Narrativa_Santos_Dumont.mp3"></audio>
+<audio id="audioFly2" src="Audios/Narrativa_14_Bis.mp3"></audio>
 
 <a-scene
 mindar-image="imageTargetSrc: Imagens/targets.mind;"
@@ -238,11 +238,12 @@ const message=document.getElementById("track-message")
 const flyButton=document.getElementById("flyButton")
 const audioLeftButton=document.getElementById("audioLeftButton")
 const audioRightButton=document.getElementById("audioRightButton")
-
+const aviao14bis=document.getElementById("aviao14bis")
 const audioFly1=document.getElementById("audioFly1")
 const audioFly2=document.getElementById("audioFly2")
 
-const aviao14bis=document.getElementById("aviao14bis")
+audioFly1.volume = 1.0;
+audioFly2.volume = 1.0;
 
 let velocidadeTerreno=0
 let alturaAtual=0.2
