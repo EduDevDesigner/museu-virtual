@@ -239,6 +239,7 @@ let velocidadeTerreno=0
 let alturaAtual=0.2
 let flyActive=false
 let target2Ativo=false
+let delayDecolagem=null
 
 const targets=document.querySelectorAll('[mindar-image-target]')
 
@@ -277,6 +278,8 @@ audioFly2.currentTime=0
 terrenoVideo.pause()
 terrenoVideo.currentTime=0
 
+clearTimeout(delayDecolagem)
+
 target2Ativo=false
 flyActive=false
 alturaAtual=0.2
@@ -299,13 +302,18 @@ if(!flyActive){
 flyActive=true
 terrenoVideo.play()
 acelerarTerreno()
+
+delayDecolagem=setTimeout(()=>{
+if(flyActive){
 subirAviao()
+}
+},1500)
 
 }else{
 
 flyActive=false
+clearTimeout(delayDecolagem)
 descerAviao()
-desacelerarTerreno()
 
 }
 }
@@ -347,12 +355,15 @@ aviao14bis.setAttribute("position",`0 0 ${alturaAtual}`)
 
 function descerAviao(){
 let descida=setInterval(()=>{
+
 if(alturaAtual>0.2){
 alturaAtual-=0.01
 aviao14bis.setAttribute("position",`0 0 ${alturaAtual}`)
 }else{
 clearInterval(descida)
+desacelerarTerreno()
 }
+
 },30)
 }
 
