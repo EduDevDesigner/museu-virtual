@@ -1,0 +1,68 @@
+#track-message{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:#004aadff;
+color:#ffffff;
+font-family:'Changa One',sans-serif;
+font-size:1em;
+padding:10px 20px;
+border-radius:8px;
+text-align:center;
+z-index:9999;
+}
+
+.hidden{display:none!important;}
+
+.fly-btn{
+position:fixed;
+bottom:25px;
+left:50%;
+transform:translateX(-50%);
+background:transparent;
+border:none;
+z-index:9999;
+display:none;
+cursor:pointer;
+padding:0;
+}
+
+.fly-btn img{
+width:120px;
+display:block;
+}
+
+.audio-left-fly-btn{
+position:fixed;
+bottom:37px;
+left:calc(50% - 155px);
+background:transparent;
+border:none;
+padding:0;
+z-index:9999;
+display:none;
+cursor:pointer;
+}
+
+.audio-left-fly-btn img{
+width:95px;
+display:block;
+}
+
+.audio-right-fly-btn{
+position:fixed;
+bottom:37px;
+left:calc(50% + 60px);
+background:transparent;
+border:none;
+padding:0;
+z-index:9999;
+display:none;
+cursor:pointer;
+}
+
+.audio-right-fly-btn img{
+width:95px;
+display:block;
+}
