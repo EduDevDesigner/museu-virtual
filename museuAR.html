@@ -77,17 +77,46 @@ bottom:30px;
 left:50%;
 transform:translateX(-50%);
 padding:14px 34px;
-background:#004aad;
-color:#fff;
-font-family:Impact,sans-serif;
-font-size:1.2em;
-letter-spacing:1px;
+background:transparent;
 border:none;
 border-radius:10px;
 z-index:9999;
 display:none;
 cursor:pointer;
-box-shadow:0 0 20px rgba(0,74,173,0.7);
+
+}
+
+/* NOVOS BOTÕES DE ÁUDIO TRACK 2 */
+.audio-left-btn{
+position: fixed;
+bottom:30px;
+left:calc(50% - 120px);
+background:transparent;
+border:none;
+padding:0;
+z-index:9999;
+display:none;
+cursor:pointer;
+}
+
+.audio-left-btn img{
+width:70px;
+}
+
+.audio-right-btn{
+position: fixed;
+bottom:30px;
+left:calc(50% + 70px);
+background:transparent;
+border:none;
+padding:0;
+z-index:9999;
+display:none;
+cursor:pointer;
+}
+
+.audio-right-btn img{
+width:70px;
 }
 
 </style>
@@ -104,7 +133,15 @@ AMBIENTE.
 </div>
 
 <button id="flyButton" class="fly-btn">
-  <img src="Imagens/btn_terra.png">  
+  <img src="Imagens/btn_Interacao.png">  
+</button>
+
+<button id="audioLeftButton" class="audio-left-btn">
+  <img src="Imagens/btn_Historia.png">  
+</button>
+
+<button id="audioRightButton" class="audio-right-btn">
+  <img src="Imagens/btn_fatos.png">  
 </button>
   
 <!-- BOTÕES -->
@@ -132,6 +169,10 @@ AMBIENTE.
 <audio id="audio6" src="Audios/audio6.mp3"></audio>
 <audio id="audio7" src="Audios/audio7.mp3"></audio>
 <audio id="audio8" src="Audios/audio8.mp3"></audio>
+
+<!-- NOVOS AUDIOS TRACK 2 -->
+<audio id="audioFly1" src="Audios/audioFly1.mp3"></audio>
+<audio id="audioFly2" src="Audios/audioFly2.mp3"></audio>
 
 <a-scene
 mindar-image="imageTargetSrc: Imagens/targets.mind;"
@@ -189,6 +230,12 @@ device-orientation-permission-ui="enabled:false">
 
 const message=document.getElementById("track-message")
 const flyButton=document.getElementById("flyButton")
+const audioLeftButton=document.getElementById("audioLeftButton")
+const audioRightButton=document.getElementById("audioRightButton")
+
+const audioFly1=document.getElementById("audioFly1")
+const audioFly2=document.getElementById("audioFly2")
+
 const aviao14bis=document.getElementById("aviao14bis")
 
 let velocidadeTerreno=0
@@ -207,9 +254,13 @@ message.classList.add("hidden")
 
 if(index===2){
   flyButton.style.display="block"
+  audioLeftButton.style.display="block"
+  audioRightButton.style.display="block"
   target2Ativo=true
 }else{
   flyButton.style.display="none"
+  audioLeftButton.style.display="none"
+  audioRightButton.style.display="none"
   target2Ativo=false
 }
 
@@ -218,6 +269,15 @@ if(index===2){
 target.addEventListener("targetLost",()=>{
 
 flyButton.style.display="none"
+audioLeftButton.style.display="none"
+audioRightButton.style.display="none"
+
+audioFly1.pause()
+audioFly1.currentTime=0
+
+audioFly2.pause()
+audioFly2.currentTime=0
+
 target2Ativo=false
 flyActive=false
 clearTimeout(subirTimeout)
@@ -315,7 +375,27 @@ clearInterval(reduzir)
 },40)
 }
 
+audioLeftButton.addEventListener("click",()=>{
+audioFly2.pause()
+audioFly2.currentTime=0
 
+if(audioFly1.paused){
+audioFly1.play()
+}else{
+audioFly1.pause()
+}
+})
+
+audioRightButton.addEventListener("click",()=>{
+audioFly1.pause()
+audioFly1.currentTime=0
+
+if(audioFly2.paused){
+audioFly2.play()
+}else{
+audioFly2.pause()
+}
+})
 
 </script>
 
