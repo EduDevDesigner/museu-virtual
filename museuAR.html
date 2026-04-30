@@ -138,7 +138,6 @@ IMAGENS NO
 AMBIENTE.
 </div>
 
-  <!-- BOTÕES -->
 <button id="flyButton" class="fly-btn">
   <img src="Imagens/btn_Interacao.png">  
 </button>
@@ -151,8 +150,6 @@ AMBIENTE.
   <img src="Imagens/btn_fatos.png">  
 </button> 
 
-
-  
 <!-- AUDIOS -->
 <audio id="audio0" src="Audios/audio0.mp3"></audio>
 <audio id="audio1" src="Audios/audio1.mp3"></audio>
@@ -186,9 +183,10 @@ device-orientation-permission-ui="enabled:false">
 <a-asset-item id="objeto8" src="Modelos/objeto8.glb"></a-asset-item>
 <a-asset-item id="objeto9" src="Modelos/objeto9.glb"></a-asset-item>
 
+<video id="terrenoVideoAsset" src="Video/Terreno.mp4" loop muted playsinline preload="auto"></video>
+
 </a-assets>
 
-<a-video id="terreno" src="Video/Terreno.mp4"  loop muted playsinline></a-video>
 <a-camera position="0 0 0" look-controls="enabled:false"></a-camera>
    
 <!-- TRACK 0 -->
@@ -205,7 +203,7 @@ device-orientation-permission-ui="enabled:false">
   
 <!-- TRACK 2 -->
 <a-entity mindar-image-target="targetIndex: 2">
-  <a-plane id="terrenoPlane" src="#terreno" position="0 0 0" height="2" width="3" rotation="0 0 -90" shadow="receive: true" terreno-movel></a-plane>
+  <a-plane id="terrenoPlane" material="src:#terrenoVideoAsset; shader:flat" position="0 0 0" height="2" width="3" rotation="0 0 -90" shadow="receive: true" terreno-movel></a-plane>
   <a-gltf-model id="aviao14bis" rotation="90 0 0" position="0 0.2 0" scale="0.8 0.8 0.8" src="#14bis" shadow="cast: true; receive: true"></a-gltf-model>
   <a-light type="ambient" color="#ffffff" intensity="1.4"></a-light>
   <a-light type="hemisphere" color="#ffffff" groundColor="#b5b5b5" intensity="1.2"></a-light>
@@ -229,6 +227,10 @@ const audioRightButton=document.getElementById("audioRightButton")
 const aviao14bis=document.getElementById("aviao14bis")
 const audioFly1=document.getElementById("audioFly1")
 const audioFly2=document.getElementById("audioFly2")
+const terrenoVideo=document.querySelector("#terrenoVideoAsset")
+
+terrenoVideo.pause()
+terrenoVideo.currentTime=0
 
 audioFly1.volume = 1.0;
 audioFly2.volume = 1.0;
@@ -236,7 +238,6 @@ audioFly2.volume = 1.0;
 let velocidadeTerreno=0
 let alturaAtual=0.2
 let flyActive=false
-let subirTimeout=null
 let target2Ativo=false
 
 const targets=document.querySelectorAll('[mindar-image-target]')
@@ -273,9 +274,11 @@ audioFly1.currentTime=0
 audioFly2.pause()
 audioFly2.currentTime=0
 
+terrenoVideo.pause()
+terrenoVideo.currentTime=0
+
 target2Ativo=false
 flyActive=false
-clearTimeout(subirTimeout)
 alturaAtual=0.2
 aviao14bis.setAttribute("position","0 0 0.2")
 velocidadeTerreno=0
@@ -286,31 +289,25 @@ message.classList.remove("hidden")
 
 })
 
-flyButton.addEventListener("mousedown", iniciarVoo)
-flyButton.addEventListener("touchstart", iniciarVoo)
+flyButton.addEventListener("click", toggleVoo)
 
-flyButton.addEventListener("mouseup", pararVoo)
-flyButton.addEventListener("mouseleave", pararVoo)
-flyButton.addEventListener("touchend", pararVoo)
-
-function iniciarVoo(){
+function toggleVoo(){
 if(!target2Ativo) return
 
+if(!flyActive){
+
 flyActive=true
-velocidadeTerreno=0.0007
-
-subirTimeout=setTimeout(()=>{
-if(flyActive){
+terrenoVideo.play()
+acelerarTerreno()
 subirAviao()
-}
-},2000)
-}
 
-function pararVoo(){
+}else{
+
 flyActive=false
-clearTimeout(subirTimeout)
 descerAviao()
 desacelerarTerreno()
+
+}
 }
 
 function subirAviao(){
@@ -322,7 +319,7 @@ return
 
 if(alturaAtual<0.8){
 alturaAtual+=0.01
-aviao14bis.setAttribute("position",`0  0 ${alturaAtual}`)
+aviao14bis.setAttribute("position",`0 0 ${alturaAtual}`)
 }else{
 clearInterval(subida)
 planarAviao()
@@ -344,7 +341,7 @@ alturaAtual+=0.003*direcao
 if(alturaAtual>0.85) direcao=-1
 if(alturaAtual<0.75) direcao=1
 
-aviao14bis.setAttribute("position",`0  0 ${alturaAtual}`)
+aviao14bis.setAttribute("position",`0 0 ${alturaAtual}`)
 },40)
 }
 
@@ -352,19 +349,32 @@ function descerAviao(){
 let descida=setInterval(()=>{
 if(alturaAtual>0.2){
 alturaAtual-=0.01
-aviao14bis.setAttribute("position",`0  0 ${alturaAtual}`)
+aviao14bis.setAttribute("position",`0 0 ${alturaAtual}`)
 }else{
 clearInterval(descida)
 }
 },30)
 }
 
+function acelerarTerreno(){
+let acelerar=setInterval(()=>{
+if(velocidadeTerreno<0.0007){
+velocidadeTerreno+=0.00002
+}else{
+velocidadeTerreno=0.0007
+clearInterval(acelerar)
+}
+},40)
+}
+
 function desacelerarTerreno(){
 let reduzir=setInterval(()=>{
 if(velocidadeTerreno>0){
-velocidadeTerreno-=0.00003
+velocidadeTerreno-=0.00002
 }else{
 velocidadeTerreno=0
+terrenoVideo.pause()
+terrenoVideo.currentTime=0
 clearInterval(reduzir)
 }
 },40)
