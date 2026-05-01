@@ -1,19 +1,32 @@
+body{
+margin:0;
+padding:0;
+overflow:hidden;
+font-family:'Arial',sans-serif;
+}
+
+/* ================= MENSAGEM ================= */
+
 #track-message{
 position:fixed;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
-background:#004aadff;
-color:#ffffff;
-font-family:'Changa One',sans-serif;
-font-size:1em;
-padding:10px 20px;
-border-radius:8px;
+background:#004aad;
+color:#fff;
+padding:12px 20px;
+border-radius:10px;
 text-align:center;
 z-index:9999;
+font-size:1em;
+font-weight:bold;
 }
 
-.hidden{display:none!important;}
+.hidden{
+display:none !important;
+}
+
+/* ================= BOTÃO CENTRAL ================= */
 
 .fly-btn{
 position:fixed;
@@ -22,16 +35,18 @@ left:50%;
 transform:translateX(-50%);
 background:transparent;
 border:none;
+padding:0;
 z-index:9999;
 display:none;
 cursor:pointer;
-padding:0;
 }
 
 .fly-btn img{
 width:120px;
 display:block;
 }
+
+/* ================= BOTÃO ESQUERDO ================= */
 
 .audio-left-fly-btn{
 position:fixed;
@@ -50,6 +65,8 @@ width:95px;
 display:block;
 }
 
+/* ================= BOTÃO DIREITO ================= */
+
 .audio-right-fly-btn{
 position:fixed;
 bottom:37px;
@@ -65,4 +82,18 @@ cursor:pointer;
 .audio-right-fly-btn img{
 width:95px;
 display:block;
+}
+
+/* ================= ANIMAÇÃO VISUAL OPCIONAL ================= */
+
+.fly-btn img,
+.audio-left-fly-btn img,
+.audio-right-fly-btn img{
+transition:transform .2s ease;
+}
+
+.fly-btn:active img,
+.audio-left-fly-btn:active img,
+.audio-right-fly-btn:active img{
+transform:scale(0.95);
 }
