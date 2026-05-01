@@ -14,11 +14,23 @@
 <div id="track-message">
 APONTE A CÂMERA
 DO DISPOSITIVO
-PARA UMA DAS 
-IMAGENS NO 
+PARA UMA DAS
+IMAGENS NO
 AMBIENTE.
 </div>
-<!-- BOTÕES MONALISA -->
+
+<!-- ================= TRACK 0 BOTÕES MEGAFAUNA ================= -->
+<button id="faunaPlayButton" class="fly-btn">
+  <img src="Imagens/btn_Interacao.png">
+</button>
+<button id="faunaAudioLeftButton" class="audio-left-fly-btn">
+  <img src="Imagens/btn_Historia.png">
+</button>
+<button id="faunaAudioRightButton" class="audio-right-fly-btn">
+  <img src="Imagens/btn_fatos.png">
+</button>
+
+<!-- ================= TRACK 1 BOTÕES MONALISA ================= -->
 <button id="monaPlayButton" class="fly-btn">
   <img src="Imagens/btn_Interacao.png">
 </button>
@@ -27,29 +39,63 @@ AMBIENTE.
 </button>
 <button id="monaAudioRightButton" class="audio-right-fly-btn">
   <img src="Imagens/btn_Monalisa.png">
-</button>  
+</button>
 
- <!-- BOTÕES 14 BIS --> 
+<!-- ================= TRACK 2 BOTÕES 14 BIS ================= -->
 <button id="flyButton" class="fly-btn">
-  <img src="Imagens/btn_Interacao.png">  
+  <img src="Imagens/btn_Interacao.png">
 </button>
 <button id="audioLeftButton" class="audio-left-fly-btn">
-  <img src="Imagens/btn_Dumont.png">  
+  <img src="Imagens/btn_Dumont.png">
 </button>
 <button id="audioRightButton" class="audio-right-fly-btn">
-  <img src="Imagens/btn_14bis.png">  
-</button> 
+  <img src="Imagens/btn_14bis.png">
+</button>
 
-<!-- AUDIOS -->
+<!-- ================= TRACK 3 BOTÕES TORRE ================= -->
+<button id="torrePlayButton" class="fly-btn">
+  <img src="Imagens/btn_Interacao.png">
+</button>
+<button id="torreAudioLeftButton" class="audio-left-fly-btn">
+  <img src="Imagens/btn_Historia.png">
+</button>
+<button id="torreAudioRightButton" class="audio-right-fly-btn">
+  <img src="Imagens/btn_fatos.png">
+</button>
 
-  <!-- MONALISA -->
+<!-- ================= TRACK 4 BOTÕES VENUS ================= -->
+<button id="venusPlayButton" class="fly-btn">
+  <img src="Imagens/btn_Interacao.png">
+</button>
+<button id="venusAudioLeftButton" class="audio-left-fly-btn">
+  <img src="Imagens/btn_Historia.png">
+</button>
+<button id="venusAudioRightButton" class="audio-right-fly-btn">
+  <img src="Imagens/btn_fatos.png">
+</button>
+
+<!-- ================= ÁUDIOS ================= -->
+
+<!-- TRACK 0 -->
+<audio id="audioFauna1" src="Audios/audioFauna1.mp3"></audio>
+<audio id="audioFauna2" src="Audios/audioFauna2.mp3"></audio>
+
+<!-- TRACK 1 -->
 <audio id="audioMona1" src="Audios/Narrativa_Leonardo_da_Vinci.mp3"></audio>
 <audio id="audioMona2" src="Audios/Narrativa_Monalisa.mp3"></audio>
-  
-  <!-- 14 BIS-->
+
+<!-- TRACK 2 -->
 <audio id="audioFly1" src="Audios/Narrativa_Santos_Dumont.mp3"></audio>
 <audio id="audioFly2" src="Audios/Narrativa_14_Bis.mp3"></audio>
 <audio id="audioHelice" src="Audios/Motos_Helice.mp3" loop></audio>
+
+<!-- TRACK 3 -->
+<audio id="audioTorre1" src="Audios/audioTorre1.mp3"></audio>
+<audio id="audioTorre2" src="Audios/audioTorre2.mp3"></audio>
+
+<!-- TRACK 4 -->
+<audio id="audioVenus1" src="Audios/audioVenus1.mp3"></audio>
+<audio id="audioVenus2" src="Audios/audioVenus2.mp3"></audio>
 
 <a-scene
 mindar-image="imageTargetSrc: Imagens/targets.mind;"
@@ -63,47 +109,63 @@ device-orientation-permission-ui="enabled:false">
 <a-asset-item id="mamute" src="Modelos/Mamute.glb"></a-asset-item>
 <a-asset-item id="smilodon" src="Modelos/Smilodon.glb"></a-asset-item>
 <a-asset-item id="14bis" src="Modelos/14_Bis.glb"></a-asset-item>
-<a-asset-item id="objeto6" src="Modelos/Torre_Malakoff.glb"></a-asset-item>
-<a-asset-item id="objeto7" src="Modelos/Venus_Willendorf.glb"></a-asset-item>
-<a-asset-item id="objeto8" src="Modelos/objeto8.glb"></a-asset-item>
-<a-asset-item id="objeto9" src="Modelos/objeto9.glb"></a-asset-item>
+<a-asset-item id="torre" src="Modelos/Torre_Malakoff.glb"></a-asset-item>
+<a-asset-item id="venus" src="Modelos/Venus_Willendorf.glb"></a-asset-item>
 
 <video id="terrenoVideoAsset" src="Video/Terreno_Final.mp4" loop muted playsinline preload="auto"></video>
 <video id="monalisaVideo" src="Video/Monalisa.mp4" playsinline preload="auto"></video>
-  
 </a-assets>
 
 <a-camera position="0 0 0" look-controls="enabled:false"></a-camera>
 
-<!-- TRACK 0 (MEGAFAUNA) -->
+<!-- ================= TRACK 0 MEGAFAUNA ================= -->
 <a-entity mindar-image-target="targetIndex:0">
-  <a-gltf-model rotation="90 0 0" position="0 0 0" scale="0.8 0.8 0.8" src="#base"></a-gltf-model>
-  <a-gltf-model rotation="90 0 0" position="0 0 0" scale="0.8 0.8 0.8" src="#mamute"></a-gltf-model>
-  <a-gltf-model rotation="90 0 0" position="0 0 0" scale="0.8 0.8 0.8" src="#smilodon"></a-gltf-model>
-</a-entity>
-
-<!-- TRACK 1 (MONALISA) -->
-<a-entity mindar-image-target="targetIndex:1">
-  <a-plane id="monalisaPlane" material="src:#monalisaVideo; shader:flat" position="0 0.35 0.02" width="1.6" height="2.4" rotation="0 0 0"></a-plane>
-</a-entity>
-
-<!-- TRACK 2 (14 BIS) -->
-<a-entity mindar-image-target="targetIndex:2">
-  <a-plane id="terrenoPlane" material="src:#terrenoVideoAsset; shader:flat"
-  position="0 0 0" height="2" width="3" rotation="0 0 -90">
-</a-plane>
-<a-gltf-model id="aviao14bis" rotation="90 0 0" position="0 0 0"
-  scale="0.8 0.8 0.8" src="#14bis">
-</a-gltf-model>
+  <a-gltf-model id="faunaBase" rotation="90 0 0" position="0 0 0" scale="0.8 0.8 0.8" src="#base"></a-gltf-model>
+  <a-gltf-model id="mamuteModel" rotation="90 0 0" position="0 0 0" scale="0.8 0.8 0.8" src="#mamute"></a-gltf-model>
+  <a-gltf-model id="smilodonModel" rotation="90 0 0" position="0 0 0" scale="0.8 0.8 0.8" src="#smilodon"></a-gltf-model>
+  <a-plane id="faunaFog" color="#d9f1ff" opacity="0" width="2.8" height="2.8" rotation="-90 0 0" position="0 -0.15 0"></a-plane>
   <a-light type="ambient" color="#ffffff" intensity="1.4"></a-light>
   <a-light type="hemisphere" color="#ffffff" groundColor="#b5b5b5" intensity="1.2"></a-light>
   <a-light type="directional" color="#fff8e5" intensity="2.8" position="-2 -4 3"></a-light>
   <a-light type="directional" color="#d6ecff" intensity="0.8" position="-3 2 -2"></a-light>
 </a-entity>
 
-<!-- TRACK 5 -->
-<a-entity mindar-image-target="targetIndex:5">
-  <a-gltf-model rotation="0 0 0" position="0 -0.25 0" scale="0.05 0.05 0.05" src="#objeto6"></a-gltf-model>
+<!-- ================= TRACK 1 MONALISA ================= -->
+<a-entity mindar-image-target="targetIndex:1">
+  <a-plane id="monalisaPlane" material="src:#monalisaVideo; shader:flat" position="0 0.35 0.02" width="1.6" height="2.4"></a-plane>
+</a-entity>
+
+<!-- ================= TRACK 2 14 BIS ================= -->
+<a-entity mindar-image-target="targetIndex:2">
+  <a-plane id="terrenoPlane" material="src:#terrenoVideoAsset; shader:flat"
+  position="0 0 0" height="2" width="3" rotation="0 0 -90"></a-plane>
+
+  <a-gltf-model id="aviao14bis" rotation="90 0 0" position="0 0 0"
+  scale="0.8 0.8 0.8" src="#14bis"></a-gltf-model>
+
+  <a-light type="ambient" color="#ffffff" intensity="1.4"></a-light>
+  <a-light type="hemisphere" color="#ffffff" groundColor="#b5b5b5" intensity="1.2"></a-light>
+  <a-light type="directional" color="#fff8e5" intensity="2.8" position="-2 -4 3"></a-light>
+  <a-light type="directional" color="#d6ecff" intensity="0.8" position="-3 2 -2"></a-light>
+</a-entity>
+
+<!-- ================= TRACK 3 TORRE MALAKOFF ================= -->
+<a-entity mindar-image-target="targetIndex:3">
+  <a-gltf-model id="torreModel" rotation="90 0 0" position="0 0 0" scale="0.8 0.8 0.8" src="#torre"></a-gltf-model>
+  <a-light type="ambient" color="#ffffff" intensity="1.4"></a-light>
+  <a-light type="hemisphere" color="#ffffff" groundColor="#b5b5b5" intensity="1.2"></a-light>
+  <a-light type="directional" color="#fff8e5" intensity="2.8" position="-2 -4 3"></a-light>
+  <a-light type="directional" color="#d6ecff" intensity="0.8" position="-3 2 -2"></a-light>
+</a-entity>
+
+<!-- ================= TRACK 4 VENUS ================= -->
+<a-entity mindar-image-target="targetIndex:4">
+  <a-gltf-model id="venusModel" rotation="90 0 0" position="0 0 0" scale="0.8 0.8 0.8" src="#venus"></a-gltf-model>
+  <a-light type="ambient" color="#ffffff" intensity="1.4"></a-light>
+  <a-light type="hemisphere" color="#ffffff" groundColor="#b5b5b5" intensity="1.2"></a-light>
+  <a-light type="directional" color="#fff8e5" intensity="2.8" position="-2 -4 3"></a-light>
+  <a-light type="directional" color="#d6ecff" intensity="0.8" position="-3 2 -2"></a-light>
+  
 </a-entity>
 
 </a-scene>
