@@ -6,12 +6,14 @@ const aviao14bis = document.getElementById("aviao14bis");
 const audioFly1 = document.getElementById("audioFly1");
 const audioFly2 = document.getElementById("audioFly2");
 const terrenoVideo = document.querySelector("#terrenoVideoAsset");
+const audioHelice = document.getElementById("audioHelice");
 
 terrenoVideo.pause();
 terrenoVideo.currentTime = 0;
 
 audioFly1.volume = 1.0;
 audioFly2.volume = 1.0;
+audioHelice.volume = 0.5;
 
 let velocidadeTerreno = 0;
 let alturaAtual = 0.2;
@@ -32,6 +34,7 @@ flyButton.style.display = "block";
 audioLeftButton.style.display = "block";
 audioRightButton.style.display = "block";
 target2Ativo = true;
+audioHelice.play();    
 }else{
 flyButton.style.display = "none";
 audioLeftButton.style.display = "none";
@@ -52,6 +55,9 @@ audioFly1.currentTime = 0;
 
 audioFly2.pause();
 audioFly2.currentTime = 0;
+    
+audioHelice.pause();
+audioHelice.currentTime = 0;
 
 terrenoVideo.pause();
 terrenoVideo.currentTime = 0;
