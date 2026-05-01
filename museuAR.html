@@ -18,30 +18,35 @@ PARA UMA DAS
 IMAGENS NO 
 AMBIENTE.
 </div>
+<!-- BOTÕES MONALISA -->
+<button id="monaPlayButton" class="fly-btn">
+  <img src="Imagens/btn_Interacao.png">
+</button>
+<button id="monaAudioLeftButton" class="audio-left-fly-btn">
+  <img src="Imagens/btn_Historia.png">
+</button>
+<button id="monaAudioRightButton" class="audio-right-fly-btn">
+  <img src="Imagens/btn_fatos.png">
+</button>  
 
+ <!-- BOTÕES 14 BIS --> 
 <button id="flyButton" class="fly-btn">
   <img src="Imagens/btn_Interacao.png">  
 </button>
-
 <button id="audioLeftButton" class="audio-left-fly-btn">
   <img src="Imagens/btn_Historia.png">  
 </button>
-
 <button id="audioRightButton" class="audio-right-fly-btn">
   <img src="Imagens/btn_fatos.png">  
 </button> 
 
 <!-- AUDIOS -->
-<audio id="audio0" src="Audios/audio0.mp3"></audio>
-<audio id="audio1" src="Audios/audio1.mp3"></audio>
-<audio id="audio2" src="Audios/audio2.mp3"></audio>
-<audio id="audio3" src="Audios/audio3.mp3"></audio>
-<audio id="audio4" src="Audios/audio4.mp3"></audio>
-<audio id="audio5" src="Audios/audio5.mp3"></audio>
-<audio id="audio6" src="Audios/audio6.mp3"></audio>
-<audio id="audio7" src="Audios/audio7.mp3"></audio>
-<audio id="audio8" src="Audios/audio8.mp3"></audio>
 
+  <!-- MONALISA -->
+<audio id="audioMona1" src="Audios/Narrativa_Monalisa_1.mp3"></audio>
+<audio id="audioMona2" src="Audios/Narrativa_Monalisa_2.mp3"></audio>
+  
+  <!-- 14 BIS-->
 <audio id="audioFly1" src="Audios/Narrativa_Santos_Dumont.mp3"></audio>
 <audio id="audioFly2" src="Audios/Narrativa_14_Bis.mp3"></audio>
 <audio id="audioHelice" src="Audios/Motos_Helice.mp3" loop></audio>
@@ -64,23 +69,25 @@ device-orientation-permission-ui="enabled:false">
 <a-asset-item id="objeto9" src="Modelos/objeto9.glb"></a-asset-item>
 
 <video id="terrenoVideoAsset" src="Video/Terreno_Final.mp4" loop muted playsinline preload="auto"></video>
+<video id="monalisaVideo" src="Video/Monalisa.mp4" playsinline preload="auto"></video>
+  
 </a-assets>
 
 <a-camera position="0 0 0" look-controls="enabled:false"></a-camera>
 
-<!-- TRACK 0 -->
+<!-- TRACK 0 (MEGAFAUNA) -->
 <a-entity mindar-image-target="targetIndex:0">
   <a-gltf-model rotation="90 0 0" position="0 0 0" scale="0.8 0.8 0.8" src="#base"></a-gltf-model>
   <a-gltf-model rotation="90 0 0" position="0 0 0" scale="0.8 0.8 0.8" src="#mamute"></a-gltf-model>
   <a-gltf-model rotation="90 0 0" position="0 0 0" scale="0.8 0.8 0.8" src="#smilodon"></a-gltf-model>
 </a-entity>
 
-<!-- TRACK 1 -->
+<!-- TRACK 1 (MONALISA) -->
 <a-entity mindar-image-target="targetIndex:1">
-  <a-gltf-model rotation="90 0 0" position="0 0 0" scale="0.8 0.8 0.8" src="#base"></a-gltf-model>
+  <a-plane id="monalisaPlane" material="src:#monalisaVideo; shader:flat" position="0 0.35 0.02"  width="0.8" height="1.2" rotation="0 0 0"></a-plane>
 </a-entity>
 
-<!-- TRACK 2 -->
+<!-- TRACK 2 (14 BIS) -->
 <a-entity mindar-image-target="targetIndex:2">
   <a-plane id="terrenoPlane" material="src:#terrenoVideoAsset; shader:flat"
   position="0 0 0" height="2" width="3" rotation="0 0 -90">
