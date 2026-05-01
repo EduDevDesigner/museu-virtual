@@ -1,3 +1,6 @@
+let helice14bis = null;
+let girandoHelice = false;
+
 const message = document.getElementById("track-message");
 const flyButton = document.getElementById("flyButton");
 const audioLeftButton = document.getElementById("audioLeftButton");
@@ -7,6 +10,23 @@ const audioFly1 = document.getElementById("audioFly1");
 const audioFly2 = document.getElementById("audioFly2");
 const terrenoVideo = document.querySelector("#terrenoVideoAsset");
 const audioHelice = document.getElementById("audioHelice");
+
+
+aviao14bis.addEventListener("model-loaded", ()=>{
+
+    const modelo = aviao14bis.getObject3D("mesh");
+
+    modelo.traverse((node)=>{
+        if(
+            node.name.toLowerCase().includes("helice_helice.mesh.001") ||
+            node.name.toLowerCase().includes("propeller")
+        ){
+            helice14bis = node;
+            console.log("HÉLICE ENCONTRADA:", node.name);
+        }
+    });
+
+});
 
 terrenoVideo.pause();
 terrenoVideo.currentTime = 0;
@@ -34,7 +54,8 @@ flyButton.style.display = "block";
 audioLeftButton.style.display = "block";
 audioRightButton.style.display = "block";
 target2Ativo = true;
-audioHelice.play();    
+audioHelice.play(); 
+animarHelice();
 }else{
 flyButton.style.display = "none";
 audioLeftButton.style.display = "none";
@@ -58,6 +79,8 @@ audioFly2.currentTime = 0;
     
 audioHelice.pause();
 audioHelice.currentTime = 0;
+    
+pararHelice();
 
 terrenoVideo.pause();
 terrenoVideo.currentTime = 0;
@@ -208,3 +231,26 @@ audioFly2.pause();
 }
 
 });
+
+//GIRAR HELICE
+function animarHelice(){
+
+    if(!helice14bis) return;
+
+    girandoHelice = true;
+
+    function loopHelice(){
+
+        if(!girandoHelice) return;
+
+        helice14bis.rotation.z += 0.8;
+
+        requestAnimationFrame(loopHelice);
+    }
+
+    loopHelice();
+}
+
+function pararHelice(){
+    girandoHelice = false;
+}
