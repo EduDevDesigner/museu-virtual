@@ -1,7 +1,10 @@
+let monaVideoAtivo = false;
+
 let helice14bis = null;
 let girandoHelice = false;
-const eixoHelice = new THREE.Vector3(1,0,0);
 
+//consts 14 BIS
+const eixoHelice = new THREE.Vector3(1,0,0);
 const message = document.getElementById("track-message");
 const flyButton = document.getElementById("flyButton");
 const audioLeftButton = document.getElementById("audioLeftButton");
@@ -11,8 +14,21 @@ const audioFly1 = document.getElementById("audioFly1");
 const audioFly2 = document.getElementById("audioFly2");
 const terrenoVideo = document.querySelector("#terrenoVideoAsset");
 const audioHelice = document.getElementById("audioHelice");
+//conts MONALISA
+const monalisaVideo = document.getElementById("monalisaVideo");
+const monaPlayButton = document.getElementById("monaPlayButton");
+const monaAudioLeftButton = document.getElementById("monaAudioLeftButton");
+const monaAudioRightButton = document.getElementById("monaAudioRightButton");
+const audioMona1 = document.getElementById("audioMona1");
+const audioMona2 = document.getElementById("audioMona2");
 
+audioFly1.volume = 1.0;
+audioFly2.volume = 1.0;
+audioHelice.volume = 0.8;
+audioMona1.volume = 1.0;
+audioMona2.volume = 1.0;
 
+//14 BIS
 aviao14bis.addEventListener("model-loaded", ()=>{
 
     const modelo = aviao14bis.getObject3D("mesh");
@@ -33,9 +49,6 @@ aviao14bis.addEventListener("model-loaded", ()=>{
 terrenoVideo.pause();
 terrenoVideo.currentTime = 0;
 
-audioFly1.volume = 1.0;
-audioFly2.volume = 1.0;
-audioHelice.volume = 0.8;
 
 let velocidadeTerreno = 0;
 let alturaAtual = 0.2;
@@ -49,15 +62,28 @@ targets.forEach((target, index) => {
 
 target.addEventListener("targetFound", () => {
 
+
 message.classList.add("hidden");
 
+//MONALISA
+if(index===1){
+    monaPlayButton.style.display="block";
+    monaAudioLeftButton.style.display="block";
+    monaAudioRightButton.style.display="block";
+}else{
+    monaPlayButton.style.display="none";
+    monaAudioLeftButton.style.display="none";
+    monaAudioRightButton.style.display="none";
+}    
+    
+//14 BIS
 if(index === 2){
 flyButton.style.display = "block";
 audioLeftButton.style.display = "block";
 audioRightButton.style.display = "block";
 target2Ativo = true;
 audioHelice.play(); 
-animarHelice();
+animarHelice();  
 }else{
 flyButton.style.display = "none";
 audioLeftButton.style.display = "none";
@@ -69,6 +95,22 @@ target2Ativo = false;
 
 target.addEventListener("targetLost", () => {
 
+//MONALISA
+monaPlayButton.style.display="none";
+monaAudioLeftButton.style.display="none";
+monaAudioRightButton.style.display="none";
+
+monalisaVideo.pause();
+monalisaVideo.currentTime=0;
+monaVideoAtivo=false;
+
+audioMona1.pause();
+audioMona1.currentTime=0;
+
+audioMona2.pause();
+audioMona2.currentTime=0;    
+    
+//14 BIS
 flyButton.style.display = "none";
 audioLeftButton.style.display = "none";
 audioRightButton.style.display = "none";
@@ -82,7 +124,8 @@ audioFly2.currentTime = 0;
 audioHelice.pause();
 audioHelice.currentTime = 0;
     
-pararHelice();
+pararHelice();   
+
 
 terrenoVideo.pause();
 terrenoVideo.currentTime = 0;
@@ -101,6 +144,46 @@ message.classList.remove("hidden");
 
 });
 
+//BOTÕES MONALISA
+monaPlayButton.addEventListener("click",()=>{
+
+    if(monalisaVideo.paused){
+        monalisaVideo.play();
+        monaVideoAtivo=true;
+    }else{
+        monalisaVideo.pause();
+        monaVideoAtivo=false;
+    }
+
+});
+
+monaAudioLeftButton.addEventListener("click",()=>{
+
+    audioMona2.pause();
+    audioMona2.currentTime=0;
+
+    if(audioMona1.paused){
+        audioMona1.play();
+    }else{
+        audioMona1.pause();
+    }
+
+});
+
+monaAudioRightButton.addEventListener("click",()=>{
+
+    audioMona1.pause();
+    audioMona1.currentTime=0;
+
+    if(audioMona2.paused){
+        audioMona2.play();
+    }else{
+        audioMona2.pause();
+    }
+
+});
+
+//14 BIS CENTRAL
 flyButton.addEventListener("click", toggleVoo);
 
 function toggleVoo(){
