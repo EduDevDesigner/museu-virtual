@@ -18,7 +18,7 @@ aviao14bis.addEventListener("model-loaded", ()=>{
 
     modelo.traverse((node)=>{
         if(
-            node.name.toLowerCase().includes("helice_helice.mesh.001") ||
+            node.name.toLowerCase().includes("helice") ||
             node.name.toLowerCase().includes("propeller")
         ){
             helice14bis = node;
@@ -33,7 +33,7 @@ terrenoVideo.currentTime = 0;
 
 audioFly1.volume = 1.0;
 audioFly2.volume = 1.0;
-audioHelice.volume = 0.5;
+audioHelice.volume = 0.8;
 
 let velocidadeTerreno = 0;
 let alturaAtual = 0.2;
