@@ -44,6 +44,7 @@ AMBIENTE.
 
 <audio id="audioFly1" src="Audios/Narrativa_Santos_Dumont.mp3"></audio>
 <audio id="audioFly2" src="Audios/Narrativa_14_Bis.mp3"></audio>
+<audio id="audioHelice" src="Audios/Motos_Helice.mp3" loop></audio>
 
 <a-scene
 mindar-image="imageTargetSrc: Imagens/targets.mind;"
@@ -62,7 +63,7 @@ device-orientation-permission-ui="enabled:false">
 <a-asset-item id="objeto8" src="Modelos/objeto8.glb"></a-asset-item>
 <a-asset-item id="objeto9" src="Modelos/objeto9.glb"></a-asset-item>
 
-<video id="terrenoVideoAsset" src="Video/Terreno.mp4" loop muted playsinline preload="auto"></video>
+<video id="terrenoVideoAsset" src="Video/Terreno_Final.mp4" loop muted playsinline preload="auto"></video>
 </a-assets>
 
 <a-camera position="0 0 0" look-controls="enabled:false"></a-camera>
@@ -82,11 +83,11 @@ device-orientation-permission-ui="enabled:false">
 <!-- TRACK 2 -->
 <a-entity mindar-image-target="targetIndex:2">
   <a-plane id="terrenoPlane" material="src:#terrenoVideoAsset; shader:flat"
-  position="0 0 0" height="2" width="3" rotation="0 0 -90"></a-plane>
-
-  <a-gltf-model id="aviao14bis" rotation="90 0 0" position="0 0.2 0"
-  scale="0.8 0.8 0.8" src="#14bis"></a-gltf-model>
-
+  position="0 0 0" height="2" width="3" rotation="0 0 -90">
+</a-plane>
+<a-gltf-model id="aviao14bis" rotation="90 0 0" position="0 0.01 0"
+  scale="0.8 0.8 0.8" src="#14bis">
+</a-gltf-model>
   <a-light type="ambient" color="#ffffff" intensity="1.4"></a-light>
   <a-light type="hemisphere" color="#ffffff" groundColor="#b5b5b5" intensity="1.2"></a-light>
   <a-light type="directional" color="#fff8e5" intensity="2.8" position="-2 -4 3"></a-light>
