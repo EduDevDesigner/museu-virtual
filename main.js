@@ -1,5 +1,6 @@
 let helice14bis = null;
 let girandoHelice = false;
+const eixoHelice = new THREE.Vector3(1,0,0);
 
 const message = document.getElementById("track-message");
 const flyButton = document.getElementById("flyButton");
@@ -17,12 +18,13 @@ aviao14bis.addEventListener("model-loaded", ()=>{
     const modelo = aviao14bis.getObject3D("mesh");
 
     modelo.traverse((node)=>{
+
         if(
             node.name.toLowerCase().includes("helice") ||
             node.name.toLowerCase().includes("propeller")
         ){
             helice14bis = node;
-            console.log("HÉLICE ENCONTRADA:", node.name);
+            console.log("Hélice encontrada:", node.name);
         }
     });
 
@@ -243,7 +245,7 @@ function animarHelice(){
 
         if(!girandoHelice) return;
 
-        helice14bis.rotation.z += 0.8;
+        helice14bis.rotateOnAxis(eixoHelice, 1.0);
 
         requestAnimationFrame(loopHelice);
     }
@@ -251,6 +253,7 @@ function animarHelice(){
     loopHelice();
 }
 
+//PARAR HÉLICE
 function pararHelice(){
     girandoHelice = false;
 }
