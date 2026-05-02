@@ -276,3 +276,215 @@ audioFly1.currentTime=0;
 if(audioFly2.paused){audioFly2.play();}
 else{audioFly2.pause();}
 });
+
+let faunaActive=false;
+let torreActive=false;
+let venusActive=false;
+
+/* ================= TRACK 0 MEGAFAUNA ================= */
+
+faunaPlayButton.addEventListener("click",function(){
+
+if(activeTrack!==0){return;}
+
+faunaActive=!faunaActive;
+
+if(faunaActive){
+girarFauna();
+subirNeblina();
+}else{
+faunaFog.setAttribute("opacity","0");
+}
+});
+
+function girarFauna(){
+
+let rot=0;
+
+let giro=setInterval(function(){
+
+if(!faunaActive || activeTrack!==0){
+clearInterval(giro);
+return;
+}
+
+rot+=1;
+
+mamuteModel.setAttribute("rotation","90 "+rot+" 0");
+smilodonModel.setAttribute("rotation","90 "+rot+" 0");
+faunaBase.setAttribute("rotation","90 "+rot+" 0");
+
+
+},30);
+}
+
+function subirNeblina(){
+
+let op=0;
+
+let fog=setInterval(function(){
+
+if(!faunaActive || activeTrack!==0){
+clearInterval(fog);
+return;
+}
+
+if(op<0.45){
+op+=0.01;
+faunaFog.setAttribute("opacity",op);
+}else{
+clearInterval(fog);
+}
+
+},50);
+}
+
+faunaAudioLeftButton.addEventListener("click",function(){
+audioFauna2.pause();
+audioFauna2.currentTime=0;
+if(audioFauna1.paused){audioFauna1.play();}
+else{audioFauna1.pause();}
+});
+
+faunaAudioRightButton.addEventListener("click",function(){
+audioFauna1.pause();
+audioFauna1.currentTime=0;
+if(audioFauna2.paused){audioFauna2.play();}
+else{audioFauna2.pause();}
+});
+
+/* ================= TRACK 3 TORRE MALAKOFF ================= */
+
+torrePlayButton.addEventListener("click",function(){
+
+if(activeTrack!==3){return;}
+
+torreActive=!torreActive;
+
+if(torreActive){
+girarTorre();
+acenderTorre();
+}else{
+torreLight.setAttribute("intensity","0");
+}
+});
+
+function girarTorre(){
+
+let rot=0;
+
+let giro=setInterval(function(){
+
+if(!torreActive || activeTrack!==3){
+clearInterval(giro);
+return;
+}
+
+rot+=1;
+torreModel.setAttribute("rotation","0 "+rot+" 0");
+
+},35);
+}
+
+function acenderTorre(){
+
+let luz=0;
+
+let acender=setInterval(function(){
+
+if(!torreActive || activeTrack!==3){
+clearInterval(acender);
+return;
+}
+
+if(luz<2.5){
+luz+=0.05;
+torreLight.setAttribute("intensity",luz);
+}else{
+clearInterval(acender);
+}
+
+},50);
+}
+
+torreAudioLeftButton.addEventListener("click",function(){
+audioTorre2.pause();
+audioTorre2.currentTime=0;
+if(audioTorre1.paused){audioTorre1.play();}
+else{audioTorre1.pause();}
+});
+
+torreAudioRightButton.addEventListener("click",function(){
+audioTorre1.pause();
+audioTorre1.currentTime=0;
+if(audioTorre2.paused){audioTorre2.play();}
+else{audioTorre2.pause();}
+});
+
+/* ================= TRACK 4 VENUS ================= */
+
+venusPlayButton.addEventListener("click",function(){
+
+if(activeTrack!==4){return;}
+
+venusActive=!venusActive;
+
+if(venusActive){
+girarVenus();
+iluminarVenus();
+}else{
+venusLight.setAttribute("intensity","0");
+}
+});
+
+function girarVenus(){
+
+let rot=0;
+
+let giro=setInterval(function(){
+
+if(!venusActive || activeTrack!==4){
+clearInterval(giro);
+return;
+}
+
+rot+=1;
+venusModel.setAttribute("rotation","0 "+rot+" 0");
+
+},35);
+}
+
+function iluminarVenus(){
+
+let luz=0;
+
+let acender=setInterval(function(){
+
+if(!venusActive || activeTrack!==4){
+clearInterval(acender);
+return;
+}
+
+if(luz<2.8){
+luz+=0.05;
+venusLight.setAttribute("intensity",luz);
+}else{
+clearInterval(acender);
+}
+
+},50);
+}
+
+venusAudioLeftButton.addEventListener("click",function(){
+audioVenus2.pause();
+audioVenus2.currentTime=0;
+if(audioVenus1.paused){audioVenus1.play();}
+else{audioVenus1.pause();}
+});
+
+venusAudioRightButton.addEventListener("click",function(){
+audioVenus1.pause();
+audioVenus1.currentTime=0;
+if(audioVenus2.paused){audioVenus2.play();}
+else{audioVenus2.pause();}
+});
