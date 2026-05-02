@@ -120,9 +120,11 @@ device-orientation-permission-ui="enabled:false">
 
 <!-- ================= TRACK 0 MEGAFAUNA ================= -->
 <a-entity mindar-image-target="targetIndex:0">
-  <a-gltf-model id="faunaBase" rotation="90 0 0" position="0 0 0" scale="0.8 0.8 0.8" src="#base"></a-gltf-model>
-  <a-gltf-model id="mamuteModel" rotation="90 0 0" position="0 0 0" scale="0.8 0.8 0.8" src="#mamute"></a-gltf-model>
-  <a-gltf-model id="smilodonModel" rotation="90 0 0" position="0 0 0" scale="0.8 0.8 0.8" src="#smilodon"></a-gltf-model>
+  <a-entity id="faunaGroup" rotation="0 0 0">
+    <a-gltf-model id="faunaBase" rotation="90 0 0" position="0 0 0" scale="0.5 0.5 0.5" src="#base"></a-gltf-model>
+    <a-gltf-model id="mamuteModel" rotation="90 0 0" position="0 0 0" scale="0.5 0.5 0.5" src="#mamute"></a-gltf-model>
+    <a-gltf-model id="smilodonModel" rotation="90 0 0" position="0 0 0" scale="0.5 0.5 0.5" src="#smilodon"></a-gltf-model>
+  </a-entity>
   <a-plane id="faunaFog" color="#d9f1ff" opacity="0" width="2.8" height="2.8" rotation="-90 0 0" position="0 -0.15 0"></a-plane>
   <a-light type="ambient" color="#ffffff" intensity="1.4"></a-light>
   <a-light type="hemisphere" color="#ffffff" groundColor="#b5b5b5" intensity="1.2"></a-light>
@@ -151,7 +153,9 @@ device-orientation-permission-ui="enabled:false">
 
 <!-- ================= TRACK 3 TORRE MALAKOFF ================= -->
 <a-entity mindar-image-target="targetIndex:3">
-  <a-gltf-model id="torreModel" rotation="90 0 0" position="0 0 0" scale="0.8 0.8 0.8" src="#torre"></a-gltf-model>
+  <a-entity id="torreGroup" rotation="0 0 0">
+     <a-gltf-model id="torreModel" rotation="90 0 0" position="0 0 0" scale="0.8 0.8 0.8" src="#torre"></a-gltf-model>
+  </a-entity>  
   <a-light type="ambient" color="#ffffff" intensity="1.4"></a-light>
   <a-light type="hemisphere" color="#ffffff" groundColor="#b5b5b5" intensity="1.2"></a-light>
   <a-light type="directional" color="#fff8e5" intensity="2.8" position="-2 -4 3"></a-light>
@@ -160,7 +164,9 @@ device-orientation-permission-ui="enabled:false">
 
 <!-- ================= TRACK 4 VENUS ================= -->
 <a-entity mindar-image-target="targetIndex:4">
-  <a-gltf-model id="venusModel" rotation="90 0 0" position="0 0 0" scale="0.8 0.8 0.8" src="#venus"></a-gltf-model>
+  <a-entity id="venusGroup" rotation="0 0 0">
+     <a-gltf-model id="venusModel" rotation="90 0 0" position="0 0 0" scale="0.8 0.8 0.8" src="#venus"></a-gltf-model>
+  </a-entity>   
   <a-light type="ambient" color="#ffffff" intensity="1.4"></a-light>
   <a-light type="hemisphere" color="#ffffff" groundColor="#b5b5b5" intensity="1.2"></a-light>
   <a-light type="directional" color="#fff8e5" intensity="2.8" position="-2 -4 3"></a-light>
