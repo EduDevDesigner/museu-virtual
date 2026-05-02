@@ -310,9 +310,7 @@ return;
 
 rot+=1;
 
-mamuteModel.setAttribute("rotation","90 "+rot+" 0");
-smilodonModel.setAttribute("rotation","90 "+rot+" 0");
-faunaBase.setAttribute("rotation","90 "+rot+" 0");
+faunaGroup.setAttribute("rotation","0 0 "+rot);
 
 
 },30);
@@ -381,7 +379,7 @@ return;
 }
 
 rot+=1;
-torreModel.setAttribute("rotation","0 "+rot+" 0");
+torreGroup.setAttribute("rotation","0 0 "+rot);
 
 },35);
 }
@@ -449,7 +447,7 @@ return;
 }
 
 rot+=1;
-venusModel.setAttribute("rotation","0 "+rot+" 0");
+venusGroup.setAttribute("rotation","0 0 "+rot);
 
 },35);
 }
