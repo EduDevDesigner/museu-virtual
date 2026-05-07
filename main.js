@@ -46,13 +46,19 @@ const audioVenus2=document.getElementById("audioVenus2");
 const venusModel=document.getElementById("venusModel");
 const venusLight=document.getElementById("venusLight");
 
+/* ================= HÉLICE ================= */
+const eixoHelice = new THREE.Vector3(1,0,0);
+
 /* ================= VARIÁVEIS GERAIS ================= */
 let activeTrack=-1;
 let flyActive=false;
 let alturaAtual=0;
 let velocidadeTerreno=0;
 let delayDecolagem=null;
+let helice14bis = null;
+let girandoHelice = false;
 
+audioHelice.volume = 0.1;
 /* ================= RESET BOTÕES ================= */
 function hideAllButtons(){
 document.querySelectorAll("button").forEach(btn=>{
@@ -88,6 +94,8 @@ flyButton.style.display="block";
 audioLeftButton.style.display="block";
 audioRightButton.style.display="block";
 audioHelice.play();
+animarHelice(); 
+
 }
 
 if(index===3){
@@ -129,6 +137,8 @@ clearTimeout(delayDecolagem);
 alturaAtual=0;
 velocidadeTerreno=0;
 aviao14bis.setAttribute("position","0 0 0");
+audioHelice.pause();
+audioHelice.currentTime=0;
 
 });
 });
@@ -486,3 +496,49 @@ audioVenus1.currentTime=0;
 if(audioVenus2.paused){audioVenus2.play();}
 else{audioVenus2.pause();}
 });
+
+/* ========= Detectar a hélice quando o modelo carregar ========== */
+
+aviao14bis.addEventListener("model-loaded", ()=>{
+
+    const modelo = aviao14bis.getObject3D("mesh");
+
+    modelo.traverse((node)=>{
+
+        if(
+            node.name.toLowerCase().includes("helice") ||
+            node.name.toLowerCase().includes("propeller")
+        ){
+            helice14bis = node;
+            console.log("Hélice encontrada:", node.name);
+        }
+    });
+
+});
+
+/* ========= ANIMAR HÉLICE ========== */
+
+function animarHelice(){
+
+    if(!helice14bis) return;
+
+    girandoHelice = true;
+
+    function loopHelice(){
+
+        if(!girandoHelice) return;
+
+        helice14bis.rotateOnAxis(eixoHelice, 1.0);
+
+        requestAnimationFrame(loopHelice);
+    }
+
+    loopHelice();
+}
+
+
+/* ========= PARAR HÉLICE ========== */
+
+function pararHelice(){
+    girandoHelice = false;
+}
