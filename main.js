@@ -318,7 +318,7 @@ clearInterval(giro);
 return;
 }
 
-rot+=1;
+rot-=1;
 
 faunaGroup.setAttribute("rotation","0 0 "+rot);
 
