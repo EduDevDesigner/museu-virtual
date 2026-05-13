@@ -696,7 +696,7 @@ if(audioVenus2.paused){audioVenus2.play();}
 else{audioVenus2.pause();}
 });
 
-/* ================= TRACK 0  ================= */
+
 
 /* ========= Detectar a hélice quando o modelo carregar ========== */
 
