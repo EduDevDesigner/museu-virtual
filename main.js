@@ -20,6 +20,7 @@ const audioFauna2=document.getElementById("audioFauna2");
 const mamuteModel=document.getElementById("mamuteModel");
 const smilodonModel=document.getElementById("smilodonModel");
 const faunaFog=document.getElementById("faunaFog");
+const faunaGroup=document.getElementById("faunaGroup");
 
 /* ================= TRACK 2 ================= */
 const venusPlayButton=document.getElementById("venusPlayButton");
@@ -771,7 +772,7 @@ return;
 
 rot+=1;
 
-velociGroup.setAttribute("rotation","0 "+rot+" 0");
+velociGroup.setAttribute("rotation","0 0 "+rot);
 
 },30);
 
