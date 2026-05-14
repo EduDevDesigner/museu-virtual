@@ -831,9 +831,9 @@ clearInterval(giro);
 return;
 }
 
-rot+=1;
+rot-=1;
 
-vogelherdGroup.setAttribute("rotation","0 "+rot+" 0");
+vogelherdGroup.setAttribute("rotation","0 0 "+rot);
 
 },30);
 
