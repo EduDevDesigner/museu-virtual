@@ -628,7 +628,7 @@ if(audioTorre2.paused){audioTorre2.play();}
 else{audioTorre2.pause();}
 });
 
-/* ================= TRACK 9 VENUS ================= */
+/* ================= TRACK 2 VENUS ================= */
 
 venusPlayButton.addEventListener("click",function(){
 
