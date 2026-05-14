@@ -202,6 +202,7 @@ device-orientation-permission-ui="enabled:false">
 <a-asset-item id="raptor" src="Modelos/Raptor2.glb"></a-asset-item>
 <a-asset-item id="c_vogelherd" src="Modelos/%20Cavalo_Vogelherd.glb"></a-asset-item>
 <a-asset-item id="m_vogelherd" src="Modelos/Manute_Vogelherd.glb"></a-asset-item>
+<a-asset-item id="pedestal" src="Modelos/Pedestal.glb"></a-asset-item>
 
 <video id="terrenoVideoAsset" src="Video/Terreno_Final.mp4" loop muted playsinline preload="auto"></video>
 <video id="monalisaVideo" src="Video/Monalisa.mp4" playsinline preload="auto"></video>
@@ -242,7 +243,8 @@ device-orientation-permission-ui="enabled:false">
 <!-- ================= TRACK 2 OS PRIMEIROS SÍMBOLOS HUMANOS - VENUS ================= -->
 <a-entity mindar-image-target="targetIndex:2">
   <a-entity id="venusGroup" rotation="0 0 0">
-     <a-gltf-model id="venusModel" rotation="90 0 0" position="0 0 0" scale="0.8 0.8 0.8" src="#venus"></a-gltf-model>
+     <a-gltf-model id="venusModel" rotation="90 0 0" position="0 0 1.5" scale="0.7 0.7 0.7" src="#venus"></a-gltf-model>
+    <a-gltf-model id="pedestalModel" rotation="90 0 0" position="0 0 0" scale="0.7 0.7 0.7" src="#pedestal"></a-gltf-model>
   </a-entity>   
   <a-light type="ambient" color="#ffffff" intensity="1.4"></a-light>
   <a-light type="hemisphere" color="#ffffff" groundColor="#b5b5b5" intensity="1.2"></a-light>
