@@ -632,7 +632,7 @@ else{audioTorre2.pause();}
 
 venusPlayButton.addEventListener("click",function(){
 
-if(activeTrack!==4){return;}
+if(activeTrack!==2){return;}
 
 venusActive=!venusActive;
 
@@ -650,7 +650,7 @@ let rot=0;
 
 let giro=setInterval(function(){
 
-if(!venusActive || activeTrack!==4){
+if(!venusActive || activeTrack!==2){
 clearInterval(giro);
 return;
 }
