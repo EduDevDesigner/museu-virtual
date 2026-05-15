@@ -372,7 +372,7 @@ flyButton.addEventListener("click",toggleVoo);
 
 function toggleVoo(){
 
-if(activeTrack!==2){return;}
+if(activeTrack!==8){return;}
 
 if(!flyActive){
 
