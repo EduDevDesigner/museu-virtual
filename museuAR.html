@@ -203,6 +203,7 @@ device-orientation-permission-ui="enabled:false">
 <a-asset-item id="c_vogelherd" src="Modelos/%20Cavalo_Vogelherd.glb"></a-asset-item>
 <a-asset-item id="m_vogelherd" src="Modelos/Manute_Vogelherd.glb"></a-asset-item>
 <a-asset-item id="pedestal" src="Modelos/Pedestal.glb"></a-asset-item>
+<a-asset-item id="moldura" src="Modelos/Moldura.glb"></a-asset-item>  
 
 <video id="terrenoVideoAsset" src="Video/Terreno_Final.mp4" loop muted playsinline preload="auto"></video>
 <video id="monalisaVideo" src="Video/Monalisa.mp4" playsinline preload="auto"></video>
@@ -269,23 +270,43 @@ device-orientation-permission-ui="enabled:false">
   
 <!-- ================= TRACK 4 As Grandes Navegações — Cristóvão Colombo ================= -->
 <a-entity mindar-image-target="targetIndex:4">
-  <a-plane id="colomboPlane" material="src:#colomboVideo; shader:flat" position="0 0.35 0.02" width="1.6" height="2.4"></a-plane>
+  <a-plane id="colomboPlane" material="src:#colomboVideo; shader:flat" position="0 0 0" width="1.6" height="2.4"></a-plane>
+  <a-gltf-model id="moldura" rotation="90 0 0" position="0 0 -0.03" width="1.6" height="2.4" src="#moldura"></a-gltf-model>
+  <a-light type="ambient" color="#ffffff" intensity="1.4"></a-light>
+  <a-light type="hemisphere" color="#ffffff" groundColor="#b5b5b5" intensity="1.2"></a-light>
+  <a-light type="directional" color="#fff8e5" intensity="2.8" position="-2 -4 3"></a-light>
+  <a-light type="directional" color="#d6ecff" intensity="0.8" position="-3 2 -2"></a-light>
 </a-entity>
 
   
 <!-- ================= TRACK 5 O RENASCIMENTO - LEONARDO E MONALISA ================= -->
 <a-entity mindar-image-target="targetIndex:5">
-  <a-plane id="monalisaPlane" material="src:#monalisaVideo; shader:flat" position="0 0.35 0.02" width="1.6" height="2.4"></a-plane>
+  <a-plane id="monalisaPlane" material="src:#monalisaVideo; shader:flat" position="0 0 0" width="1.6" height="2.4"></a-plane>
+  <a-gltf-model id="moldura" rotation="90 0 0" position="0 0 -0.03" width="1.6" height="2.4" src="#moldura"></a-gltf-model>
+  <a-light type="ambient" color="#ffffff" intensity="1.4"></a-light>
+  <a-light type="hemisphere" color="#ffffff" groundColor="#b5b5b5" intensity="1.2"></a-light>
+  <a-light type="directional" color="#fff8e5" intensity="2.8" position="-2 -4 3"></a-light>
+  <a-light type="directional" color="#d6ecff" intensity="0.8" position="-3 2 -2"></a-light>
 </a-entity>
   
-<!-- ================= TRACK 6 O RENASCIMENTO - LEONARDO E MONALISA ================= -->
+<!-- ================= TRACK 6 HENRIQUE DIAS ================= -->
 <a-entity mindar-image-target="targetIndex:6">
-  <a-plane id="diasPlane" material="src:#diasVideo; shader:flat" position="0 0.35 0.02" width="1.6" height="2.4"></a-plane>
+  <a-plane id="diasPlane" material="src:#diasVideo; shader:flat" position="0 0 0" width="1.6" height="2.4"></a-plane>
+  <a-gltf-model id="moldura" rotation="90 0 0" position="0 0 -0.03" width="1.6" height="2.4" src="#moldura"></a-gltf-model>
+  <a-light type="ambient" color="#ffffff" intensity="1.4"></a-light>
+  <a-light type="hemisphere" color="#ffffff" groundColor="#b5b5b5" intensity="1.2"></a-light>
+  <a-light type="directional" color="#fff8e5" intensity="2.8" position="-2 -4 3"></a-light>
+  <a-light type="directional" color="#d6ecff" intensity="0.8" position="-3 2 -2"></a-light>
 </a-entity>  
 
 <!-- ================= TRACK 7 História do Brasil — Dom Pedro I ================= -->
 <a-entity mindar-image-target="targetIndex:7">
-  <a-plane id="dpedroIPlane" material="src:#dpedroIVideo; shader:flat" position="0 0.35 0.02" width="1.6" height="2.4"></a-plane>
+  <a-plane id="dpedroIPlane" material="src:#dpedroIVideo; shader:flat" position="0 0 0" width="1.6" height="2.4"></a-plane>
+  <a-gltf-model id="moldura" rotation="90 0 0" position="0 0 -0.03" width="1.6" height="2.4" src="#moldura"></a-gltf-model>
+  <a-light type="ambient" color="#ffffff" intensity="1.4"></a-light>
+  <a-light type="hemisphere" color="#ffffff" groundColor="#b5b5b5" intensity="1.2"></a-light>
+  <a-light type="directional" color="#fff8e5" intensity="2.8" position="-2 -4 3"></a-light>
+  <a-light type="directional" color="#d6ecff" intensity="0.8" position="-3 2 -2"></a-light>
 </a-entity>    
   
 <!-- ================= TRACK 8 REVOLUÇÃO DOS TRANSPORTES - SANTOS DUMONT E 14 BIS ================= -->
