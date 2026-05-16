@@ -494,7 +494,7 @@ let venusActive=false;
 
 faunaPlayButton.addEventListener("click",function(){
 
-if(activeTrack!==0){return;}
+if(activeTrack!==1){return;}
 
 faunaActive=!faunaActive;
 
@@ -564,7 +564,7 @@ else{audioFauna2.pause();}
 
 torrePlayButton.addEventListener("click",function(){
 
-if(activeTrack!==3){return;}
+if(activeTrack!==9){return;}
 
 torreActive=!torreActive;
 
