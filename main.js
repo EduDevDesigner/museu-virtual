@@ -582,7 +582,7 @@ let rot=0;
 
 let giro=setInterval(function(){
 
-if(!torreActive || activeTrack!==3){
+if(!torreActive || activeTrack!==9){
 clearInterval(giro);
 return;
 }
@@ -599,7 +599,7 @@ let luz=0;
 
 let acender=setInterval(function(){
 
-if(!torreActive || activeTrack!==3){
+if(!torreActive || activeTrack!==9){
 clearInterval(acender);
 return;
 }
