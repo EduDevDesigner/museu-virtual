@@ -512,7 +512,7 @@ let rot=0;
 
 let giro=setInterval(function(){
 
-if(!faunaActive || activeTrack!==0){
+if(!faunaActive || activeTrack!==1){
 clearInterval(giro);
 return;
 }
