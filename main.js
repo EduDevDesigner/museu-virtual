@@ -218,6 +218,12 @@ velociModel.removeAttribute("animation-mixer");
 audioVelociRoar.pause();
 audioVelociRoar.currentTime=0; 
 velociGroup.setAttribute("rotation","0 0 180");    
+
+/* Reset Mamute */    
+mamuteModel.removeAttribute("animation-mixer");    
+audioVelociRoar.pause();
+audioVelociRoar.currentTime=0; 
+faunaGroup.setAttribute("rotation","0 0 -90");        
     
 /* reset videos */
 monalisaVideo.pause();
@@ -505,10 +511,26 @@ if(activeTrack!==1){return;}
 faunaActive=!faunaActive;
 
 if(faunaActive){
+    
 girarFauna();
-subirNeblina();
+subirNeblina();    
+mamuteModel.setAttribute(
+"animation-mixer",
+"loop: pingpong"
+);
+
+//audioVelociRoar.currentTime=0;
+//audioVelociRoar.play();    
+
+girarVeloci();
+
 }else{
+
 faunaFog.setAttribute("opacity","0");
+mamuteModel.removeAttribute("animation-mixer");    
+//audioVelociRoar.pause();
+//audioVelociRoar.currentTime=0;  
+
 }
 });
 
