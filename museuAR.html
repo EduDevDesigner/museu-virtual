@@ -188,7 +188,10 @@ AMBIENTE.
 <a-scene
 mindar-image="imageTargetSrc: Imagens/targets.mind;"
 color-space="sRGB"
-renderer="colorManagement:true,physicallyCorrectLights"
+renderer="colorManagement:true;
+physicallyCorrectLights:true;
+shadowMap.enabled:true;
+shadowMap.type:PCFSoftShadowMap"
 xr-mode-ui="enabled:false"
 device-orientation-permission-ui="enabled:false">
 
@@ -200,7 +203,7 @@ device-orientation-permission-ui="enabled:false">
 <a-asset-item id="14bis" src="Modelos/14_Bis.glb"></a-asset-item>
 <a-asset-item id="torre" src="Modelos/Torre_Malakoff.glb"></a-asset-item>
 <a-asset-item id="venus" src="Modelos/Venus_Willendorf.glb"></a-asset-item>
-<a-asset-item id="raptor" src="Modelos/Raptor2.glb"></a-asset-item>
+<a-asset-item id="raptor" src="Modelos/Raptor.glb"></a-asset-item>
 <a-asset-item id="c_vogelherd" src="Modelos/%20Cavalo_Vogelherd.glb"></a-asset-item>
 <a-asset-item id="m_vogelherd" src="Modelos/Manute_Vogelherd.glb"></a-asset-item>
 <a-asset-item id="pedestal" src="Modelos/Pedestal.glb"></a-asset-item>
@@ -217,20 +220,22 @@ device-orientation-permission-ui="enabled:false">
 
 <!-- ================= TRACK 0 O MUNDO DOS GIGANTES - VELOCIRAPTOR ================= -->
 <a-entity mindar-image-target="targetIndex:0">
-  <a-entity id="velociGroup" rotation="0 0 0">
-    <a-gltf-model id="velociBase" rotation="90 0 0" position="0 0 0" scale="0.5 0.5 0.5" src="#base"></a-gltf-model>
-    <a-gltf-model id="velociModel" rotation="90 0 0" position="0 0 0.1" scale="0.6 0.6 0.6" src="#raptor" animation-mixer></a-gltf-model>    
+  <a-entity id="velociGroup" rotation="0 0 180">
+    <a-gltf-model id="velociBase" rotation="90 0 0" position="0 0 0" scale="0.5 0.5 0.5" src="#base" material="shader:shadow"
+  shadow="receive:true"></a-gltf-model>
+    <a-gltf-model id="velociModel" rotation="90 0 0" position="0 0 0.1" scale="0.6 0.6 0.6" src="#raptor" shadow="cast:true" animation-mixer="loop: pingpong"></a-gltf-model>    
   </a-entity>
   <a-plane id="velociFog" color="#d9f1ff" opacity="0" width="2.8" height="2.8" rotation="-90 0 0" position="0 -0.15 0"></a-plane>
   <a-light type="ambient" color="#ffffff" intensity="1.4"></a-light>
   <a-light type="hemisphere" color="#ffffff" groundColor="#b5b5b5" intensity="1.2"></a-light>
   <a-light type="directional" color="#fff8e5" intensity="2.8" position="-2 -4 3"></a-light>
-  <a-light type="directional" color="#d6ecff" intensity="0.8" position="-3 2 -2"></a-light>
+  <a-light type="directional" color="#d6ecff" intensity="0.8" position="-3 2 -2" castShadow="true" shadowMapWidth="1024" shadowMapHeight="1024"
+  shadowCameraTop="5" shadowCameraBottom="-5" shadowCameraLeft="-5" shadowCameraRight="5"></a-light>
 </a-entity>
   
 <!-- ================= TRACK 1 ERA GLACIAL - MEGAFAUNA ================= -->
 <a-entity mindar-image-target="targetIndex:1">
-  <a-entity id="faunaGroup" rotation="0 0 0">
+  <a-entity id="faunaGroup" rotation="0 0 -90">
     <a-gltf-model id="faunaBase" rotation="90 0 0" position="0 0 0" scale="0.5 0.5 0.5" src="#base"></a-gltf-model>
     <a-gltf-model id="mamuteModel" rotation="90 0 0" position="0 0 0" scale="0.5 0.5 0.5" src="#mamute"></a-gltf-model>
     <a-gltf-model id="smilodonModel" rotation="90 0 0" position="0 0 0" scale="0.5 0.5 0.5" src="#smilodon"></a-gltf-model>
