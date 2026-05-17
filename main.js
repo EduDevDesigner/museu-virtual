@@ -21,6 +21,7 @@ const mamuteModel=document.getElementById("mamuteModel");
 const smilodonModel=document.getElementById("smilodonModel");
 const faunaFog=document.getElementById("faunaFog");
 const faunaGroup=document.getElementById("faunaGroup");
+const audioElefante =document.getElementById("audioElefante");
 
 /* ================= TRACK 2 ================= */
 const venusPlayButton=document.getElementById("venusPlayButton");
@@ -221,8 +222,8 @@ velociGroup.setAttribute("rotation","0 0 180");
 
 /* Reset Mamute */    
 mamuteModel.removeAttribute("animation-mixer");    
-audioVelociRoar.pause();
-audioVelociRoar.currentTime=0; 
+audioElefante.pause();
+audioElefante.currentTime=0; 
 faunaGroup.setAttribute("rotation","0 0 -90");        
     
 /* reset videos */
@@ -519,8 +520,8 @@ mamuteModel.setAttribute(
 "loop: pingpong"
 );
 
-//audioVelociRoar.currentTime=0;
-//audioVelociRoar.play();    
+audioElefante.currentTime=0;
+audioElefante.play();    
 
 girarVeloci();
 
@@ -528,8 +529,8 @@ girarVeloci();
 
 faunaFog.setAttribute("opacity","0");
 mamuteModel.removeAttribute("animation-mixer");    
-//audioVelociRoar.pause();
-//audioVelociRoar.currentTime=0;  
+audioElefante.pause();
+audioElefante.currentTime=0;  
 
 }
 });
