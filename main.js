@@ -5,10 +5,10 @@ const message=document.getElementById("track-message");
 const velociPlayButton=document.getElementById("velociPlayButton");
 const velociAudioLeftButton=document.getElementById("velociAudioLeftButton");
 const velociAudioRightButton=document.getElementById("velociAudioRightButton");
-
+const velociModel=document.getElementById("velociModel");
 const audioVeloci1=document.getElementById("audioVeloci1");
 const audioVeloci2=document.getElementById("audioVeloci2");
-
+const audioVelociRoar =document.getElementById("audioVelociRoar");
 const velociGroup=document.getElementById("velociGroup");
 
 /* ================= TRACK 1 ================= */
@@ -206,13 +206,19 @@ hideAllButtons();
 message.classList.remove("hidden");
 
 activeTrack=-1;
-
+    
 /* reset audios */
 document.querySelectorAll("audio").forEach(a=>{
 a.pause();
 a.currentTime=0;
 });
-
+    
+/* Reset Velociraptor */    
+velociModel.removeAttribute("animation-mixer");    
+audioVelociRoar.pause();
+audioVelociRoar.currentTime=0; 
+velociGroup.setAttribute("rotation","0 0 180");    
+    
 /* reset videos */
 monalisaVideo.pause();
 monalisaVideo.currentTime=0;
@@ -744,7 +750,8 @@ function pararHelice(){
     girandoHelice = false;
 }
 
-//TRACK 0 — VELOCIRAPTOR GIRAR
+//========TRACK 0 — VELOCIRAPTOR GIRAR=======
+
 let velociActive=false;
 
 velociPlayButton.addEventListener("click",function(){
@@ -754,7 +761,24 @@ if(activeTrack!==0){return;}
 velociActive=!velociActive;
 
 if(velociActive){
+
+velociModel.setAttribute(
+"animation-mixer",
+"loop: pingpong"
+);
+
+audioVelociRoar.currentTime=0;
+audioVelociRoar.play();    
+
 girarVeloci();
+
+}else{
+
+velociModel.removeAttribute("animation-mixer");    
+audioVelociRoar.pause();
+audioVelociRoar.currentTime=0;  
+    
+
 }
 
 });
