@@ -508,7 +508,7 @@ faunaFog.setAttribute("opacity","0");
 
 function girarFauna(){
 
-let rot=0;
+let rot=-90;
 
 let giro=setInterval(function(){
 
@@ -761,7 +761,7 @@ girarVeloci();
 
 function girarVeloci(){
 
-let rot=0;
+let rot=180;
 
 let giro=setInterval(function(){
 
