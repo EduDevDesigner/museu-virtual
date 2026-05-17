@@ -144,7 +144,8 @@ AMBIENTE.
 
 <!-- TRACK 0 -->
 <audio id="audioVeloci1" src="Audios/Narrativa_Raptor.mp3"></audio>
-<audio id="audioVeloci2" src="Audios/Narrativa_Curiosidades_Raptor.mp3"></audio>  
+<audio id="audioVeloci2" src="Audios/Narrativa_Curiosidades_Raptor.mp3"></audio> 
+<audio id="audioVelociRoar" src="Audios/raptor_audio.mp3" loop></audio>  
   
 <!-- TRACK 1 -->
 <audio id="audioFauna1" src="Audios/Narrativa_Megafauna.mp3"></audio>
@@ -223,7 +224,7 @@ device-orientation-permission-ui="enabled:false">
   <a-entity id="velociGroup" rotation="0 0 180">
     <a-gltf-model id="velociBase" rotation="90 0 0" position="0 0 0" scale="0.5 0.5 0.5" src="#base" material="shader:shadow"
   shadow="receive:true"></a-gltf-model>
-    <a-gltf-model id="velociModel" rotation="90 0 0" position="0 0 0.1" scale="0.6 0.6 0.6" src="#raptor" shadow="cast:true" animation-mixer="loop: pingpong"></a-gltf-model>    
+    <a-gltf-model id="velociModel" rotation="90 0 0" position="0 0 0.1" scale="0.6 0.6 0.6" src="#raptor" shadow="cast:true" ></a-gltf-model>    
   </a-entity>
   <a-plane id="velociFog" color="#d9f1ff" opacity="0" width="2.8" height="2.8" rotation="-90 0 0" position="0 -0.15 0"></a-plane>
   <a-light type="ambient" color="#ffffff" intensity="1.4"></a-light>
