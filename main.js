@@ -910,6 +910,4 @@ audioVogel2.play();
 }else{
 audioVogel2.pause();
 }
-
 });
-
