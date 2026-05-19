@@ -119,9 +119,19 @@ let girandoHelice = false;
 audioHelice.volume = 0.1;
 /* ================= RESET BOTÕES ================= */
 function hideAllButtons(){
+
 document.querySelectorAll("button").forEach(btn=>{
+
+/* NÃO ESCONDER O BOTÃO FINAL */
+
+if(btn.id==="finalButtonTop"){
+return;
+}
+
 btn.style.display="none";
+
 });
+
 }
 
 /* ================= TARGET CONTROL ================= */
@@ -132,6 +142,10 @@ targets.forEach((target,index)=>{
 target.addEventListener("targetFound",()=>{
 
 activeTrack=index;
+    
+/* CONTADOR */
+registrarTrack(index);
+    
 message.classList.add("hidden");
 hideAllButtons();
     
@@ -910,4 +924,80 @@ audioVogel2.play();
 }else{
 audioVogel2.pause();
 }
+});
+
+/* =========================================================
+SISTEMA DE CONTADOR DE TRACKS
+========================================================= */
+
+const progressCount=document.getElementById("progressCount");
+
+const finalButtonTop=document.getElementById("finalButtonTop");
+
+/* TRACKS VISITADAS */
+
+const visitedTracks=new Set();
+
+/* TOTAL DE TRACKS */
+
+const totalTracks=10;
+
+/* =========================================================
+FUNÇÃO DE CONTAGEM
+========================================================= */
+
+function registrarTrack(index){
+
+/* evita repetir */
+
+if(visitedTracks.has(index)){
+return;
+}
+
+/* adiciona */
+
+visitedTracks.add(index);
+
+/* atualiza UI */
+
+progressCount.innerText=visitedTracks.size;
+
+/* VERIFICAR FINAL */
+
+if(visitedTracks.size>=totalTracks){
+
+mostrarMensagemFinal();
+
+}
+
+}
+
+/* =========================================================
+TELA FINAL
+========================================================= */
+
+function mostrarMensagemFinal(){
+
+document.querySelectorAll("button").forEach(btn=>{
+
+/* NÃO ESCONDER O BOTÃO FINAL */
+
+if(btn.id==="finalButtonTop"){
+return;
+}
+
+btn.style.display="none";
+
+});
+
+}
+
+/* =========================================================
+BOTÃO FINAL
+========================================================= */
+
+finalButtonTop.addEventListener("click",function(){
+
+window.location.href="pagina_final.html";
+
 });
