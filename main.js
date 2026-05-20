@@ -998,6 +998,6 @@ BOTÃO FINAL
 
 finalButtonTop.addEventListener("click",function(){
 
-window.location.href="pagina_final.html";
+window.location.href="quiz.html";
 
 });
