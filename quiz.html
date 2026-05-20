@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Quiz – Entre Gigantes</title>
+<title>Quiz – Museu virtual</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -28,6 +28,14 @@ html, body {
   overflow-x: hidden;
   overflow-y: auto;
   background: #001c40ff;
+  
+  background-image: url("Imagens/papel_Fundo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  background-color: #001c40ff;
 }
 
 /* ===== DESKTOP CENTRALIZADO ===== */
@@ -44,17 +52,6 @@ html, body {
     height: 844px;
     box-shadow: 0 0 40px rgba(0,0,0,0.6);
   }
-}
-
-/* ===== VÍDEO DE FUNDO ===== */
-#bgVideo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
 }
 
 #overlay {
@@ -74,27 +71,27 @@ html, body {
 }
 
 header {
-  background: rgba(1, 15, 33, 0.9);
+  background: rgba(81, 41, 4, 0);
   padding: 1px;
   text-align: center;
-  margin-top: 10vh;
+  margin-top: 18vh;
 }
 
 header h1 {
-  margin: 0;
-  font-size: 35px;
+  margin: 80;
+  font-size: 55px;
 }
 
 header p {
   margin-top: 1px;
   font-size: 18px;
   font-weight: bold;
-  color: #00e8ff;
-  text-shadow: 1px 1px 10px rgb(0, 233, 255);
+  color: #9c7000;
+  text-shadow: 1px 1px 10px rgba(190, 135, 0, 0);
 }
 
 #quizBox {
-  padding: 30px;
+  padding: 50px;
   max-width: 800px;
   margin: 0.1px auto 0 auto;
   box-sizing: border-box;
@@ -104,9 +101,9 @@ header p {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 20px;
-  color: #edf10f;
+  color: #1e1600;
   text-align: center;
-  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  text-shadow: 1px 1px 1px rgba(97, 97, 97, 0);
 }
 
 #question {
@@ -114,11 +111,11 @@ header p {
   margin-bottom: 15px;
   font-weight: bold;
   text-align: center;
-  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  text-shadow: 1px 1px 1px rgba(43, 29, 2, 0.53);
 }
 
 .option {
-  background: rgba(0, 9, 20, 0.92);
+  background: rgba(114, 74, 1, 0.58);
   border-radius: 6px;
   padding: 15px;
   margin-bottom: 20px;
@@ -129,7 +126,7 @@ header p {
 }
 
 .option:hover {
-  background: rgba(2, 184, 189, 0.5);
+  background: rgba(189, 136, 2, 0.5);
 }
 
 .option.correct { background: #00ff6b; }
@@ -137,10 +134,11 @@ header p {
 .option.disabled { pointer-events: none; opacity: 0.8; }
 
 #nextBtn {
-  margin-top: 15px;
-  width: 100%;
+  margin-top: 45px;
+  margin-left: 80px;
+  width: 60%;
   padding: 12px;
-  background: #e8f10f;
+  background: #ffa800;
   border: none;
   border-radius: 6px;
   font-size: 20px;
@@ -151,7 +149,7 @@ header p {
 
 #scoreBox {
   position: absolute;
-  top: 60%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -159,10 +157,10 @@ header p {
   font-size: 14px;
   font-weight: bold;
   text-shadow: 1px 1px 1px rgb(0, 0, 0);
-  background: rgba(1, 4, 23, 0.85);
+  background: rgb(51, 30, 0);
   border-radius: 18px;
   backdrop-filter: blur(10px);
-  width: 280px;
+  width: 380px;
   max-width: 90%;
   z-index: 3;
   box-sizing: border-box;
@@ -170,7 +168,7 @@ header p {
 
 #scoreBox h2 {
   font-size: 20px;
-  color: #e7ff0a;
+  color: #efb900;
   text-shadow: 1px 1px 1px rgb(0, 0, 0);
 }
 
@@ -179,28 +177,21 @@ header p {
 }
 
 #generatePdf {
-  margin-top: 3px;
+  margin-top: 20px;
   padding: 10px 20px;
-  color: #0a6fff;
+  color: #905604;
+  font-size: 16px;
   font-weight: bold;
+  background: rgb(255, 181, 4);
   cursor: pointer;
   border: none;
   border-radius: 18px;
 }
 
-.nave-img {
-  position: absolute;
-  top: 10%;
-  right: 5%;
-  width: 90px;
-  animation: flutuar 4s ease-in-out infinite;
-  z-index: 2;
-}
-
 .dados-aluno {
-  margin-bottom: 10px;
+  margin-bottom: 0px;
   font-size: 14px;
-  color: #ffffff;
+  color: #ffcb48;
 }
 
 @keyframes flutuar {
@@ -213,23 +204,19 @@ header p {
 
 <body>
 
-<div class="app-wrapper">
-
-  <video id="bgVideo" autoplay muted playsinline>
-    <source src="Videos/fundo_animado2.mp4" type="video/mp4">
-  </video>
-
+<div class="app-wrapper">  
+  
   <div id="overlay"></div>
 
   <div class="main-content">
     <audio id="audioAcerto" src="Audios/acerto.mp3"></audio>
     <audio id="audioErro" src="Audios/erro.mp3"></audio>
 
-    <img src="Imagens/voando.png" alt="nave" class="nave-img">  
+      
 
     <header>
       <h1>Quiz</h1>
-      <p>Entre Gigantes<br> A Jornada do Homo sapiens</p>
+      
     </header>
 
     <div id="quizBox">
