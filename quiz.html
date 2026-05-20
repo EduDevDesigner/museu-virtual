@@ -30,16 +30,14 @@ html, body {
   background: #001c40ff;
   
   background-image: url("Imagens/papel_Fundo.jpg");
-  background-size: cover;
+   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
-
   background-color: #001c40ff;
 }
 
 /* ===== DESKTOP CENTRALIZADO ===== */
-@media (min-width: 768px) {
+@media (min-width: 868px) {
   body {
     display: flex;
     justify-content: center;
@@ -48,7 +46,7 @@ html, body {
   }
 
   .app-wrapper {
-    width: 390px;
+    width: 490px;
     height: 844px;
     box-shadow: 0 0 40px rgba(0,0,0,0.6);
   }
@@ -78,7 +76,7 @@ header {
 }
 
 header h1 {
-  margin: 80;
+  margin: 40;
   font-size: 55px;
 }
 
@@ -100,7 +98,7 @@ header p {
 #moduleTitle {
   font-size: 20px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom:20px;
   color: #1e1600;
   text-align: center;
   text-shadow: 1px 1px 1px rgba(97, 97, 97, 0);
@@ -134,7 +132,7 @@ header p {
 .option.disabled { pointer-events: none; opacity: 0.8; }
 
 #nextBtn {
-  margin-top: 45px;
+  margin-top: 35px;
   margin-left: 80px;
   width: 60%;
   padding: 12px;
@@ -210,9 +208,7 @@ header p {
 
   <div class="main-content">
     <audio id="audioAcerto" src="Audios/acerto.mp3"></audio>
-    <audio id="audioErro" src="Audios/erro.mp3"></audio>
-
-      
+    <audio id="audioErro" src="Audios/erro.mp3"></audio>      
 
     <header>
       <h1>Quiz</h1>
@@ -252,83 +248,92 @@ function shuffleArray(array) {
 const quizData = [
 
 {
-  modulo: "Módulo 1 – O Pleistoceno",
+  modulo: "Revolução dos Transportes – Santos Dumont",
   perguntas: [
-    { q: "O que caracteriza o período do Pleistoceno?", o: ["Clima quente e tropical","Eras glaciais e clima frio","Surgimento das primeiras cidades"], c: 1 },
-    { q: "Como o clima influenciava os ecossistemas?", o: ["Não influenciava","Exigia adaptações dos seres vivos","Facilitava a sobrevivência"], c: 1 },
-    { q: "Por que o ambiente é importante para entender a história humana?", o: ["Porque molda a sobrevivência e cultura","Porque é sempre igual","Porque não interfere na vida humana"], c: 0 }
+    { q: "Quem foi Santos Dumont?", o: ["Um navegador português","Um pioneiro da aviação brasileira","Um imperador do Brasil"], c: 1 },
+    { q: "Em que país ocorreram os voos do 14-Bis?", o: ["Brasil","França","Estados Unidos"], c: 1 },
+    { q: "Quais materiais foram usados no 14-Bis?", o: ["Pedra e ferro","Bambu e seda","Madeira e concreto"], c: 1 }
   ]
 },
 
 {
-  modulo: "Módulo 2 – O Paleolítico",
+  modulo: "Renascimento – Leonardo da Vinci e Mona Lisa",
   perguntas: [
-    { q: "Qual é a diferença entre Pleistoceno e Paleolítico?", o: ["Um é período geológico e outro histórico-cultural","São o mesmo período","Ambos são períodos agrícolas"], c: 0 },
-    { q: "Quais são as três fases do Paleolítico?", o: ["Inferior, Médio e Superior","Antigo, Clássico e Moderno","Pedra, Bronze e Ferro"], c: 0 },
-    { q: "Por que o Paleolítico foi tão longo?", o: ["Durou milhões de anos","Durou apenas alguns séculos","Durou menos que o Neolítico"], c: 0 }
+    { q: "Quem foi Leonardo da Vinci?", o: ["Um pintor e inventor renascentista","Um rei francês","Um navegador espanhol"], c: 0 },
+    { q: "Qual é a obra mais famosa de Leonardo da Vinci?", o: ["A Noite Estrelada","Mona Lisa","Guernica"], c: 1 },
+    { q: "O que é a técnica sfumato?", o: ["Escultura em mármore","Sombras suaves na pintura","Pintura em metal"], c: 1 }
   ]
 },
 
 {
-  modulo: "Módulo 3 – Megafauna",
+  modulo: "Patrimônio Pernambucano – Torre Malakoff",
   perguntas: [
-    { q: "O que significa megafauna?", o: ["Animais pequenos","Animais de grande porte","Animais domésticos"], c: 1 },
-    { q: "Qual animal possuía presas longas?", o: ["Mamute","Smilodon","Cervo"], c: 1 },
-    { q: "Como a megafauna influenciava os humanos?", o: ["Era irrelevante","Oferecia recursos e perigos","Servia apenas de paisagem"], c: 1 }
+    { q: "Onde fica a Torre Malakoff?", o: ["Recife","Salvador","Rio de Janeiro"], c: 0 },
+    { q: "Qual era uma função da Torre Malakoff?", o: ["Observatório astronômico","Palácio imperial","Fortaleza romana"], c: 0 },
+    { q: "Hoje a Torre Malakoff funciona como:", o: ["Fábrica","Espaço cultural","Shopping"], c: 1 }
   ]
 },
 
 {
-  modulo: "Módulo 4 – Homo sapiens",
+  modulo: "Primeiros Símbolos Humanos – Vênus de Willendorf",
   perguntas: [
-    { q: "Uma característica do Homo sapiens é:", o: ["Crânio alongado e baixo","Testa alta e queixo definido","Ausência de linguagem"], c: 1 },
-    { q: "Qual foi um diferencial dessa espécie?", o: ["Força física extrema","Pensamento simbólico","Vida solitária"], c: 1 },
-    { q: "Onde surgiu o Homo sapiens?", o: ["Europa","Ásia","África"], c: 2 }
+    { q: "O que é a Vênus de Willendorf?", o: ["Uma escultura pré-histórica","Um templo antigo","Uma pintura medieval"], c: 0 },
+    { q: "Qual possível significado da Vênus de Willendorf?", o: ["Fertilidade","Guerra","Comércio"], c: 0 },
+    { q: "Em qual país a Vênus foi encontrada?", o: ["Alemanha","Áustria","França"], c: 1 }
   ]
 },
 
 {
-  modulo: "Módulo 5 – Nomadismo",
+  modulo: "Era Glacial – Megafauna",
   perguntas: [
-    { q: "O que é nomadismo?", o: ["Vida fixa em aldeias","Deslocamento constante","Vida urbana"], c: 1 },
-    { q: "Por que os grupos eram pequenos?", o: ["Falta de comunicação","Facilidade de sobrevivência","Proibição cultural"], c: 1 },
-    { q: "Qual atividade era comum?", o: ["Agricultura","Caça e coleta","Comércio"], c: 1 }
+    { q: "O que é megafauna?", o: ["Animais gigantes da Pré-História","Insetos pré-históricos","Plantas gigantes"], c: 0 },
+    { q: "Qual destes fazia parte da megafauna?", o: ["Mamute","Cachorro","Gato"], c: 0 },
+    { q: "Uma das causas da extinção da megafauna foi:", o: ["Mudanças climáticas","Internet","Energia elétrica"], c: 0 }
   ]
 },
 
 {
-  modulo: "Módulo 6 – Tecnologia e Fogo",
+  modulo: "História de Pernambuco – Henrique Dias",
   perguntas: [
-    { q: "Qual material era usado nas ferramentas?", o: ["Plástico","Pedra e osso","Metal"], c: 1 },
-    { q: "O fogo permitiu:", o: ["Apenas iluminação","Cozinhar, aquecer e proteção","Somente rituais"], c: 1 },
-    { q: "As ferramentas ajudavam a:", o: ["Reduzir a cooperação","Aumentar as chances de sobrevivência","Eliminar o nomadismo"], c: 1 }
+    { q: "Quem foi Henrique Dias?", o: ["Líder militar contra os holandeses","Pintor renascentista","Imperador brasileiro"], c: 0 },
+    { q: "Contra quem Henrique Dias lutou?", o: ["Franceses","Holandeses","Romanos"], c: 1 },
+    { q: "Em quais batalhas Henrique Dias participou?", o: ["Montes Guararapes","Guerra do Paraguai","Revolução Francesa"], c: 0 }
   ]
 },
 
 {
-  modulo: "Módulo 7 – Arte Rupestre",
+  modulo: "História do Brasil – Dom Pedro I",
   perguntas: [
-    { q: "O que é arte rupestre?", o: ["Arte moderna","Pinturas em cavernas","Esculturas em metal"], c: 1 },
-    { q: "Temas comuns eram:", o: ["Cidades","Animais e caça","Escrita"], c: 1 },
-    { q: "A arte indica:", o: ["Apenas decoração","Pensamento simbólico","Desconhecimento do ambiente"], c: 1 }
+    { q: "Quem proclamou a independência do Brasil?", o: ["Tiradentes","Dom Pedro I","Getúlio Vargas"], c: 1 },
+    { q: "Onde aconteceu o grito da independência?", o: ["Riacho do Ipiranga","Praia de Copacabana","Brasília"], c: 0 },
+    { q: "Dom Pedro I também foi:", o: ["Rei de Portugal","Presidente da França","Imperador Romano"], c: 0 }
   ]
 },
 
 {
-  modulo: "Módulo 8 – O Mesolítico",
+  modulo: "As Grandes Navegações – Cristóvão Colombo",
   perguntas: [
-    { q: "O que significa Mesolítico?", o: ["Pedra Nova","Pedra Média","Idade do Bronze"], c: 1 },
-    { q: "O que marcou esse período?", o: ["Fim da Era do Gelo","Construção de cidades","Uso do ferro"], c: 0 },
-    { q: "Por que é considerado uma transição?", o: ["Preparou o caminho para a agricultura","Foi idêntico ao Paleolítico","Não trouxe mudanças"], c: 0 }
+    { q: "Quem foi Cristóvão Colombo?", o: ["Explorador e navegador","Cientista","Imperador"], c: 0 },
+    { q: "Qual era o objetivo de sua viagem?", o: ["Chegar às Índias","Descobrir a Antártica","Viajar para a Lua"], c: 0 },
+    { q: "Em qual continente Colombo chegou em 1492?", o: ["África","América","Oceania"], c: 1 }
   ]
 },
 
 {
-  modulo: "Módulo 9 – O Neolítico",
+  modulo: "Era dos Dinossauros – Dinossauros e Velociraptor",
   perguntas: [
-    { q: "O que é sedentarismo?", o: ["Vida em movimento constante","Fixação em um local","Vida solitária"], c: 1 },
-    { q: "Como a agricultura transformou a vida humana?", o: ["Permitiu aldeias permanentes","Eliminou o trabalho","Impediu o crescimento populacional"], c: 0 },
-    { q: "Por que o Neolítico é considerado uma revolução?", o: ["Mudou a organização social","Não trouxe mudanças","Extinguiu a humanidade"], c: 0 }
+    { q: "O que foi o período Cretáceo?", o: ["Última fase da Era dos Dinossauros","Idade Média","Era do Bronze"], c: 0 },
+    { q: "Qual característica real do Velociraptor surpreendeu os cientistas?", o: ["Possuía penas","Vivia na água","Era gigante"], c: 0 },
+    { q: "Qual evento contribuiu para a extinção dos dinossauros?", o: ["Queda de um asteroide","Construção de cidades","Navegações"], c: 0 }
+  ]
+},
+
+{
+  modulo: "Arte Paleolítica – Cavalo e Mamute de Vogelherd",
+  perguntas: [
+    { q: "Onde foram encontradas as esculturas de Vogelherd?", o: ["Caverna de Vogelherd","Egito","Machu Picchu"], c: 0 },
+    { q: "De que material eram feitas as esculturas?", o: ["Marfim de mamute","Bronze","Madeira"], c: 0 },
+    { q: "O que essas esculturas representam?", o: ["Arte pré-histórica","Arquitetura romana","Arte medieval"], c: 0 }
   ]
 }
 
