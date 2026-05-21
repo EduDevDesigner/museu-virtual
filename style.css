@@ -30,7 +30,7 @@ display:none !important;
 
 .fly-btn{
 position:fixed;
-bottom:20px;
+bottom:15px;
 left:50%;
 transform:translateX(-50%);
 background:transparent;
@@ -42,7 +42,7 @@ cursor:pointer;
 }
 
 .fly-btn img{
-width:120px;
+width:110px;
 display:block;
 }
 
@@ -50,8 +50,8 @@ display:block;
 
 .audio-left-fly-btn{
 position:fixed;
-bottom:51px;
-left:calc(50% - 180px);
+bottom:41px;
+left:calc(50% - 171px);
 background:transparent;
 border:none;
 padding:0;
@@ -69,8 +69,8 @@ display:block;
 
 .audio-right-fly-btn{
 position:fixed;
-bottom:53px;
-left:calc(50% + 63px);
+bottom:42px;
+left:calc(50% + 56px);
 background:transparent;
 border:none;
 padding:0;
