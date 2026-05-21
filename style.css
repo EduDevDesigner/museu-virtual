@@ -50,8 +50,8 @@ display:block;
 
 .audio-left-fly-btn{
 position:fixed;
-bottom:37px;
-left:calc(50% - 155px);
+bottom:53px;
+left:calc(50% - 190px);
 background:transparent;
 border:none;
 padding:0;
@@ -61,7 +61,7 @@ cursor:pointer;
 }
 
 .audio-left-fly-btn img{
-width:95px;
+width:125px;
 display:block;
 }
 
@@ -69,8 +69,8 @@ display:block;
 
 .audio-right-fly-btn{
 position:fixed;
-bottom:37px;
-left:calc(50% + 60px);
+bottom:53px;
+left:calc(50% + 63px);
 background:transparent;
 border:none;
 padding:0;
@@ -80,7 +80,7 @@ cursor:pointer;
 }
 
 .audio-right-fly-btn img{
-width:95px;
+width:125px;
 display:block;
 }
 
