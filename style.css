@@ -30,7 +30,7 @@ display:none !important;
 
 .fly-btn{
 position:fixed;
-bottom:15px;
+bottom:10px;
 left:50%;
 transform:translateX(-50%);
 background:transparent;
@@ -50,7 +50,7 @@ display:block;
 
 .audio-left-fly-btn{
 position:fixed;
-bottom:41px;
+bottom:21px;
 left:calc(50% - 171px);
 background:transparent;
 border:none;
@@ -69,7 +69,7 @@ display:block;
 
 .audio-right-fly-btn{
 position:fixed;
-bottom:42px;
+bottom:21px;
 left:calc(50% + 56px);
 background:transparent;
 border:none;
