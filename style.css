@@ -184,3 +184,132 @@ display:block;
 
 }
 
+/*---------------------------*/
+
+/* =====================================================
+MENU HAMBURGER
+===================================================== */
+
+#menuToggleButton{
+
+position:fixed;
+
+right:20px;
+bottom:40px;
+
+width:50px;
+height:50px;
+
+border:none;
+border-radius:50%;
+
+background:rgba(0, 74, 173, 0.52);
+
+color:white;
+
+font-size:24px;
+font-weight:bold;
+
+z-index:999999999;
+
+cursor:pointer;
+
+backdrop-filter:blur(5px);
+
+box-shadow:0 0 10px rgba(0,0,0,0.4);
+
+}
+
+/* =====================================================
+BOTÕES DENTRO DO MENU
+===================================================== */
+
+.fly-btn,
+.audio-left-fly-btn,
+.audio-right-fly-btn{
+
+opacity:0;
+
+pointer-events:none;
+
+transform:translateY(100px) scale(0.7);
+
+transition:
+transform .35s ease,
+opacity .35s ease;
+
+}
+
+/* MENU ABERTO */
+
+.menu-open .fly-btn,
+.menu-open .audio-left-fly-btn,
+.menu-open .audio-right-fly-btn{
+
+opacity:1;
+
+pointer-events:auto;
+
+}
+
+/* POSIÇÕES */
+
+/* =====================================================
+BOTÕES ORGANIZADOS AO LADO DO MENU
+===================================================== */
+
+/* BOTÃO CENTRAL */
+
+.menu-open .fly-btn{
+
+left:auto;
+right:210px;
+bottom:20px;
+
+transform:translateY(0) scale(1);
+
+}
+
+/* BOTÃO ESQUERDO */
+
+.menu-open .audio-left-fly-btn{
+
+left:auto;
+right:315px;
+bottom:20px;
+
+transform:translateY(0) scale(1);
+
+}
+
+/* BOTÃO DIREITO */
+
+.menu-open .audio-right-fly-btn{
+
+left:auto;
+right:105px;
+bottom:20px;
+
+transform:translateY(0) scale(1);
+
+}
+
+/* ANIMAÇÃO CLICK */
+
+.fly-btn img,
+.audio-left-fly-btn img,
+.audio-right-fly-btn img{
+
+transition:transform .2s ease;
+
+}
+
+.fly-btn:active img,
+.audio-left-fly-btn:active img,
+.audio-right-fly-btn:active img{
+
+transform:scale(0.92);
+
+}
+
+
