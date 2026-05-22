@@ -122,9 +122,12 @@ function hideAllButtons(){
 
 document.querySelectorAll("button").forEach(btn=>{
 
-/* NÃO ESCONDER O BOTÃO FINAL */
+/* NÃO ESCONDER BOTÕES FIXOS */
 
-if(btn.id==="finalButtonTop"){
+if(
+btn.id==="finalButtonTop" ||
+btn.id==="menuToggleButton"
+){
 return;
 }
 
@@ -980,9 +983,12 @@ function mostrarMensagemFinal(){
 
 document.querySelectorAll("button").forEach(btn=>{
 
-/* NÃO ESCONDER O BOTÃO FINAL */
+/* NÃO ESCONDER BOTÕES FIXOS */
 
-if(btn.id==="finalButtonTop"){
+if(
+btn.id==="finalButtonTop" ||
+btn.id==="menuToggleButton"
+){
 return;
 }
 
@@ -991,7 +997,6 @@ btn.style.display="none";
 });
 
 }
-
 /* =========================================================
 BOTÃO FINAL
 ========================================================= */
@@ -1002,3 +1007,53 @@ window.location.href="quiz.html";
 
 });
 
+/* =====================================================
+MENU HAMBURGER
+===================================================== */
+
+const menuToggleButton =
+document.getElementById("menuToggleButton");
+
+let menuOpen = false;
+
+/* =====================================================
+ABRIR / FECHAR MENU
+===================================================== */
+
+menuToggleButton.addEventListener("click",()=>{
+
+menuOpen = !menuOpen;
+
+if(menuOpen){
+
+document.body.classList.add("menu-open");
+
+menuToggleButton.innerHTML = "✕";
+
+}else{
+
+document.body.classList.remove("menu-open");
+
+menuToggleButton.innerHTML = "☰";
+
+}
+
+});
+
+/* =====================================================
+FECHAR MENU AO PERDER TRACK
+===================================================== */
+
+targets.forEach((target)=>{
+
+target.addEventListener("targetLost",()=>{
+
+menuOpen = false;
+
+document.body.classList.remove("menu-open");
+
+menuToggleButton.innerHTML = "☰";
+
+});
+
+});
