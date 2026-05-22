@@ -12,7 +12,7 @@ position:fixed;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
-background:#004aad;
+background:rgba(0, 74, 173, 0.56);
 color:#fff;
 padding:12px 20px;
 border-radius:10px;
@@ -42,7 +42,7 @@ cursor:pointer;
 }
 
 .fly-btn img{
-width:110px;
+width:90px;
 display:block;
 }
 
@@ -51,7 +51,7 @@ display:block;
 .audio-left-fly-btn{
 position:fixed;
 bottom:21px;
-left:calc(50% - 171px);
+left:calc(50% - 771px);
 background:transparent;
 border:none;
 padding:0;
@@ -61,7 +61,7 @@ cursor:pointer;
 }
 
 .audio-left-fly-btn img{
-width:115px;
+width:100px;
 display:block;
 }
 
@@ -80,7 +80,7 @@ cursor:pointer;
 }
 
 .audio-right-fly-btn img{
-width:110px;
+width:100px;
 display:block;
 }
 
@@ -264,10 +264,29 @@ BOTÕES ORGANIZADOS AO LADO DO MENU
 
 left:auto;
 right:210px;
-bottom:20px;
+bottom:40px;
 
 transform:translateY(0) scale(1);
 
+border:none;
+padding:12px 18px;
+border-radius:8px;
+
+background:rgba(0, 74, 173, 0.52);
+
+color:white;
+
+font-size:10px;
+font-weight:bold;
+
+z-index:999999999;
+
+cursor:pointer;
+
+backdrop-filter:blur(5px);
+
+box-shadow:0 0 10px rgba(0,0,0,0.4);
+    
 }
 
 /* BOTÃO ESQUERDO */
@@ -276,9 +295,28 @@ transform:translateY(0) scale(1);
 
 left:auto;
 right:315px;
-bottom:20px;
+bottom:40px;
 
 transform:translateY(0) scale(1);
+    
+border:none;
+padding:12px 18px;
+border-radius:8px;
+
+background:rgba(0, 74, 173, 0.52);
+
+color:white;
+
+font-size:10px;
+font-weight:bold;
+
+z-index:999999999;
+
+cursor:pointer;
+
+backdrop-filter:blur(5px);
+
+box-shadow:0 0 10px rgba(0,0,0,0.4);
 
 }
 
@@ -287,11 +325,30 @@ transform:translateY(0) scale(1);
 .menu-open .audio-right-fly-btn{
 
 left:auto;
-right:105px;
-bottom:20px;
+right:90px;
+bottom:50px;
 
 transform:translateY(0) scale(1);
 
+border:none;
+padding:12px 18px;
+border-radius:8px;
+
+background:rgba(0, 74, 173, 0.52);
+
+color:white;
+
+font-size:10px;
+font-weight:bold;
+
+z-index:999999999;
+
+cursor:pointer;
+
+backdrop-filter:blur(5px);
+
+box-shadow:0 0 10px rgba(0,0,0,0.4);    
+    
 }
 
 /* ANIMAÇÃO CLICK */
@@ -311,5 +368,28 @@ transition:transform .2s ease;
 transform:scale(0.92);
 
 }
+
+/* =====================================================
+ESTADO ILUMINADO DOS BOTÕES
+===================================================== */
+
+.btn-active{
+
+background:rgba(0, 195, 255, 0.95) !important;
+
+box-shadow:
+0 0 10px rgba(0,255,255,0.8),
+0 0 20px rgba(0,255,255,0.7),
+0 0 35px rgba(0,255,255,0.6);
+
+filter:brightness(1.3);
+
+transition:
+background .3s ease,
+box-shadow .3s ease,
+filter .3s ease;
+
+}
+
 
 
