@@ -167,6 +167,9 @@ html, body {
 
 <body>
 
+<!-- ÁUDIO -->
+<audio id="menuClickSound" src="Audios/acerto.mp3"></audio>
+  
 <div class="app-wrapper">
 
   <div class="background-container" aria-hidden="true">
@@ -220,6 +223,31 @@ function startIntroVideo() {
 video.addEventListener("ended", () => {
   btnStart.style.display = "flex";
 });
+  
+const menuClickSound =
+document.getElementById("menuClickSound");
+
+function tocarSomBotao(){
+
+menuClickSound.pause();
+
+menuClickSound.currentTime=0;
+
+menuClickSound.play().catch(()=>{});
+
+}
+
+/* TODOS OS BOTÕES */
+
+document.querySelectorAll("button").forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+tocarSomBotao();
+
+});
+
+});  
   
 </script>
 
