@@ -346,6 +346,8 @@ const btnSobre = document.getElementById('btnSobre');
 const btnCredito = document.getElementById('btnCredito');
 const btnStart = document.getElementById('btnStart');
 
+const buttonsFrame = document.querySelector(".buttons-frame");
+
 window.addEventListener('load', () => {
   audio.volume = 0.05;
   audio.muted = false;
@@ -355,11 +357,16 @@ window.addEventListener('load', () => {
 });
 
 function startIntroVideo() {
+
+  buttonsFrame.style.display = "none";
+
   btnPlay.style.display = "none";
   btnSobre.style.display = "none";
   btnCredito.style.display = "none";
+
   video.play();
   audio.play();
+
 }
 
 video.addEventListener("ended", () => {
