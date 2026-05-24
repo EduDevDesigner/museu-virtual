@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Início</title>
-
+<link rel="stylesheet" href="style.css">
+  
 <style>
 
 /* ===== CONFIGURAÇÃO PADRÃO (MOBILE) ===== */
@@ -185,11 +186,18 @@ html, body {
   <div class="buttons-container">
 
   <!-- BOTÃO 1 -->
-  <button id="btnPlay" class="card" onclick="startIntroVideo()">
-    <img src="Imagens/btn_Play_now.png" alt="">
+  <button id="btnPlay" class="continue-btn" onclick="startIntroVideo()">
+    <!-- <img src="Imagens/btn_Play_now.png" alt=""> -->
+    Continue
   </button>
-
+    
   <!-- BOTÃO 2 -->
+  <button id="btnSobre" class="sobre-btn" onclick="location.href='museuAR.html'">
+    <!-- <img src="Imagens/btn_Play_now.png" alt=""> -->
+    Sobre
+  </button>  
+
+  <!-- BOTÃO 4 -->
   <button id="btnStart" class="card" onclick="location.href='museuAR.html'" style="display:none;">
     <img src="Imagens/btn_Play_now.png" alt="">
   </button>
