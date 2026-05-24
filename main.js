@@ -1,5 +1,19 @@
 const message=document.getElementById("track-message");
 
+/* ================= SOM CLICK ================= */
+
+const clickSound=document.getElementById("clickSound");
+
+function tocarClick(){
+
+clickSound.pause();
+
+clickSound.currentTime=0;
+
+clickSound.play().catch(()=>{});
+
+}
+
 /* =====================================================
 TRACK 0 — VELOCIRAPTOR
 ===================================================== */
@@ -286,6 +300,20 @@ btn.style.display="none";
 });
 
 }
+
+/* =====================================================
+SOM EM TODOS OS BOTÕES
+===================================================== */
+
+document.querySelectorAll("button").forEach(botao=>{
+
+botao.addEventListener("click",()=>{
+
+tocarClick();
+
+});
+
+});
 
 /* =====================================================
 TARGETS
