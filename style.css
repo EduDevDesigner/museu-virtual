@@ -152,76 +152,7 @@ z-index:999999;
 
 }
 
-/*================== BOTÃO CONTINUE ======================= */
-.continue-btn{
 
-position:fixed;
-
-left:50%;
-bottom:10px;
-
-padding:5px 10px;
-border-radius:8px;
-    
-width:50px;
-height:50px;       
-
-transform:translateX(-50%);
-
-background:rgb(0, 50, 112);
-
-color:#ffffff;
-
-font-size:20px;
-font-weight:bold;
-
-z-index:999999999;
-
-cursor:pointer;
-
-backdrop-filter:blur(5px);
-
-box-shadow:0 0 10px rgba(0, 0, 0, 0.4);
-
-}
-
-/*========================================================*/
-
-/*================== BOTÃO SOBRE ======================= */
-.sobre-btn{
-
-position:fixed;
-
-left:50%;
-
-/* MAIS ABAIXO DO CONTINUE */
-bottom:-55px;
-
-padding:5px 10px;
-
-border-radius:8px;
-
-width:140px;
-height:45px;
-
-transform:translateX(-50%);
-
-background:rgb(0, 50, 112);
-
-color:#ffffff;
-
-font-size:20px;
-font-weight:bold;
-
-z-index:999999999;
-
-cursor:pointer;
-
-backdrop-filter:blur(5px);
-
-box-shadow:0 0 10px rgba(0, 0, 0, 0.4);
-
-}
 
 /* ================= BOTÃO FINAL SUPERIOR ================= */
 
