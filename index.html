@@ -143,37 +143,62 @@ width:100%;
 
   
 .card {
-  cursor: pointer;
-  padding: 16px 54px;
-  width: 200px;
-  height: 60px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+cursor:pointer;
 
-  background-color: transparent;
-  background-image: url('Imagens/botao.png');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+width:90px;
+height:90px;
 
-  border: none;
-  outline: none;
-  box-shadow: none;
+display:flex;
+justify-content:center;
+align-items:center;
 
-  border-radius: 999px;
+background:rgba(0, 40, 95, 0.85);
 
-  color: #ffffff;  
-  letter-spacing: 2px;
+border:3px solid rgb(0, 234, 255);
 
-  transition: transform 0.25s ease, filter 0.25s ease;
+border-radius:50%;
+
+outline:none;
+
+box-shadow:
+0 0 20px rgba(0, 195, 255, 0.5),
+0 0 40px rgba(0, 89, 255, 0.25);
+
+color:#ffffff;
+
+font-size:42px;
+font-weight:bold;
+
+transition:
+transform 0.25s ease,
+box-shadow 0.25s ease,
+background 0.25s ease;
+
+backdrop-filter:blur(6px);
+
 }
-  
-.card img {
-  width: 190px;
-  margin-right: 0px;
-  vertical-align: middle;
+
+/* HOVER */
+
+.card:hover{
+
+transform:scale(1.08);
+
+box-shadow:
+0 0 25px rgba(0, 234, 255, 0.9),
+0 0 50px rgba(0, 140, 255, 0.5);
+
+background:rgba(0, 60, 130, 0.95);
+
+}
+
+/* REMOVE CONFIGURAÇÃO ANTIGA DA IMAGEM */
+
+.card img{
+
+display:none;
+
 }
   
 /* =====================================================
@@ -256,9 +281,22 @@ BOTÕES SOMENTE TEXTO
   color:#00eaff;
 }
   
-#btnStart {
-  width: 130px;
-  height: 25px;
+#btnStart{
+
+position:absolute;
+
+left:50%;
+top:78%;
+
+transform:translate(-50%, -50%);
+
+width:90px;
+height:90px;
+
+z-index:9999;
+  
+font-size:32px;  
+
 }
 
 #btnStart img {
@@ -302,6 +340,11 @@ BOTÕES SOMENTE TEXTO
   <audio id="bg-audio" autoplay loop muted>
   </audio>
 
+<!-- BOTÃO 4 -->
+<button id="btnStart" class="card" onclick="location.href='museuAR.html'" style="display:none;">
+  ▶
+</button>  
+  
 <!-- =====================================================
 MOLDURA
 ===================================================== -->
@@ -323,12 +366,7 @@ MOLDURA
   <!-- BOTÃO 3 -->
   <button id="btnCredito" class="credito-btn" onclick="location.href='creditos.html'">
     Créditos
-  </button>    
-
-  <!-- BOTÃO 4 -->
-  <button id="btnStart" class="card" onclick="location.href='museuAR.html'" style="display:none;">
-    <img src="Imagens/btn_Play_now.png" alt="">
-  </button>
+  </button>     
 
 </div>
 
