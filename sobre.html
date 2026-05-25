@@ -2,124 +2,192 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Quiz – Museu virtual</title>
+<title>Página Virando</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
 <style>
+
 /* ===== MOBILE PADRÃO ===== */
+
 html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #001c40ff;
-  color: #ffffff;
-}
 
-/* ===== APP WRAPPER ===== */
-.app-wrapper {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  overflow-x: hidden;
-  overflow-y: auto;
-  background: #001c40ff;
-  
-  background-image: url("Imagens/Sobre_Fundo.jpg");
-   background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: #001c40ff;
-}
+margin:0;
+padding:0;
 
-/* ===== DESKTOP CENTRALIZADO ===== */
-@media (min-width: 868px) {
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #001c40ff;
-  }
+width:100%;
+height:100%;
 
-  .app-wrapper {
-    width: 490px;
-    height: 844px;
-    box-shadow: 0 0 40px rgba(0,0,0,0.6);
-  }
-}
+overflow:hidden;
 
+font-family:Arial, Helvetica, sans-serif;
 
-
-#moduleTitle {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom:20px;
-  color: #1e1600;
-  text-align: center;
-  text-shadow: 1px 1px 1px rgba(97, 97, 97, 0);
-}
-
-
-#btn-voltar {   
-
-position:absolute;
-
-left:70px;
-bottom:90px;
-
-cursor:pointer;
-
-width:70px;
-height:70px;
-
-display:flex;
-justify-content:center;
-align-items:center;
-
-background:rgba(0, 40, 95, 0.85);
-
-border:3px solid rgb(0, 234, 255);
-
-border-radius:50%;
-
-outline:none;
-
-box-shadow:
-0 0 20px rgba(0, 195, 255, 0.5),
-0 0 40px rgba(0, 89, 255, 0.25);
+background:#001c40ff;
 
 color:#ffffff;
 
-font-size:30px;
-font-weight:bold;
+}
 
-transition:
-transform 0.25s ease,
-box-shadow 0.25s ease,
-background 0.25s ease;
+/* ===== APP WRAPPER ===== */
 
-backdrop-filter:blur(6px);
+.app-wrapper {
 
-z-index:9999;
+width:100%;
+height:100%;
+
+position:relative;
+
+overflow:hidden;
+
+background:#001c40ff;
 
 }
-/* HOVER */
 
-.card:hover{
+/* ===== DESKTOP CENTRALIZADO ===== */
 
-transform:scale(1.08);
+@media (min-width:868px){
 
-box-shadow:
-0 0 25px rgba(0, 234, 255, 0.9),
-0 0 50px rgba(0, 140, 255, 0.5);
+body{
 
-background:rgba(0, 60, 130, 0.95);
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+background:#001c40ff;
 
 }
+
+.app-wrapper{
+
+width:490px;
+height:844px;
+
+box-shadow:0 0 40px rgba(0,0,0,0.6);
+
+}
+
+}
+
+/* =====================================================
+FUNDO FIXO (IMAGEM DE TRÁS)
+===================================================== */
+
+.back-page{
+
+position:absolute;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+z-index:1;
+
+}
+
+.back-page img{
+
+width:100%;
+height:100%;
+
+object-fit:cover;
+
+}
+
+/* =====================================================
+PÁGINA DA FRENTE
+===================================================== */
+
+.front-page{
+
+position:absolute;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+z-index:2;
+
+transform-origin:left center;
+
+transition:transform 1s ease-in-out;
+
+transform-style:preserve-3d;
+
+}
+
+/* =====================================================
+EFEITO DE VIRAR
+===================================================== */
+
+.front-page.flipped{
+
+transform:rotateY(-180deg);
+
+}
+
+/* =====================================================
+IMAGEM FRENTE
+===================================================== */
+
+.front-page img{
+
+width:100%;
+height:100%;
+
+object-fit:cover;
+
+backface-visibility:hidden;
+
+}
+
+/* =====================================================
+BOTÕES
+===================================================== */
+
+.page-btn{
+
+position:absolute;
+
+bottom:40px;
+
+padding:14px 24px;
+
+background:#00285f;
+
+border:2px solid #00eaff;
+
+color:white;
+
+font-size:18px;
+
+cursor:pointer;
+
+border-radius:8px;
+
+z-index:999;
+
+}
+
+/* BOTÃO ABRIR */
+
+#btnAbrir{
+
+right:40px;
+
+}
+
+/* BOTÃO VOLTAR */
+
+#btnVoltar{
+
+left:40px;
+
+display:none;
+
 }
 
 </style>
@@ -127,19 +195,101 @@ background:rgba(0, 60, 130, 0.95);
 
 <body>
 
-<div class="app-wrapper">  
-  
-  <div id="overlay"></div>
+<div class="app-wrapper">
 
-  <div class="main-content">
-    <audio id="audioAcerto" src="Audios/acerto.mp3"></audio>   
-  </div>
-    
-<button id="btn-voltar" onclick="location.href='index.html'">
-  ←
+<!-- =====================================================
+IMAGEM DE TRÁS (FIXA)
+===================================================== -->
+
+<div class="back-page">
+
+<img src="Imagens/papel_Fundo.jpg">
+
+</div>
+
+<!-- =====================================================
+IMAGEM DA FRENTE (GIRA)
+===================================================== -->
+
+<div class="front-page" id="frontPage">
+
+<img src="Imagens/Sobre_Fundo.jpg">
+
+</div>
+
+<!-- =====================================================
+BOTÃO ABRIR
+===================================================== -->
+
+<button
+class="page-btn"
+id="btnAbrir"
+onclick="virarPagina()">
+
+Abrir
+
+</button>
+
+<!-- =====================================================
+BOTÃO VOLTAR
+===================================================== -->
+
+<button
+class="page-btn"
+id="btnVoltar"
+onclick="voltarPagina()">
+
+Voltar
+
 </button>
 
 </div>
+
+<script>
+
+function virarPagina(){
+
+document
+.getElementById("frontPage")
+.classList
+.add("flipped");
+
+/* ESCONDE BOTÃO ABRIR */
+
+document
+.getElementById("btnAbrir")
+.style.display = "none";
+
+/* MOSTRA BOTÃO VOLTAR */
+
+document
+.getElementById("btnVoltar")
+.style.display = "block";
+
+}
+
+function voltarPagina(){
+
+document
+.getElementById("frontPage")
+.classList
+.remove("flipped");
+
+/* MOSTRA BOTÃO ABRIR */
+
+document
+.getElementById("btnAbrir")
+.style.display = "block";
+
+/* ESCONDE BOTÃO VOLTAR */
+
+document
+.getElementById("btnVoltar")
+.style.display = "none";
+
+}
+
+</script>
 
 </body>
 </html>
