@@ -152,9 +152,9 @@ BOTÕES
 
 position:absolute;
 
-bottom:40px;
+bottom:70px;
 
-padding:14px 24px;
+padding:14px 14px;
 
 background:#00285f;
 
@@ -166,7 +166,8 @@ font-size:18px;
 
 cursor:pointer;
 
-border-radius:8px;
+border-radius:100px;
+box-shadow:0 0 10px rgba(0,0,0,0.4);
 
 z-index:999;
 
@@ -203,7 +204,7 @@ IMAGEM DE TRÁS (FIXA)
 
 <div class="back-page">
 
-<img src="Imagens/papel_Fundo.jpg">
+<img src="Imagens/Sobre_pagina2.jpg">
 
 </div>
 
@@ -213,7 +214,7 @@ IMAGEM DA FRENTE (GIRA)
 
 <div class="front-page" id="frontPage">
 
-<img src="Imagens/Sobre_Fundo.jpg">
+<img src="Imagens/Sobre_pagina1.jpg">
 
 </div>
 
@@ -221,27 +222,14 @@ IMAGEM DA FRENTE (GIRA)
 BOTÃO ABRIR
 ===================================================== -->
 
-<button
-class="page-btn"
-id="btnAbrir"
-onclick="virarPagina()">
-
-Abrir
-
-</button>
+<button class="page-btn" id="btnAbrir" onclick="virarPagina()">Abrir</button>
 
 <!-- =====================================================
 BOTÃO VOLTAR
 ===================================================== -->
 
 <button
-class="page-btn"
-id="btnVoltar"
-onclick="voltarPagina()">
-
-Voltar
-
-</button>
+class="page-btn" id="btnVoltar" onclick="voltarPagina()">Voltar</button>
 
 </div>
 
