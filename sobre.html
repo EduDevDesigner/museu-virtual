@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Quiz – Museu virtual</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+/* ===== MOBILE PADRÃO ===== */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #001c40ff;
+  color: #ffffff;
+}
+
+/* ===== APP WRAPPER ===== */
+.app-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #001c40ff;
+  
+  background-image: url("Imagens/Sobre_Fundo.jpg");
+   background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #001c40ff;
+}
+
+/* ===== DESKTOP CENTRALIZADO ===== */
+@media (min-width: 868px) {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #001c40ff;
+  }
+
+  .app-wrapper {
+    width: 490px;
+    height: 844px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.6);
+  }
+}
+
+
+
+#moduleTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom:20px;
+  color: #1e1600;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(97, 97, 97, 0);
+}
+
+
+#btn-voltar {   
+
+position:absolute;
+
+left:70px;
+bottom:90px;
+
+cursor:pointer;
+
+width:70px;
+height:70px;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:rgba(0, 40, 95, 0.85);
+
+border:3px solid rgb(0, 234, 255);
+
+border-radius:50%;
+
+outline:none;
+
+box-shadow:
+0 0 20px rgba(0, 195, 255, 0.5),
+0 0 40px rgba(0, 89, 255, 0.25);
+
+color:#ffffff;
+
+font-size:30px;
+font-weight:bold;
+
+transition:
+transform 0.25s ease,
+box-shadow 0.25s ease,
+background 0.25s ease;
+
+backdrop-filter:blur(6px);
+
+z-index:9999;
+
+}
+/* HOVER */
+
+.card:hover{
+
+transform:scale(1.08);
+
+box-shadow:
+0 0 25px rgba(0, 234, 255, 0.9),
+0 0 50px rgba(0, 140, 255, 0.5);
+
+background:rgba(0, 60, 130, 0.95);
+
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app-wrapper">  
+  
+  <div id="overlay"></div>
+
+  <div class="main-content">
+    <audio id="audioAcerto" src="Audios/acerto.mp3"></audio>   
+  </div>
+    
+<button id="btn-voltar" onclick="location.href='index.html'">
+  ←
+</button>
+
+</div>
+
+</body>
+</html>
