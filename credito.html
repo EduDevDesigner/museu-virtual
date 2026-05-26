@@ -1,8 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Title</title>
-    </head>
-    <body></body>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Quiz – Museu virtual</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+/* ===== MOBILE PADRÃO ===== */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #001c40ff;
+  color: #9c7000;
+}
+
+/* ===== APP WRAPPER ===== */
+.app-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #001c40ff;
+  
+  background-image: url("Imagens/papel_Fundo.jpg");
+   background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #001c40ff;
+}
+
+/* ===== DESKTOP CENTRALIZADO ===== */
+@media (min-width: 868px) {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #001c40ff;
+  }
+
+  .app-wrapper {
+    width: 490px;
+    height: 844px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.6);
+  }
+}
+
+.main-content {
+  position: relative;
+  z-index: 2;
+  min-height: 100%;
+}
+
+header {
+  background: rgba(81, 41, 4, 0);
+  padding: 13px;
+  text-align: center;
+  margin-top: 18vh;
+}
+
+header h1 {
+  margin: 40;
+  font-size: 55px;
+}
+
+header p {
+  margin-top: 1px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #9c7000;
+  text-shadow: 1px 1px 10px rgba(190, 135, 0, 0);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app-wrapper">  
+  
+  <div id="overlay"></div>
+
+  
+    <audio id="audioAcerto" src="Audios/acerto.mp3"></audio>
+       
+
+    <header>
+      <h2>Créditos</h2>
+      
+    </header>    
+  </div>
+
+
+
+
+
+</body>
 </html>
