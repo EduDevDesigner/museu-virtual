@@ -26,11 +26,11 @@ html, body {
   height: 100%;
   position: relative;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: hidden;
   background: #001c40ff;
-  
+
   background-image: url("Imagens/papel_Fundo.jpg");
-   background-size: contain;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   background-color: #001c40ff;
@@ -72,7 +72,7 @@ header {
   background: rgba(81, 41, 4, 0);
   padding: 13px;
   text-align: center;
-  margin-top: 18vh;
+  margin-top: 14vh;
 }
 
 header h1 {
@@ -87,6 +87,44 @@ header p {
   color: #9c7000;
   text-shadow: 1px 1px 10px rgba(190, 135, 0, 0);
 }
+
+/* =====================================================
+FORMULÁRIO DO ALUNO
+===================================================== */
+
+#studentForm{
+  padding: 20px 50px 0 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#studentForm input{
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: #000000;
+  font-weight: bold;
+}
+
+#startQuizBtn{
+  margin-top: 20px;
+  margin-left: 80px;
+  width: 60%;
+  padding: 12px;
+  background: #000000;
+  border: none;
+  border-radius: 6px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+}
+
+/* ===================================================== */
 
 #quizBox {
   padding: 50px;
@@ -191,12 +229,6 @@ header p {
   font-size: 14px;
   color: #ffcb48;
 }
-
-@keyframes flutuar {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-  100% { transform: translateY(0px); }
-}
 </style>
 </head>
 
@@ -207,15 +239,39 @@ header p {
   <div id="overlay"></div>
 
   <div class="main-content">
+
     <audio id="audioAcerto" src="Audios/acerto.mp3"></audio>
     <audio id="audioErro" src="Audios/erro.mp3"></audio>      
 
     <header>
       <h1>Quiz</h1>
-      
     </header>
 
-    <div id="quizBox">
+<!-- =====================================================
+FORMULÁRIO DO ALUNO
+===================================================== -->
+
+<div id="studentForm">
+
+<input 
+type="text" 
+id="nomeAluno" 
+placeholder="Digite o nome do aluno">
+
+<input 
+type="text" 
+id="turmaAluno" 
+placeholder="Digite a turma">
+
+<button id="startQuizBtn">
+Iniciar Quiz
+</button>
+
+</div>
+
+<!-- ===================================================== -->
+
+    <div id="quizBox" style="display:none;">
       <div id="moduleTitle"></div>
       <div id="question"></div>
       <div id="options"></div>
@@ -229,12 +285,53 @@ header p {
       <div id="moduleReport"></div>
       <button id="generatePdf">Gerar PDF</button>
     </div>
+
   </div>
 
 </div>
 
-<script src="alunoData.js"></script>
 <script>
+
+// =====================================================
+// DADOS DO ALUNO
+// =====================================================
+
+let nomeAluno = "";
+let turmaAluno = "";
+
+// =====================================================
+// INICIAR QUIZ
+// =====================================================
+
+document
+.getElementById("startQuizBtn")
+.onclick = function(){
+
+nomeAluno =
+document.getElementById("nomeAluno").value;
+
+turmaAluno =
+document.getElementById("turmaAluno").value;
+
+if(nomeAluno.trim()==="" || turmaAluno.trim()===""){
+
+alert("Preencha nome e turma.");
+
+return;
+
+}
+
+document
+.getElementById("studentForm")
+.style.display="none";
+
+document
+.getElementById("quizBox")
+.style.display="block";
+
+loadQuestion();
+
+};
 
 // ===== FUNÇÃO DE EMBARALHAMENTO =====
 function shuffleArray(array) {
@@ -340,14 +437,18 @@ const quizData = [
 ];
 
 // ===== RANDOMIZAÇÃO DAS RESPOSTAS =====
+
 quizData.forEach(mod => {
   mod.perguntas.forEach(pergunta => {
     const respostas = pergunta.o.map((texto, index) => ({
       texto,
       correta: index === pergunta.c
     }));
+
     shuffleArray(respostas);
+
     pergunta.o = respostas.map(r => r.texto);
+
     pergunta.c = respostas.findIndex(r => r.correta);
   });
 });
@@ -362,90 +463,145 @@ const moduleTitle = document.getElementById("moduleTitle");
 const questionEl = document.getElementById("question");
 const optionsEl = document.getElementById("options");
 const nextBtn = document.getElementById("nextBtn");
-const dadosAluno = obterDadosAluno();
 
 function loadQuestion() {
+
   const current = quizData[moduleIndex].perguntas[questionIndex];
+
   moduleTitle.innerText = quizData[moduleIndex].modulo;
+
   questionEl.innerText = questionNumber + ") " + current.q;
+
   optionsEl.innerHTML = "";
+
   nextBtn.style.display = "none";
+
   const letters = ["A", "B", "C"];
+
   current.o.forEach((opt, i) => {
+
     const div = document.createElement("div");
+
     div.className = "option";
+
     div.innerText = letters[i] + ") " + opt;
+
     div.onclick = () => selectOption(div, i);
+
     optionsEl.appendChild(div);
+
   });
+
 }
 
 function selectOption(el, index) {
+
   const correct = quizData[moduleIndex].perguntas[questionIndex].c;
+
   const options = document.querySelectorAll(".option");
+
   options.forEach((opt, i) => {
+
     opt.classList.add("disabled");
+
     if (i === correct) opt.classList.add("correct");
+
     if (i === index && i !== correct) opt.classList.add("wrong");
+
   });
+
   if (index === correct) {
+
     score++;
+
     moduleScores[moduleIndex]++;
+
     audioAcerto.play();
+
   } else {
+
     audioErro.play();
+
   }
+
   nextBtn.style.display = "block";
+
 }
 
 nextBtn.onclick = () => {
+
   questionIndex++;
   questionNumber++;
+
   if (questionIndex >= quizData[moduleIndex].perguntas.length) {
+
     moduleIndex++;
     questionIndex = 0;
+
   }
+
   if (moduleIndex >= quizData.length) {
+
     document.getElementById("quizBox").style.display = "none";
+
     document.getElementById("scoreBox").style.display = "block";
 
     document.getElementById("studentInfo").innerHTML = `
-      Nome: ${dadosAluno.nome || "-"}<br>
-      Ano/Série: ${dadosAluno.ano || "-"}
+      Nome: ${nomeAluno}<br>
+      Turma: ${turmaAluno}
     `;
 
     document.getElementById("scoreText").innerText =
       `Você acertou ${score} de ${quizData.length * 3} perguntas.`;
 
     const reportDiv = document.getElementById("moduleReport");
+
     reportDiv.innerHTML = "";
+
     quizData.forEach((mod, i) => {
-      reportDiv.innerHTML += `<div class="report-line">${mod.modulo}: ${moduleScores[i]} de 3 acertos</div>`;
+
+      reportDiv.innerHTML += `
+      <div class="report-line">
+      ${mod.modulo}: ${moduleScores[i]} de 3 acertos
+      </div>`;
+
     });
+
   } else {
+
     loadQuestion();
+
   }
+
 };
 
 document.getElementById("generatePdf").onclick = function() {
+
   const { jsPDF } = window.jspdf;
+
   const doc = new jsPDF();
 
   doc.text("Relatório - Entre Gigantes", 20, 20);
-  doc.text("Aluno: " + (dadosAluno.nome || "-"), 20, 30);
-  doc.text("Ano/Série: " + (dadosAluno.ano || "-"), 20, 40);
-  doc.text(`Resultado: ${score} de ${quizData.length * 3}`, 20, 50);
 
-  let y = 60;
+  doc.text("Aluno: " + nomeAluno, 20, 35);
+
+  doc.text("Turma: " + turmaAluno, 20, 45);
+
+  doc.text(`Resultado: ${score} de ${quizData.length * 3}`, 20, 60);
+
+  let y = 75;
+
   quizData.forEach((mod, i) => {
+
     doc.text(`${mod.modulo}: ${moduleScores[i]} de 3`, 20, y);
+
     y += 10;
+
   });
 
   doc.save("relatorio_quiz.pdf");
-};
 
-loadQuestion();
+};
 
 </script>
 
