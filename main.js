@@ -848,7 +848,7 @@ return;
 
 }
 
-rot-=1;
+rot+=1;
 
 vogelherdGroup.setAttribute(
 "rotation",
