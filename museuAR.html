@@ -8,6 +8,8 @@
 <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/aframe-extras@7.5.4/dist/aframe-extras.min.js"></script>
+  <!-- Postprocessing -->
+<script src="https://unpkg.com/aframe-effects@1.0.1/dist/aframe-effects.min.js"></script>
 </head>
 
 <body>
@@ -204,11 +206,20 @@ physicallyCorrectLights:true;
 shadowMap.enabled:true;
 shadowMap.type:PCFSoftShadowMap"
 xr-mode-ui="enabled:false"
-device-orientation-permission-ui="enabled:false">
+device-orientation-permission-ui="enabled:false"
+
+effects="
+fxaa:true;
+bloom:strength:1.2;
+bloom:radius:0.5;
+bloom:threshold:0.2;
+">
 
 <a-assets>
   <!-- ASSETs DE MODELOS 3D -->
 <a-asset-item id="base" src="Modelos/base.glb"></a-asset-item>
+<a-asset-item id="baseEscultura" src="Modelos/base2.glb"></a-asset-item>
+<a-asset-item id="anel" src="Modelos/Anel.glb"></a-asset-item>   
 <a-asset-item id="mamute" src="Modelos/Mamute2.glb"></a-asset-item>
 <a-asset-item id="smilodon" src="Modelos/Smilodon.glb"></a-asset-item>
 <a-asset-item id="14bis" src="Modelos/14_Bis.glb"></a-asset-item>
@@ -218,7 +229,7 @@ device-orientation-permission-ui="enabled:false">
 <a-asset-item id="c_vogelherd" src="Modelos/%20Cavalo_Vogelherd.glb"></a-asset-item>
 <a-asset-item id="m_vogelherd" src="Modelos/Manute_Vogelherd.glb"></a-asset-item>
 <a-asset-item id="pedestal" src="Modelos/Pedestal.glb"></a-asset-item>
-<a-asset-item id="moldura" src="Modelos/Moldura.glb"></a-asset-item>  
+<a-asset-item id="moldura" src="Modelos/Moldura.glb"></a-asset-item>   
 <!-- ASSETs DE VÍDEOS -->
 <video id="terrenoVideoAsset" src="Video/Terreno_Final.mp4" loop muted playsinline preload="auto"></video>
 <video id="monalisaVideo" src="Video/Monalisa.mp4" playsinline preload="auto"></video>
@@ -233,6 +244,7 @@ device-orientation-permission-ui="enabled:false">
 <a-entity mindar-image-target="targetIndex:0">
   <a-entity id="velociGroup" rotation="0 0 180">
     <a-gltf-model id="velociBase" rotation="90 0 0" position="0 0 0" scale="0.3 0.3 0.3" src="#base" material="shader:shadow" shadow="receive:true"></a-gltf-model>
+    <a-gltf-model id="anelBase" rotation="90 0 0" position="0 0 0" scale="0.3 0.3 0.3" src="#anel" material=" color:#00ffff; emissive:#00ffff; emissiveIntensity:3; metalness:0.8; roughness:0.2;"></a-gltf-model>
     <a-gltf-model id="velociModel" rotation="90 0 0" position="0 0 0.1" scale="0.4 0.4 0.4" src="#raptor" shadow="cast:true" ></a-gltf-model>    
   </a-entity>
   <a-plane id="velociFog" color="#d9f1ff" opacity="0" width="2.8" height="2.8" rotation="-90 0 0" position="0 -0.15 0"></a-plane>
@@ -247,6 +259,7 @@ device-orientation-permission-ui="enabled:false">
 <a-entity mindar-image-target="targetIndex:1">
   <a-entity id="faunaGroup" rotation="0 0 -90">
     <a-gltf-model id="faunaBase" rotation="90 0 0" position="0 0 0" scale="0.4 0.4 0.4" src="#base"></a-gltf-model>
+    <a-gltf-model id="anelBase2" rotation="90 0 0" position="0 0 0" scale="0.4 0.4 0.4" src="#anel" material=" color:#00ffff; emissive:#00ffff; emissiveIntensity:3; metalness:0.8; roughness:0.2;"></a-gltf-model>
     <a-gltf-model id="mamuteModel" rotation="90 0 0" position="0 0.3 0.08" scale="0.4 0.4 0.4" src="#mamute"></a-gltf-model>
     <a-gltf-model id="smilodonModel" rotation="90 0 0" position="0 0 0" scale="0.4 0.4 0.4" src="#smilodon"></a-gltf-model>
   </a-entity>
@@ -260,9 +273,10 @@ device-orientation-permission-ui="enabled:false">
 <!-- ================= TRACK 2 OS PRIMEIROS SÍMBOLOS HUMANOS - VENUS ================= -->
 <a-entity mindar-image-target="targetIndex:2">
   <a-entity id="venusGroup" rotation="0 0 0">
-     <a-gltf-model id="venusModel" rotation="90 0 0" position="0 0 1.5" scale="0.7 0.7 0.7" src="#venus"></a-gltf-model>    
+     <a-gltf-model id="venusModel" rotation="90 0 0" position="0 0 0" scale="0.3 0.3 0.3" src="#venus"></a-gltf-model>    
   </a-entity>   
-  <a-gltf-model id="pedestalModel" rotation="90 0 0" position="0 0 0" scale="0.7 0.7 0.7" src="#pedestal"></a-gltf-model>
+  <a-gltf-model id="baseEsculturas" rotation="90 0 0" position="0 0 0" scale="0.3 0.3 0.3" src="#baseEscultura"></a-gltf-model>
+  <a-gltf-model id="anelBase3" rotation="90 0 0" position="0 0 0" scale="0.3 0.3 0.3" src="#anel" material=" color:#00ffff; emissive:#00ffff; emissiveIntensity:3; metalness:0.8; roughness:0.2;"></a-gltf-model>
   <a-light type="ambient" color="#ffffff" intensity="1.4"></a-light>
   <a-light type="hemisphere" color="#ffffff" groundColor="#b5b5b5" intensity="1.2"></a-light>
   <a-light type="directional" color="#fff8e5" intensity="2.8" position="-2 -4 3"></a-light>
@@ -273,10 +287,11 @@ device-orientation-permission-ui="enabled:false">
 <!-- ================= TRACK 3 ARTE E SOBREVIVÊNCIA NO PALEOLÍTICO - Cavalo e Mamute de Vogelherd ================= -->
 <a-entity mindar-image-target="targetIndex:3">
   <a-entity id="vogelherdGroup" rotation="0 0 0">
-     <a-gltf-model id="cavaloModel" rotation="90 0 0" position="0.3 0 0.7" scale="0.8 0.8 0.8" src="#c_vogelherd"></a-gltf-model>
-     <a-gltf-model id="mamutevModel" rotation="90 0 0" position="-0.3 0 0.7" scale="0.8 0.8 0.8" src="#m_vogelherd"></a-gltf-model>
+     <a-gltf-model id="cavaloModel" rotation="90 0 0" position="0.3 0 0.2" scale="0.8 0.8 0.8" src="#c_vogelherd"></a-gltf-model>
+     <a-gltf-model id="mamutevModel" rotation="90 0 0" position="-0.3 0 0.2" scale="0.8 0.8 0.8" src="#m_vogelherd"></a-gltf-model>
   </a-entity>   
-  <a-gltf-model id="pedestalModel2" rotation="90 0 0" position="0 0 0" scale="0.7 0.7 0.7" src="#pedestal"></a-gltf-model>
+  <a-gltf-model id="baseEsculturas2" rotation="90 0 0" position="0 0 0" scale="0.3 0.3 0.3" src="#baseEscultura"></a-gltf-model>
+  <a-gltf-model id="anelBase4" rotation="90 0 0" position="0 0 0" scale="0.3 0.3 0.3" src="#anel" material=" color:#00ffff; emissive:#00ffff; emissiveIntensity:3; metalness:0.8; roughness:0.2;"></a-gltf-model>
   <a-light type="ambient" color="#ffffff" intensity="1.4"></a-light>
   <a-light type="hemisphere" color="#ffffff" groundColor="#b5b5b5" intensity="1.2"></a-light>
   <a-light type="directional" color="#fff8e5" intensity="2.8" position="-2 -4 3"></a-light>
@@ -363,17 +378,6 @@ device-orientation-permission-ui="enabled:false">
   
 <!-- SCRIPTS -->
 <script src="main.js"></script>
-<!--  
-<script src="tracks/track0_velociraptor.js"></script>
-<script src="tracks/track1_megafauna.js"></script>
-<script src="tracks/track2_venus.js"></script>
-<script src="tracks/track3_vogelherd.js"></script>
-<script src="tracks/track4_colombo.js"></script>
-<script src="tracks/track5_monalisa.js"></script>
-<script src="tracks/track6_dias.js"></script>
-<script src="tracks/track7_dompedro.js"></script>
-<script src="tracks/track8_14bis.js"></script>
-<script src="tracks/track9_torre.js"></script>  
--->
+
 </body>
 </html>
