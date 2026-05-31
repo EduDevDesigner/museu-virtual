@@ -267,7 +267,7 @@ BOTÕES ORGANIZADOS AO LADO DO MENU
 .menu-open .fly-btn{
 
 left:auto;
-right:150px;
+right:160px;
 bottom:20px;
 
 transform:translateY(0) scale(1);
@@ -298,7 +298,7 @@ box-shadow:0 0 10px rgba(0,0,0,0.4);
 .menu-open .audio-left-fly-btn{
 
 left:auto;
-right:265px;
+right:275px;
 bottom:20px;
 
 transform:translateY(0) scale(1);
