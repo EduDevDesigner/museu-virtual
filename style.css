@@ -298,7 +298,7 @@ box-shadow:0 0 10px rgba(0,0,0,0.4);
 .menu-open .audio-left-fly-btn{
 
 left:auto;
-right:320px;
+right:300px;
 bottom:40px;
 
 transform:translateY(0) scale(1);
