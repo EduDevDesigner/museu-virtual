@@ -458,6 +458,7 @@ let questionIndex = 0;
 let score = 0;
 let questionNumber = 1;
 let moduleScores = new Array(quizData.length).fill(0);
+let respostasAluno = [];  
 
 const moduleTitle = document.getElementById("moduleTitle");
 const questionEl = document.getElementById("question");
@@ -497,6 +498,21 @@ function loadQuestion() {
 function selectOption(el, index) {
 
   const correct = quizData[moduleIndex].perguntas[questionIndex].c;
+  const perguntaAtual = quizData[moduleIndex].perguntas[questionIndex];
+
+respostasAluno.push({
+
+ modulo: quizData[moduleIndex].modulo,
+
+ pergunta: perguntaAtual.q,
+
+ respostaAluno: perguntaAtual.o[index],
+
+ respostaCorreta: perguntaAtual.o[correct],
+
+ acertou: index === correct
+
+});
 
   const options = document.querySelectorAll(".option");
 
@@ -581,19 +597,117 @@ document.getElementById("generatePdf").onclick = function() {
 
   const doc = new jsPDF();
 
-  doc.text("Relatório do Quiz – Museu virtual", 20, 20);
+  const agora = new Date();
 
-  doc.text("Aluno: " + nomeAluno, 20, 35);
+  const dataHora =
+    agora.toLocaleDateString("pt-BR") +
+    " " +
+    agora.toLocaleTimeString("pt-BR");
 
-  doc.text("Turma: " + turmaAluno, 20, 45);
+  let y = 20;
 
-  doc.text(`Resultado: ${score} de ${quizData.length * 3}`, 20, 60);
+  doc.setFontSize(16);
+  doc.text("Relatório do Quiz", 20, y);
 
-  let y = 75;
+  y += 10;
+
+  doc.setFontSize(12);
+
+  doc.text("Aluno: " + nomeAluno, 20, y);
+  y += 8;
+
+  doc.text("Turma: " + turmaAluno, 20, y);
+  y += 8;
+
+  doc.text("Data/Hora: " + dataHora, 20, y);
+  y += 8;
+
+  doc.text(
+    `Resultado: ${score} de ${quizData.length * 3}`,
+    20,
+    y
+  );
+
+  y += 15;
+
+  doc.setFontSize(14);
+  doc.text("Desempenho por módulo", 20, y);
+
+  y += 10;
+
+  doc.setFontSize(11);
 
   quizData.forEach((mod, i) => {
 
-    doc.text(`${mod.modulo}: ${moduleScores[i]} de 3`, 20, y);
+    doc.text(
+      `${mod.modulo}: ${moduleScores[i]} de 3 acertos`,
+      20,
+      y
+    );
+
+    y += 8;
+
+  });
+
+  y += 10;
+
+  doc.setFontSize(14);
+  doc.text("Detalhamento das respostas", 20, y);
+
+  y += 10;
+
+  doc.setFontSize(10);
+
+  respostasAluno.forEach((resp, index) => {
+
+    if (y > 260) {
+      doc.addPage();
+      y = 20;
+    }
+
+    doc.text(
+      `${index + 1}) ${resp.pergunta}`,
+      10,
+      y
+    );
+
+    y += 6;
+
+    const respostaAlunoTexto =
+      doc.splitTextToSize(
+        "Resposta do aluno: " + resp.respostaAluno,
+        180
+      );
+
+    doc.text(
+      respostaAlunoTexto,
+      15,
+      y
+    );
+
+    y += respostaAlunoTexto.length * 5;
+
+    const respostaCorretaTexto =
+      doc.splitTextToSize(
+        "Resposta correta: " + resp.respostaCorreta,
+        180
+      );
+
+    doc.text(
+      respostaCorretaTexto,
+      15,
+      y
+    );
+
+    y += respostaCorretaTexto.length * 5;
+
+    doc.text(
+      resp.acertou
+        ? "Resultado: ACERTOU"
+        : "Resultado: ERROU",
+      15,
+      y
+    );
 
     y += 10;
 
@@ -602,7 +716,6 @@ document.getElementById("generatePdf").onclick = function() {
   doc.save("relatorio_quiz.pdf");
 
 };
-
 </script>
 
 </body>
