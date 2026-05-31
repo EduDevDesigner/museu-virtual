@@ -329,7 +329,7 @@ box-shadow:0 0 10px rgba(0,0,0,0.4);
 .menu-open .audio-right-fly-btn{
 
 left:auto;
-right:90px;
+right:20px;
 bottom:20px;
 
 transform:translateY(0) scale(1);
