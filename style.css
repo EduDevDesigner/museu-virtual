@@ -158,7 +158,7 @@ z-index:999999;
 
 .next-top-btn{
 
-
+display:none; /* ADICIONE ESTA LINHA */
 position:fixed;
 
 right:20px;
@@ -195,7 +195,7 @@ MENU HAMBURGER
 
 #menuToggleButton{
 
-
+display:none; /* ADICIONE ESTA LINHA */
 position:fixed;
 
 right:20px;
